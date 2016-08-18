@@ -1,0 +1,121 @@
+html, body {
+  height: 100%;
+  background-color: whitesmoke ;
+}
+.wrapper{
+   width: auto;
+    margin: 0 auto;
+}
+.wrapper_head{
+	 margin: 0 auto;
+}
+.header_top{
+	 margin: 0 auto;
+}
+ol {
+list-style-type: none;
+ 
+}
+li{
+	list-style-type: none;
+}
+.panel {
+  background-color: transparent;
+}
+
+container{
+        max-width: 970px;
+        font-family: Arial;
+    }
+
+h3{
+  text-align: center;
+}
+
+footer_100{
+  margin-bottom: 50px;
+}
+
+.wrapper_foot{
+	margin: auto;
+}
+.footer{
+  
+  margin-top:50px
+}
+
+.jumbotron{
+  background-image: url('../../images/campus.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+}
+ 
+
+
+
+ 
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a, .dropbtn {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+    background-color: red;
+}
+
+li.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.show {display:block;}
+
+.dropdown{
+
+position:absolute;
+top: 7px;
+z-index:1000;
+}
+
+#contact{
+  position:absolute;
+  left:500px;
+ 
+}
+
+.contact{
+   position:absolute;
+  left:265px;
+}
