@@ -21,7 +21,7 @@ $end_year=2020;  // Ending year for dropdown list box
 <link rel="canonical" href="http://www.plus2net.com/php_tutorial/cal2.php"/>
 <script langauge="javascript">
 function post_value(mm,dt,yy){
-opener.document.f1.p_name.value = mm + "/" + dt + "/" + yy;
+opener.document.f1.p_name.value = dt + "/" + mm + "/" + yy;
 /// cheange the above line for different date format
 self.close();
 }
