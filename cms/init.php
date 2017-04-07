@@ -5,7 +5,7 @@
 	!isset ( $_SESSION ['login'] ) ? $_SESSION['login'] = 0: NULL; // Ελέγχουμε αν υπάρχει η μεταβλητή login στα session
 	$login = $_SESSION ['login'];
 
-	$con = mysql_connect ( "localhost", "my_usr", "my_password" ); // Σύνδεση με τη βάση
+	$con = mysql_connect ( "localhost", "root", "" ); // Σύνδεση με τη βάση
 	if ( !$con )
 	{
 		die ( "Δεν ήταν δυνατή η σύνδεση με τη βάση δεδομένων: ".mysql_error () );
