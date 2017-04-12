@@ -8,7 +8,7 @@
 		switch ( $_POST ['action'] )
 		{
 			case "add": // Περίπτωση προσθήκης εγγραφής
-				$data ['id'] = (int) $_POST ['id'];
+				
 				$data ['name'] =  $_POST ['name'] ; // Αν πρόκειται για αλφαριθμητικό, χρησιμοποιούμε την mysql_real_escape_string
 				$data ['position'] = (int) $_POST ['position']; // Αν θέλουμε ακέραια τιμή, χρησιμοποιούμε την (int)
 				$data ['title'] =  $_POST ['title'] ;
