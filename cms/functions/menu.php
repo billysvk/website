@@ -48,12 +48,11 @@ $con = sqlsrv_connect($serverName, $connectionInfo);
 	{
 	    global $con;
 
-		$sql = "INSERT INTO menu (name, position, title, content) 
-		VALUES (".$data ['name'].",	".$data ['position'].",	".$data ['title'].",".$data ['content'].")";
-
-		sqlsrv_query ( $con, $sql );
-	} // end function add_menu_item
-
+		$sql = "INSERT INTO menu (name,position,title) VALUES (?,?,?)";
+//TODO: ta pedio content prokalei provlhma... me tropo poy den epitrepei to post sth vash.
+		$params = array($data ['name'],$data ['position'],$data ['title']);
+		$stmt = sqlsrv_query( $con, $sql, $params);
+    }
 	// Ενημερώνει μία νέα εγγραφή τα δεδομένα της οποίας είναι στον πίνακα $data
 	function update_item ( $data )
 	{
