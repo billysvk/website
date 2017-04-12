@@ -5,10 +5,10 @@
 		global $con;
 
 		$sql = "SELECT id, name FROM menu ORDER BY position";
-		$result = mysql_query ( $sql, $con );
+		$result = sqlsrv_query ( $con,$sql );
 
 		$rows = array ();
-		while ( $row = mysql_fetch_array ( $result ) )
+		while ( $row = sqlsrv_fetch_array ( $result ) )
 		{
 			$rows [] = $row;
 		} // end while
@@ -21,12 +21,12 @@
 		global $con;
 
 		$sql = "SELECT title, content FROM menu WHERE id = ".$id;
-		$result = mysql_query ( $sql, $con );
+		$result = sqlsrv_query ( $con, $sql);
 
 		$row = array ();
-		if ( mysql_num_rows ( $result ) > 0 )
+		if ( sqlsrv_num_rows ( $result ) > 0 )
 		{
-			$row = mysql_fetch_array ( $result );
+			$row = sqlsrv_fetch_array ( $result );
 		} // end if
 
 		return $row;

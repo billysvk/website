@@ -23,5 +23,5 @@
 </body>
 </html>
 <?php
-	mysql_close ( $con );
+	sqlsrv_close ( $con );
 ?>

@@ -1,15 +1,19 @@
 <?php
+$serverName = 'DESKTOP-CR2KAPT';
+$connectionInfo=array('Database' => 'calendar');
 
+global $con;
+$con = sqlsrv_connect($serverName, $connectionInfo);
 	// Τραβάει από τη βάση όλες τις εγγραφές του πίνακα menu και επιστρέφει ένα πίνακα που τις περιέχει
 	function get_items ()
 	{
 		global $con;
 
 		$sql = "SELECT id, name, position FROM menu ORDER BY position";
-		$result = mysql_query ( $sql, $con );
+		$result = sqlsrv_query ( $con,$sql);
 
 		$rows = array ();
-		while ( $row = mysql_fetch_array ( $result ) )
+		while ( $row = sqlsrv_fetch_array ( $result ) )
 		{
 			$rows [] = $row;
 		} // end whille
@@ -25,11 +29,11 @@
 		$id = (int) $id; // Το μετατρέπουμε σε ακέραια τιμή για λόγους ασφαλείας
 
 		$sql = "SELECT id, name, position, title, content FROM menu WHERE id = ".$id;
-		$result = mysql_query ( $sql, $con );
+		$result = sqlsrv_query ( $con, $sql );
 
-		if ( mysql_num_rows ( $result ) > 0 )
+		if ( sqlsrv_has_rows ( $result ) > 0 )
 		{
-			$row = mysql_fetch_array ( $result );
+			$row = sqlsrv_fetch_array ( $result );
 		} // end if
 		else
 		{
@@ -42,10 +46,12 @@
 	// Προσθέτει μία νέα εγγραφή τα δεδομένα της οποίας είναι στον πίνακα $data
 	function add_item  ( $data )
 	{
-		global $con;
-		$sql = "INSERT INTO menu (name, position, title, content) VALUES ('".$data ['name']."', ".$data ['position'].", '".$data ['title']."', '".$data ['content']."')";
+	    global $con;
 
-		mysql_query ( $sql, $con );
+		$sql = "INSERT INTO menu (name, position, title, content) 
+		VALUES (".$data ['name'].",	".$data ['position'].",	".$data ['title'].",".$data ['content'].")";
+
+		sqlsrv_query ( $con, $sql );
 	} // end function add_menu_item
 
 	// Ενημερώνει μία νέα εγγραφή τα δεδομένα της οποίας είναι στον πίνακα $data
@@ -54,7 +60,7 @@
 		global $con;
 
 		$sql = "UPDATE menu set name = '".$data ['name']."', position = ".$data ['position'].", title = '".$data ['title']."', content = '".$data ['content']."' WHERE id = ".$data ['id'];
-		mysql_query ( $sql, $con );
+		sqlsrv_query ( $con, $sql );
 	} // end function update_menu_item
 
 	// Διαγράφει την εγγραφή με συγκεκριμένο $id
@@ -63,6 +69,6 @@
 		global $con;
 
 		$sql = "DELETE FROM menu WHERE id = ".$id;
-		mysql_query ( $sql, $con );
+		sqlsrv_query ( $con, $sql );
 	} // end function delete_menu_item
 ?>
