@@ -2,8 +2,10 @@
 	header('Content-type: text/html; charset=utf-8'); // Το χρησιμοποιούμε για να φαίνονται σωστά τα ελληνικά
 	session_start ();
 
+
 	$connectionInfo = array ("Database"=>"calendar");
 	$con = sqlsrv_connect ( "DESKTOP-CR2KAPT", $connectionInfo ); // Σύνδεση με τη βάση
+
 	if ( !$con )
 	{
 		die ( "Δεν ήταν δυνατή η σύνδεση με τη βάση δεδομένων: ".sqlsrv_error () );
