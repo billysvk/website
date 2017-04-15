@@ -20,7 +20,10 @@
 		} // end if
 		else
 		{
-			$_SESSION ['login'] = 1; // Δίνουμε την τιμή 1 στη μεταβλητή για να γνωρίζει κάθε σελίδα ότι ο χρήστης έχει κάνει login
+			session_start();
+			$_SESSION ['login'] = 1; // Δίνουμε την τιμή 1 στη μεταβλητή για να γνωρίζει κάθε σελίδα 
+				$adminUname = $username;
+				$_SESSION['adminName'] = $adminUname;//ότι ο χρήστης έχει κάνει login
 			header ( "location:main.php" );
 		} // end else
 	} // end if
@@ -54,7 +57,7 @@
 		if ( isset ( $message ) )
 		{
 			echo $message;
-		} // end if
+		} 
 	?>
 </body>
 </html>
