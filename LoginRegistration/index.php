@@ -2,7 +2,7 @@
 	ob_start();
 	//session_start();
 	require_once 'dbconnect.php';
-	global $emailError, $passError, $email;
+	global $emailError, $passError, $email,$con;
 
 	// it will never let you open index(login) page if session is set
 	if ( isset($_SESSION['user'])!="" ) {
@@ -42,13 +42,43 @@
 			
 			$password = hash('sha256', $pass); // password hashing using SHA256
 		
-			$res=mysql_query("SELECT userId, userName, userPass FROM users WHERE userEmail='$email'");
-			$row=mysql_fetch_array($res);
-			$count = mysql_num_rows($res); // if uname/pass correct it returns must be 1 row
+			$sql= "SELECT userName, userPass FROM users WHERE userEmail='$email'";
+			$stmt = sqlsrv_query($con,$sql);
+
+			if($stmt == false){
+				echo 'error';
+				die(print_r(sqlsrv_errors(),TRUE));
+			}
+
+			if ( sqlsrv_has_rows ( $stmt ) > 0 )
+			{
+				$row = sqlsrv_fetch_array ( $stmt );
+			} 
+			else
+			{
+				$row = 0;
+			} 
+
+			$count = sqlsrv_has_rows($stmt);
+			if ($count > 0) // Ελέγχουμε τον αριθμό των εγγραφών που θα επιστρέψει το query
+	 		{
+				//echo 'ok!';// Επιστρέφει 1 αν βρεθεί εγγραφή
+				$row=sqlsrv_fetch_array($stmt);
+	 		} // end if
+	 		else
+	 		{
+	 			//echo 'not ok!'; // Επιστρέφει 0 αν δε βρεθεί εγγραφή
+			} 
 			
-			if( $count == 1 && $row['userPass']==$password ) {
-				$_SESSION['user'] = $row['userId'];
-				header("Location: home.php");
+			if( $count > 0 && $row['userPass']==$password ) {
+				//after login redirect me to userPage
+				$passUserId = $row['userName'];
+				$_SESSION['user'] = $passUserId;
+				//pass username
+				session_start();
+				$message1 = $row ['userName'];
+				$_SESSION['firstMessage'] = $message1;
+				header("Location: ../index.php");
 			} else {
 				$errMSG = "Incorrect Credentials, Try again...";
 			}

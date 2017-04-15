@@ -1,16 +1,20 @@
 <?php
 	ob_start();
-	session_start();
+	//session_start();
 	require_once 'dbconnect.php';
-	
+	global $con;
 	// if session is not set this will redirect to login page
 	if( !isset($_SESSION['user']) ) {
 		header("Location: index.php");
 		exit;
 	}
+  $uName = $_SESSION['lastMessage'];
+  //echo $uName;
 	// select loggedin users detail
-	$res=mysql_query("SELECT * FROM users WHERE userId=".$_SESSION['user']);
-	$userRow=mysql_fetch_array($res);
+	$sql=("SELECT * FROM users WHERE userName=".$_SESSION['user']);
+  $stmt = sqlsrv_query($con,$sql);
+
+  $userRow = sqlsrv_fetch_array ( $stmt );
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,46 +35,28 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="http://www.codingcage.com">Coding Cage</a>
+          <a class="navbar-brand" href="http://www.codingcage.com">My Profile</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="http://www.codingcage.com/2015/01/user-registration-and-login-script-using-php-mysql.html">Back to Article</a></li>
-            <li><a href="http://www.codingcage.com/search/label/jQuery">jQuery</a></li>
-            <li><a href="http://www.codingcage.com/search/label/PHP">PHP</a></li>
+            <li class="active"><a href="../">Back to Main Page</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-			  <span class="glyphicon glyphicon-user"></span>&nbsp;Hi' <?php echo $userRow['userEmail']; ?>&nbsp;<span class="caret"></span></a>
+			  <span class="glyphicon glyphicon-user"></span>&nbsp;Hi' <?php echo $uName; ?>&nbsp;<span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="logout.php?logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Sign Out</a></li>
               </ul>
             </li>
           </ul>
-        </div><!--/.nav-collapse -->
+        </div>
       </div>
     </nav> 
-
-	<div id="wrapper">
-
-	<div class="container">
-    
-    	<div class="page-header">
-    	<h3>Coding Cage - Programming Blog</h3>
-    	</div>
-        
-        <div class="row">
-        <div class="col-lg-12">
-        <h1>Focuses on PHP, MySQL, Ajax, jQuery, Web Design and more...</h1>
-        </div>
-        </div>
-    
-    </div>
-    
-    </div>
-    
+        <h1> Person Profile Page</h1> 
+    <!--<?php
+      $uName = $_SESSION['lastMessage'];
+      echo $uName;?> -->
     <script src="assets/jquery-1.11.3-jquery.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     

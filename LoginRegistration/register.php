@@ -1,7 +1,8 @@
+
 <?php
 	ob_start();
 	//session_start();
-	global $nameError, $nameError,$emailError, $passError, $email, $name;
+	global $nameError, $nameError,$emailError, $passError, $email, $name;;
 	if( isset($_SESSION['user'])!="" ){
 		header("Location: home.php");
 	}
@@ -64,24 +65,16 @@
 		
 		// if there's no error, continue to signup
 		if( !$error ) {
-			//echo $name;
-			//echo $email;
-			//echo $password;
-			//$query = "INSERT INTO users(userName,userEmail,userPass) VALUES('$name','$email','$password')";
-			//$res = sqlsrv_query($con,$query);
-			
-		//$sql = "INSERT INTO users(userName,userEmail,userPass) VALUES (?,?,?)";
-        //$params = array($name,$email,$password);
-        //echo $params;
+
 		  $sql = "INSERT INTO users (userName,userEmail, userPass ) VALUES ('$name','$email','$password')";
-		$res = sqlsrv_query( $con, $sql);
+		  $res = sqlsrv_query( $con, $sql);
 
 			if ($res) {
 				$errTyp = "success";
 				$errMSG = "Successfully registered, you may login now";
-				unset($name);
-				unset($email);
-				unset($pass);
+				//unset($name);
+				//unset($email);
+				//unset($pass);
 			} else {
 				$errTyp = "danger";
 				$errMSG = "Something went wrong, try again later...";	

@@ -12,7 +12,7 @@
 	} // end if
 	else
 	{
-		echo "conneted!";
+		echo "conneted! (debug message..)";
 		/*$db = sqlsrv_select_db ( $connectionInfo, $con ); // Επιλογή βάσης
 
 		if ( !$db )

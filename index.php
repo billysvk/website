@@ -1,6 +1,12 @@
 <?php
 	include ( 'init.php' );
  // include('page.php');
+//pass variables from login screen
+  global $uName;
+    if( isset($_SESSION['firstMessage']) ) {
+      $uName = $_SESSION['firstMessage'];
+      //echo $uName;
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,7 +48,10 @@
 		<div id="header_top">
       <div id="menu">
 	      <div id="sidebar"><h2 class="black"></h2>
-        <?php include ( 'menu.php' ); ?></div>
+        <?php include ( 'menu.php' ); 
+      $message2 = $uName;
+        $_SESSION['lastMessage'] = $message2;
+        ?></div>
 		    <div id="content"><?php include ( 'page.php' ); ?></div>
       </div>
     </div>
@@ -82,11 +91,7 @@
 	<div class="wrapper_foot">
 	<div class="footer">
 	<div class="jumbotron-footer text-center" style="background-color: lightgray; vertical-align: bottom;"  > 
-  <p>&copy; 2016  | Υλοποίηση : Σαββάκης Βασίλειος | Παπανικολάου Ιωάννης</p>
+  <p>&copy; 2016  | Υλοποίηση : Σαββάκης Βασίλειος</p>
 		</div>
-
-
-
-
 
 </html>

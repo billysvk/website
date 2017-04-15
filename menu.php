@@ -9,8 +9,12 @@
 
 		foreach ( $menu_items as $menu )
 		{
+			if ($menu ['name'] == "Login/Register"){
+             echo "<div style=\"float:right;\"> <a href='./LoginRegistration/index.php' target='_self'>".$menu ['name']."</a> </div>"; 
+			}else{
 			echo "<li><a href='?id=".$menu ['id']."' target='_self'>".$menu ['name']."</a></li>";
-		} // end foreach
+		    }
+		} 
 
 		echo "</ul>";
 	} // end if
