@@ -60,7 +60,7 @@
                 <div class="col-lg-12 text-center">
                     <h2><font color="gray";>Online Φόρμα Κράτησης Αιθουσών Εργαστηρίων</h2>
 					<p>Πανεπιστήμιο Πειραιώς </p>
-                    <p class="lead"> Για να δείτε τα εργαστήρια επιλέξτε <a target="_blank" href="?id=5">ΕΔΩ</a>.</p>
+                    <p class="lead"> Για να δείτε τα εργαστήρια επιλέξτε <a target="_blank" href="?id=3">ΕΔΩ</a>.</p>
                 </div>
             </div>
             <!-- /.row -->

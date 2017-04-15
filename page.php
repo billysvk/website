@@ -10,7 +10,7 @@
 		include ( 'contact.php' );
 	} // end if
 	
-	if ($id == 5 )
+	if ($id == 3 )
 	{
 	   include ('labs.php');	
 	}
