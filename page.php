@@ -16,7 +16,7 @@
 	}
 	if ($id == 7 )
 	{
-	   include ('cms/index.php');	
+	   include ('cms/main.php');	
 	}
 	if ($id==1) // Οποιαδήποτε άλλη σελίδα
 	{

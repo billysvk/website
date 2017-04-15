@@ -1,15 +1,16 @@
-CREATE TABLE  menu (
+CREATE TABLE  labs (
   id int NOT NULL,
   name varchar(50)  NULL,
   position int  NULL,
   title varchar(255) NULL,
-  content varchar  NULL
+  content varchar(1024)  NULL
 )
 
 INSERT INTO menu (id, name, position, title, content) VALUES
 (1, 'Main Page', 1, '', ''),
 (2, 'Contact', 3, '', ''),
-(3, 'Labs', 2, '', '');
+(3, 'Labs', 2, '', ''),
+(4, 'Login/Register', 4, '', '');
 
 ALTER TABLE menu
   ADD PRIMARY KEY (id);
@@ -67,7 +68,7 @@ INSERT INTO admin (id, username, password) VALUES
 (1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997');
 
 ----------------------------
-
+-- to parakatw script gia to dbo.menu
 CREATE TABLE dbo.menu (
    id int NOT NULL IDENTITY(1,1),
   name varchar(50)  NULL,
