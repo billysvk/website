@@ -5,7 +5,7 @@
   global $uName;
     if( isset($_SESSION['firstMessage']) ) {
       $uName = $_SESSION['firstMessage'];
-      //echo $uName;
+     // echo $uName;
     }
 ?>
 <!DOCTYPE html>
@@ -49,8 +49,8 @@
       <div id="menu">
 	      <div id="sidebar"><h2 class="black"></h2>
         <?php include ( 'menu.php' ); 
-      $message2 = $uName;
-        $_SESSION['lastMessage'] = $message2;
+          $message2 = $uName;
+          $_SESSION['lastMessage'] = $message2;
         ?></div>
 		    <div id="content"><?php include ( 'page.php' ); ?></div>
       </div>
@@ -67,10 +67,6 @@
     </div>
   </div> -->
 
-
-
-
-
    <!-- <li><a href='index.php' target='_self'>Αρχική σελίδα</a></li><li><a href="?id=2">Επικοινωνία</a></li>-->
  
  <!--  <li class="dropdown"><a <button class="btn dropdown-toggle" id="menu" type="button" data-toggle="dropdown">Λίστα Εργαστηρίων</a></button>
@@ -83,9 +79,6 @@
       <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Εργαστήριο Δικτύων</a></li>
     </ul>
   </li>-->
-
-
-
 
 </body>
 	<div class="wrapper_foot">

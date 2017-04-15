@@ -3,6 +3,7 @@
 <div class="wrapper_container">
 <div class="container">
   <div id="row1">
+
     <div class="col-sm-4" >
       <span> <h3><font size="4px"> <b> <a href='labs/science.php'>Εργαστήριο Φυσικής</a> </b> </h3> 
       <p><font color="gray";>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
@@ -14,11 +15,13 @@
       <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
        <img src="images/Chemistry-lab.jpg" class="img-rounded" width="350" height="236" >
     </div>
+
       <div class="col-sm-4">
       <h3><font size="4px"> <Ff(Helvetica)><b> <a href='labs/computer_sci.php'>Εργαστήριο Πληροφορικής</a></b></h3>
       <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
        <img src="images/Computer-lab.jpg" class="img-rounded" width="350" height="236" >
     </div>
+    
  </div>
  </div>
  </div>

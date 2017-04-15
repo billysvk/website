@@ -54,9 +54,7 @@
       </div>
     </nav> 
         <h1> Person Profile Page</h1> 
-    <!--<?php
-      $uName = $_SESSION['lastMessage'];
-      echo $uName;?> -->
+  
     <script src="assets/jquery-1.11.3-jquery.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     
