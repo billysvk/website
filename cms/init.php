@@ -6,7 +6,7 @@
 	$login = $_SESSION ['login'];
 
 	$connectionInfo = array ("Database"=>"calendar");
-	$con = sqlsrv_connect ( "DESKTOP-CR2KAPT", $connectionInfo ); // Σύνδεση με τη βάση
+	$con = sqlsrv_connect ( "DESKTOP-IQAL01N", $connectionInfo ); // Σύνδεση με τη βάση
 	if ( !$con )
 	{
 		die ( "Δεν ήταν δυνατή η σύνδεση με τη βάση δεδομένων: ".sqlsrv_error () );
@@ -23,6 +23,6 @@
 		// end if
 	} // end else
 
-	
+
 	sqlsrv_query ( $con,"SET NAMES 'utf8';" ); // Αυτό χρησιμοποιείται για να αποφύγονται τυχόν προβλήματα με την εμφάνιση των ελληνικών
 ?>

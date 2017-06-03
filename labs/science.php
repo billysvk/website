@@ -6,8 +6,8 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>2 Column Layout &mdash; Left Menu with Header &amp; Footer</title>
-		
-        <link href="science.css" rel="stylesheet" type="text/css"> 
+
+        <link href="science.css" rel="stylesheet" type="text/css">
           <!--<link href="custom.css" rel="stylesheet" type="text/css">-->
        <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,34 +21,34 @@
       margin: center;
   }
   </style>
-		
-		
-	
-		
+
+
+
+
 		<script type="text/javascript">
 			/* =============================
-			This script generates sample text for the body content. 
-			You can remove this script and any reference to it. 
+			This script generates sample text for the body content.
+			You can remove this script and any reference to it.
 			 ============================= */
 			var bodyText=["The smaller your reality, the more convinced you are that you know everything.", "If the facts don't fit the theory, change the facts.", "The past has no power over the present moment.", "This, too, will pass.", "</p><p>You will not be punished for your anger, you will be punished by your anger.", "Peace comes from within. Do not seek it without.", "<h3>Heading</h3><p>The most important moment of your life is now. The most important person in your life is the one you are with now, and the most important activity in your life is the one you are involved with now."]
 			function generateText(sentenceCount){
 				for (var i=0; i<sentenceCount; i++)
 				document.write(bodyText[Math.floor(Math.random()*7)]+" ")
 			}
-		</script>	
-	
+		</script>
+
 	</head>
-	
-	<body>		
+
+	<body>
 
 		<header id="header">
 			<div class="innertube">
 				<h1 >Εργαστήριο Φυσικής</h1>
 			</div>
 		</header>
-		
+
 		<div id="wrapper">
-		
+
 			<main>
 				<div id="content">
 					<div class="innertube">
@@ -81,7 +81,7 @@
         <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
       </div>
       </div>
-    
+
       <div class="item">
         <img src="images/lab2.jpg" alt="Lab" width="500" height="336">
         <div class="carousel-caption">
@@ -114,7 +114,7 @@
 					</div>
 				</div>
 			</main>
-			
+
 			<nav id="nav">
 				<div class="innertube">
 					<h3>Γρήγορη Αναζήτηση</h3>
@@ -128,34 +128,25 @@
                         <p>----------</p>
                         <p> Επιλέξτε ώρες Online!</p>
 					</ul>
-				
-	<div>		
 
-<?php 
+	<div>
+
+<?php
 //echo "Επιλέξτε ημέρα";
-include('C:\xampp\htdocs\git\website\calender.php');
+include('C:\xampp\htdocs\website\calender.php');
 ?>
-		</div>				
-					
+		</div>
+
 				</div>
 			</nav>
-		
+
 		</div>
-		
+
 		<footer id="footer">
 			<div class="innertube">
 				<p>&copy; 2016  | Υλοποίηση : Σαββάκης Βασίλειος | Παπανικολάου Ιωάννης</p>
 			</div>
 		</footer>
-	
+
 	</body>
-
-
-
-
-
-
-    
-   
-
 </html>
