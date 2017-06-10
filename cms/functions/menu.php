@@ -1,5 +1,5 @@
 <?php
-$serverName = 'DESKTOP-CR2KAPT';
+$serverName = 'DESKTOP-IQAL01N';
 $connectionInfo=array('Database' => 'calendar');
 
 global $con;

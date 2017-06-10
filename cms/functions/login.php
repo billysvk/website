@@ -2,7 +2,7 @@
 <?php
 function check_login ( $username, $password )
 	{
-$serverName = 'DESKTOP-CR2KAPT';
+$serverName = 'DESKTOP-IQAL01N';
 $connectionInfo=array('Database' => 'calendar');
 
 $con = sqlsrv_connect($serverName, $connectionInfo);
