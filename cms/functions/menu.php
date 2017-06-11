@@ -5,17 +5,17 @@ $connectionInfo=array('Database' => 'calendar');
 global $con;
 $con = sqlsrv_connect($serverName, $connectionInfo);
 	// Τραβάει από τη βάση όλες τις εγγραφές του πίνακα menu και επιστρέφει ένα πίνακα που τις περιέχει
-	function get_labs()
+function get_labs()
+{
+	global $con;
+
+	$sql = "SELECT id, name, position FROM labs ORDER BY position";
+	$result = sqlsrv_query ( $con,$sql);
+
+	$rows = array ();
+	while ( $row = sqlsrv_fetch_array ( $result ) )
 	{
-		global $con;
-
-		$sql = "SELECT id, name, position FROM labs ORDER BY position";
-		$result = sqlsrv_query ( $con,$sql);
-
-		$rows = array ();
-		while ( $row = sqlsrv_fetch_array ( $result ) )
-		{
-			$rows [] = $row;
+		$rows [] = $row;
 		} // end whille
 
 		return $rows;
@@ -43,15 +43,23 @@ $con = sqlsrv_connect($serverName, $connectionInfo);
 
 	function add_lab  ( $data )
 	{
-	    global $con;
+		global $con;
 
 		$sql = "INSERT INTO labs (name,position,title) VALUES (?,?,?)";
         //TODO: ta pedio content prokalei provlhma... me tropo poy den epitrepei to post sth vash.
 		$params = array($data ['name'],$data ['position'],$data ['title']);
 		$stmt = sqlsrv_query( $con, $sql, $params);
-    }
 
-    function update_lab ( $data )
+		// Create database
+		$sql = "CREATE DATABASE ".$data ['name']"";
+		if (sqlsrv_query($con, $sql)) {
+			echo "Database created successfully";
+		} else {
+			echo "Error creating database: " . mysqli_error($conn);
+		}
+	}
+
+	function update_lab ( $data )
 	{
 		global $con;
 
@@ -111,13 +119,13 @@ $con = sqlsrv_connect($serverName, $connectionInfo);
 	// Προσθέτει μία νέα εγγραφή τα δεδομένα της οποίας είναι στον πίνακα $data
 	function add_item  ( $data )
 	{
-	    global $con;
+		global $con;
 
 		$sql = "INSERT INTO menu (name,position,title) VALUES (?,?,?)";
         //TODO: ta pedio content prokalei provlhma... me tropo poy den epitrepei to post sth vash.
 		$params = array($data ['name'],$data ['position'],$data ['title']);
 		$stmt = sqlsrv_query( $con, $sql, $params);
-    }
+	}
 	// Ενημερώνει μία νέα εγγραφή τα δεδομένα της οποίας είναι στον πίνακα $data
 	function update_item ( $data )
 	{
@@ -135,4 +143,4 @@ $con = sqlsrv_connect($serverName, $connectionInfo);
 		$sql = "DELETE FROM menu WHERE id = ".$id;
 		sqlsrv_query ( $con, $sql );
 	} // end function delete_menu_item
-?>
+	?>

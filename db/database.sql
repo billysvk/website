@@ -91,3 +91,10 @@ CREATE TABLE users (
    userPass  varchar(255) NOT NULL,
   PRIMARY KEY (id)
 )
+CREATE TABLE  labs (
+  id int NOT NULL IDENTITY(1,1),
+  name varchar(50)  NULL,
+  position int  NULL,
+  title varchar(255) NULL,
+  content varchar(1024)  NULL
+);
