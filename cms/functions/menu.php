@@ -16,10 +16,10 @@ function get_labs()
 	while ( $row = sqlsrv_fetch_array ( $result ) )
 	{
 		$rows [] = $row;
-		} // end whille
-
-		return $rows;
+		 // end whille
 	}
+	return $rows;
+}
 	function get_lab ( $id )
 	{
 		global $con;
@@ -49,16 +49,39 @@ function get_labs()
         //TODO: ta pedio content prokalei provlhma... me tropo poy den epitrepei to post sth vash.
 		$params = array($data ['name'],$data ['position'],$data ['title']);
 		$stmt = sqlsrv_query( $con, $sql, $params);
-
-		// Create database
-		$sql = "CREATE DATABASE ".$data ['name']"";
-		if (sqlsrv_query($con, $sql)) {
-			echo "Database created successfully";
-		} else {
-			echo "Error creating database: " . mysqli_error($conn);
-		}
+     //TODO elegxo prin kanei create mia nea vash an idi eiparxei.
+		 $labs = array ();
+		 $labs = get_labs();
+		 $found = 0;
+		 foreach ($labs as $value) {
+           if($found == 1)
+           	break;
+         if($value ['name'] == $data ['name']){
+         	$found == 1;
+          }
+        }
+         if($found == 0){
+       	// Create database
+		   $sql = "CREATE DATABASE ".$data ['name'] ;
+		   if (sqlsrv_query($con, $sql)) {
+		 	echo "Database created successfully";
+		   } else {
+		 	echo "Error creating database: " . mysqli_error($conn);
+		  }
+        }
 	}
-
+// function get_all_dbs(){
+// 	global $con;
+// 	$sql = "SELECT name FROM sys.databases";
+// 	$result = sqlsrv_query ( $con,$sql);
+// 	$rows = array ();
+// 	while ( $row = sqlsrv_fetch_array ( $results ) )
+// 	{
+// 		$rows [] = $row;
+// 		 // end whille
+// 	}
+// 	return $rows;
+// }
 	function update_lab ( $data )
 	{
 		global $con;

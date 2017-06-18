@@ -30,15 +30,30 @@
                     </tr>
                     <tr>
                     	<td>Σειρά εμφάνισης:</td>
-                        <td><input type="text" size="2" maxlength="2" value="<?php echo $menu ['position']; ?>" name="position" /></td>
+                        <td>
+                        <input type="text" 
+                         size="2" 
+                         maxlength="2" 
+                         value="<?php echo $menu ['position']; ?>" name="position" />
+                         </td>
                     </tr>
                     <tr>
-                    	<td valign="top">Τίτλος:</td>
-                        <td><textarea name="title" rows="3" cols="50"><?php echo $menu ['title']; ?></textarea></td>
+                    	<td>Τίτλος:</td>
+                        <td>
+                        <input type="textarea" 
+                        rows="3" 
+                        cols="50" 
+                        value="<?php echo $menu ['title']; ?>" name="title"/>
+                        </td>
                     </tr>
                     <tr>
-                    	<td valign="top">Περιεχόμενο:</td>
-                        <td><textarea name="content" rows="15" cols="70"><?php echo $menu ['content']; ?></textarea></td>
+                    	<td >Περιεχόμενο:</td>
+                        <td>
+                        <input type="text"
+                        rows="15"
+                        cols="70" 
+                        value="<?php echo $menu ['content']; ?>" name="Description" />
+                        </td>
                     </tr>
                 </table>
                 <p>&nbsp;</p>
