@@ -37,7 +37,6 @@ function get_labs()
 		{
 			$row = 0;
 		} // end else
-
 		return $row;
 	} // end function get_menu_item
 
