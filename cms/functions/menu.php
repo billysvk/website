@@ -9,7 +9,7 @@ function get_labs()
 {
 	global $con;
 
-	$sql = "SELECT id, name, position FROM labs ORDER BY position";
+	$sql = "SELECT id, name, position, title, comment FROM labs ORDER BY position";
 	$result = sqlsrv_query ( $con,$sql);
 
 	$rows = array ();
@@ -20,13 +20,14 @@ function get_labs()
 	}
 	return $rows;
 }
-	function get_lab ( $id )
+
+function get_lab ( $id )
 	{
 		global $con;
 
 		$id = (int) $id; // Το μετατρέπουμε σε ακέραια τιμή για λόγους ασφαλείας
 
-		$sql = "SELECT id, name, position, title, content FROM labs WHERE id = ".$id;
+		$sql = "SELECT id, name, position, title, comment FROM labs WHERE id = ".$id;
 		$result = sqlsrv_query ( $con, $sql );
 
 		if ( sqlsrv_has_rows ( $result ) > 0 )
@@ -40,13 +41,13 @@ function get_labs()
 		return $row;
 	} // end function get_menu_item
 
-	function add_lab  ( $data )
+function add_lab  ( $data )
 	{
 		global $con;
 
-		$sql = "INSERT INTO labs (name,position,title) VALUES (?,?,?)";
+		$sql = "INSERT INTO labs (name,position,title,comment) VALUES (?,?,?,?)";
         //TODO: ta pedio content prokalei provlhma... me tropo poy den epitrepei to post sth vash.
-		$params = array($data ['name'],$data ['position'],$data ['title']);
+		$params = array($data ['name'],$data ['position'],$data ['title'],$data ['comment']);
 		$stmt = sqlsrv_query( $con, $sql, $params);
      //TODO elegxo prin kanei create mia nea vash an idi eiparxei.
 		 $labs = array ();
@@ -85,8 +86,12 @@ function get_labs()
 	{
 		global $con;
 
-		$sql = "UPDATE lab set name = '".$data ['name']."', position = ".$data ['position'].", title = '".$data ['title']."', content = '".$data ['content']."' WHERE id = ".$data ['id'];
-		sqlsrv_query ( $con, $sql );
+		
+	$sql = "UPDATE labs SET name = '".$data['name']."',position = '".$data['position']."',
+	title = '".$data['title']."',comment = '".$data['comment']."'
+	WHERE id = '".$data['id']."'";
+    
+		$stmt = sqlsrv_query ( $con, $sql );
 	} // end function update_menu_item
 
 	// Διαγράφει την εγγραφή με συγκεκριμένο $id

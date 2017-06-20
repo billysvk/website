@@ -96,5 +96,5 @@ CREATE TABLE  labs (
   name varchar(50)  NULL,
   position int  NULL,
   title varchar(255) NULL,
-  content varchar(1024)  NULL
+  content varchar(256)  NULL
 );

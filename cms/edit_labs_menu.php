@@ -49,10 +49,10 @@
                     <tr>
                     	<td >Περιεχόμενο:</td>
                         <td>
-                        <input type="text"
+                        <input type="textarea"
                         rows="15"
                         cols="70" 
-                        value="<?php echo $menu ['content']; ?>" name="Description" />
+                        value="<?php echo $menu ['comment']; ?>" name="comment" />
                         </td>
                     </tr>
                 </table>
