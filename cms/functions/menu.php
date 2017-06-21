@@ -104,7 +104,6 @@ function add_lab  ( $data )
 	} // end function delete_menu_item
 
 	/////////////////////////////
-
 	function get_items ()
 	{
 		global $con;
