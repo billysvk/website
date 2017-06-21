@@ -12,7 +12,7 @@
 				$data ['name'] =  $_POST ['name'] ; // Αν πρόκειται για αλφαριθμητικό, χρησιμοποιούμε την mysql_real_escape_string
 				$data ['position'] = (int) $_POST ['position']; // Αν θέλουμε ακέραια τιμή, χρησιμοποιούμε την (int)
 				$data ['title'] =  $_POST ['title'] ;
-				$data ['content'] =  $_POST ['content'] ;
+				$data ['comment'] =  $_POST ['comment'] ;
 
 				add_lab ( $data );
 			break;
@@ -22,7 +22,7 @@
 				$data ['name'] =  $_POST ['name'] ;
 				$data ['position'] = (int) $_POST ['position'];
 				$data ['title'] =  $_POST ['title'];
-				$data ['content'] =  $_POST ['content'] ;
+				$data ['comment'] =  $_POST ['comment'] ;
 
 				update_lab ( $data );
 			break;
