@@ -84,11 +84,13 @@ INSERT INTO menu ( name, position, title, content) VALUES
 
 ----------------------------
 
-CREATE TABLE users (
+CREATE TABLE registerRequests (
   id int NOT NULL IDENTITY(1,1),
    userName  varchar(50) NOT NULL,
    userEmail  varchar(50) NOT NULL,
-   userPass  varchar(255) NOT NULL,
+   userPass  varchar(50) NOT NULL,
+   userRole  varchar(1) NULL,
+   requestStatus bit NOT NULL DEFAULT 0
   PRIMARY KEY (id)
 )
 CREATE TABLE  labs (
