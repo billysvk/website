@@ -25,7 +25,6 @@
 		$pass = strip_tags($pass);
 		$pass = htmlspecialchars($pass);
 
-		//$role = trim($_POST['role']);
 	if(isset($_POST['role'])){
     //$stok is checked and value = 1
     $role = $_POST['role'];
@@ -57,7 +56,7 @@
 			$emailError = "Please enter valid email address.";
 		} else {
 			// check email exist or not
-			$query = "SELECT userEmail FROM users WHERE userEmail='$email'";
+			$query = "SELECT userEmail FROM registerRequests WHERE userEmail='$email'";
 			$result = sqlsrv_query($con,$query);
 			$count = sqlsrv_num_rows($result);
 			if($count!=0){
@@ -87,6 +86,7 @@
 			if ($res) {
 				$errTyp = "success";
 				$errMSG = "Successfully registered, pending admin approve";
+				//header("Location: ../index.php");
 				//unset($name);
 				//unset($email);
 				//unset($pass);
