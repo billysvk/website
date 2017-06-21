@@ -38,7 +38,6 @@
 				foreach ( $menu_records as $menu )
 				{
 					$i++;
-
 					echo "<tr>";
 					echo "<td>".$i."</td>";
 					echo "<td>".stripslashes ( $menu ['name'] )."</td>";

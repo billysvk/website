@@ -16,7 +16,19 @@ function get_labs()
 	while ( $row = sqlsrv_fetch_array ( $result ) )
 	{
 		$rows [] = $row;
-		 // end whille
+	}
+	return $rows;
+}
+
+function get_register_requests()
+{
+	global $con;
+	$sql = "SELECT id,userName, userEmail, userRole, requestStatus FROM registerRequests";
+	$result = sqlsrv_query ( $con,$sql);
+	$rows = array ();
+	while ( $row = sqlsrv_fetch_array ( $result ) )
+	{
+		$rows [] = $row;
 	}
 	return $rows;
 }
