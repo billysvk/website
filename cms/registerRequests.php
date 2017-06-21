@@ -39,13 +39,14 @@
 				foreach ( $registerRequests as $requests )
 				{
 					$i++;
-
+					$id = 1;
+					$value = "2";
 					echo "<tr>";
 					echo "<td>".$i."</td>";
 					echo "<td>".stripslashes ( $requests ['userName'] )."</td>";
 					echo "<td>".$requests ['userEmail']."</td>";
 					echo "<td>";
-					echo "<a href='edit_menu.php?id=".$requests ['id']."'>Επεξεργασία</a> | ";
+					echo  '<a href="'.update_register_request().'">Approve </a>'; 
 					echo "<a href='delete_menu.php?id=".$requests ['id']."'>Διαγραφή</a>";
 					echo "</td>";
 					echo "</tr>";

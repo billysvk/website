@@ -33,6 +33,11 @@ function get_register_requests()
 	return $rows;
 }
 
+function update_register_request()
+{
+	return null;
+}
+
 function get_lab ( $id )
 	{
 		global $con;
