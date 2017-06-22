@@ -39,15 +39,15 @@
 				foreach ( $registerRequests as $requests )
 				{
 					$i++;
-					$id = 1;
-					$value = "2";
 					echo "<tr>";
 					echo "<td>".$i."</td>";
 					echo "<td>".stripslashes ( $requests ['userName'] )."</td>";
 					echo "<td>".$requests ['userEmail']."</td>";
 					echo "<td>";
-					echo  '<a href="'.update_register_request().'">Approve </a>'; 
-					echo "<a href='delete_menu.php?id=".$requests ['id']."'>Διαγραφή</a>";
+					//molis anoigw thn selida h foreach dinei tis parakatw 2 times...
+					//echo '<a href="'.update_register_request($requests['id'], "1").'">Approve </a>'; 
+					//echo '<a href="'.update_register_request($requests['id'], "2").'">Reject </a>'; 
+					echo "<a href='approveRejet.php?id=".$requests['id']."'>Επεξεργασία</a>";
 					echo "</td>";
 					echo "</tr>";
 				} // end foreach
@@ -59,7 +59,6 @@
 				echo "Δε βρέθηκαν εγγραφές.";
 			} // end else
 		?>
-        	<p><a href='edit_labs_menu.php'>Προσθήκη νέας εγγραφής</a></p>
         </div>
 	</div>
 </body>

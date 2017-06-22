@@ -90,7 +90,7 @@ CREATE TABLE registerRequests (
    userEmail  varchar(50) NOT NULL,
    userPass  varchar(50) NOT NULL,
    userRole  varchar(1) NULL,
-   requestStatus bit NOT NULL DEFAULT 0
+   requestStatus varchar(1) NULL DEFAULT NULL
   PRIMARY KEY (id)
 )
 CREATE TABLE  labs (
