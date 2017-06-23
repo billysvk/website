@@ -1,6 +1,6 @@
 <?php
 	include ( 'functions/menu.php' );
-	//global $uName;
+	global $uName;
 $menu_items = get_menu ();
 
 
@@ -26,8 +26,8 @@ if( !isset($_SESSION['firstMessage']) ) {
 
 		foreach ( $menu_items as $menu )
 		{
-			if ($menu ['name'] == "Login/Register"){
-			echo "<li><a href='./LoginRegistration/register.php' target='_self'></span>&nbsp;$uName</a></li>";
+			if ($menu ['name'] == "Login/Register" && $uName != null){
+			echo "<li><a href='./LoginRegistration/home.php' target='_self'></span>&nbsp;$uName</a></li>";
 			}else{
 			echo "<li><a href='?id=".$menu ['id']."' target='_self'>".$menu ['name']."</a></li>";
 		    }
