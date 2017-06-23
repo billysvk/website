@@ -84,7 +84,7 @@
 				session_start();
 				$message1 = $row ['userName'];
 				$_SESSION['firstMessage'] = $message1;
-				header("Location: home.php");
+				header("Location: ../index.php");
 			} else {
 				$errMSG = "Incorrect Credentials, Try again...";
 			}
