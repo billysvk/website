@@ -40,8 +40,8 @@
 		// if there's no error, continue to login
 		if (!$error) {
 			
-			$password = hash('sha256', $pass); // password hashing using SHA256
-		
+			//$password = hash('sha256', $pass); // password hashing using SHA256
+		$password = $pass;
 			$sql= "SELECT userName, userPass FROM users WHERE userEmail='$email'";
 			$stmt = sqlsrv_query($con,$sql);
 
@@ -52,7 +52,13 @@
 
 			if ( sqlsrv_has_rows ( $stmt ) > 0 )
 			{
-				$row = sqlsrv_fetch_array ( $stmt );
+				//$row = sqlsrv_fetch_array ( $stmt );
+
+				$row = array ();
+				while ( $temp = sqlsrv_fetch_array ( $stmt ) )
+				{
+					$row  = $temp;
+				}
 			} 
 			else
 			{
@@ -60,15 +66,15 @@
 			} 
 
 			$count = sqlsrv_has_rows($stmt);
-			if ($count > 0) // Ελέγχουμε τον αριθμό των εγγραφών που θα επιστρέψει το query
-	 		{
-				//echo 'ok!';// Επιστρέφει 1 αν βρεθεί εγγραφή
-				$row=sqlsrv_fetch_array($stmt);
-	 		} // end if
-	 		else
-	 		{
-	 			//echo 'not ok!'; // Επιστρέφει 0 αν δε βρεθεί εγγραφή
-			} 
+			// if ($count > 0) // Ελέγχουμε τον αριθμό των εγγραφών που θα επιστρέψει το query
+	 	// 	{
+			// 	//echo 'ok!';// Επιστρέφει 1 αν βρεθεί εγγραφή
+			// 	$row=sqlsrv_fetch_array($stmt);
+	 	// 	} // end if
+	 	// 	else
+	 	// 	{
+	 	// 		//echo 'not ok!'; // Επιστρέφει 0 αν δε βρεθεί εγγραφή
+			// } 
 			
 			if( $count > 0 && $row['userPass']==$password ) {
 				//after login redirect me to userPage
@@ -78,7 +84,7 @@
 				session_start();
 				$message1 = $row ['userName'];
 				$_SESSION['firstMessage'] = $message1;
-				header("Location: ../index.php");
+				header("Location: home.php");
 			} else {
 				$errMSG = "Incorrect Credentials, Try again...";
 			}

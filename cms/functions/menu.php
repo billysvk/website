@@ -23,7 +23,7 @@ function get_labs()
 function get_register_requests()
 {
 	global $con;
-	$sql = "SELECT id,userName, userEmail, userRole, requestStatus FROM registerRequests";
+	$sql = "SELECT * FROM registerRequests WHERE requestStatus IS NULL";
 	$result = sqlsrv_query ( $con,$sql);
 	$rows = array ();
 	while ( $row = sqlsrv_fetch_array ( $result ) )
@@ -69,7 +69,7 @@ function get_request ( $id )
 
 		$id = (int) $id; // Το μετατρέπουμε σε ακέραια τιμή για λόγους ασφαλείας
 
-		$sql = "SELECT id, userName, userEmail FROM registerRequests WHERE id = ".$id;
+		$sql = "SELECT * FROM registerRequests WHERE id = ".$id;
 		$result = sqlsrv_query ( $con, $sql );
 
 		if ( sqlsrv_has_rows ( $result ) > 0 )
@@ -211,9 +211,20 @@ function add_lab  ( $data )
 		$sql = "UPDATE registerRequests set requestStatus = '".$data ['requestStatus']."'		
 		  WHERE id = ".$data ['id'];
 		sqlsrv_query ( $con, $sql );
+		$temp = array ();
+		$temp = get_request($data ['id']);
+		add_to_Users_table($temp );
 	}
-	// Ενημερώνει μία νέα εγγραφή τα δεδομένα της οποίας είναι στον πίνακα $data
-	
+
+	function add_to_Users_table ($data)
+	{
+		global $con;
+		$id = (int) $data['id'];
+	    $sql = "INSERT INTO users (userName,userEmail, userPass, userRole) VALUES (?,?,?,?)";
+		$params = array($data ['userName'],$data ['userEmail'],$data ['userPass'],$data ['userRole']);
+		$stmt = sqlsrv_query( $con, $sql, $params);
+	}
+
 	function reject_request ( $data )
 	{
 		global $con;
