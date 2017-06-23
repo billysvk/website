@@ -88,9 +88,7 @@
 			} else {
 				$errMSG = "Incorrect Credentials, Try again...";
 			}
-			
 		}
-		
 	}
 ?>
 <!DOCTYPE html>
