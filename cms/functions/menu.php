@@ -16,9 +16,31 @@ function get_labs()
 	while ( $row = sqlsrv_fetch_array ( $result ) )
 	{
 		$rows [] = $row;
-		 // end whille
 	}
 	return $rows;
+}
+
+function get_register_requests()
+{
+	global $con;
+	$sql = "SELECT * FROM registerRequests WHERE requestStatus IS NULL";
+	$result = sqlsrv_query ( $con,$sql);
+	$rows = array ();
+	while ( $row = sqlsrv_fetch_array ( $result ) )
+	{
+		$rows [] = $row;
+	}
+	return $rows;
+}
+
+function update_register_request( $id, $value )
+{
+    global $con;
+		
+	$sql = "UPDATE registerRequests SET requestStatus = '".$value."'
+		WHERE id = '".$id."'";
+    
+		$stmt = sqlsrv_query ( $con, $sql );
 }
 
 function get_lab ( $id )
@@ -40,6 +62,27 @@ function get_lab ( $id )
 		} // end else
 		return $row;
 	} // end function get_menu_item
+
+function get_request ( $id )
+	{
+		global $con;
+
+		$id = (int) $id; // Το μετατρέπουμε σε ακέραια τιμή για λόγους ασφαλείας
+
+		$sql = "SELECT * FROM registerRequests WHERE id = ".$id;
+		$result = sqlsrv_query ( $con, $sql );
+
+		if ( sqlsrv_has_rows ( $result ) > 0 )
+		{
+			$row = sqlsrv_fetch_array ( $result );
+		} // end if
+		else
+		{
+			$row = 0;
+		} // end else
+		return $row;
+	} // end function get_menu_item
+
 
 function add_lab  ( $data )
 	{
@@ -158,6 +201,36 @@ function add_lab  ( $data )
 		global $con;
 
 		$sql = "UPDATE menu set name = '".$data ['name']."', position = ".$data ['position'].", title = '".$data ['title']."', content = '".$data ['content']."' WHERE id = ".$data ['id'];
+		sqlsrv_query ( $con, $sql );
+	} // end function update_menu_item
+
+	function approve_request ( $data )
+	{
+		global $con;
+
+		$sql = "UPDATE registerRequests set requestStatus = '".$data ['requestStatus']."'		
+		  WHERE id = ".$data ['id'];
+		sqlsrv_query ( $con, $sql );
+		$temp = array ();
+		$temp = get_request($data ['id']);
+		add_to_Users_table($temp );
+	}
+
+	function add_to_Users_table ($data)
+	{
+		global $con;
+		$id = (int) $data['id'];
+	    $sql = "INSERT INTO users (userName,userEmail, userPass, userRole) VALUES (?,?,?,?)";
+		$params = array($data ['userName'],$data ['userEmail'],$data ['userPass'],$data ['userRole']);
+		$stmt = sqlsrv_query( $con, $sql, $params);
+	}
+
+	function reject_request ( $data )
+	{
+		global $con;
+
+		$sql = "UPDATE registerRequests set requestStatus = '".$data ['requestStatus']."'		
+		  WHERE id = ".$data ['id'];
 		sqlsrv_query ( $con, $sql );
 	} // end function update_menu_item
 

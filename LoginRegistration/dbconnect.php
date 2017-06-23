@@ -4,7 +4,7 @@
 
 
 	$connectionInfo = array ("Database"=>"calendar");
-	$con = sqlsrv_connect ( "DESKTOP-CR2KAPT", $connectionInfo ); // Σύνδεση με τη βάση
+	$con = sqlsrv_connect ( "DESKTOP-IQAL01N", $connectionInfo ); // Σύνδεση με τη βάση
 
 	if ( !$con )
 	{

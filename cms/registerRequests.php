@@ -1,9 +1,10 @@
-<?php
+ <?php
 	include ( "init.php" );
 	include ( "check_login.php" );
 	include ( "functions/menu.php" );
-
-	$menu_records = get_items (); // Τραβάμε τις εγγραφές από τον πίνακα menu της βάσης δεδομένων
+//TODO
+	//$menu_records = get_labs (); // Τραβάμε τις εγγραφές από τον πίνακα menu της βάσης δεδομένων
+	$registerRequests = get_register_requests();
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -21,30 +22,32 @@
 		?>
         <div id="main">
         <?php
-			if ( !empty ( $menu_records ) ) // Αν υπάρχουν εγγραφές
+			if ( !empty ( $registerRequests ) ) // Αν υπάρχουν εγγραφές
 			{
-				$i = 0;
+			$i = 0;
 
 				// Φτιάξε έναν html πίνακα
 				echo "<table cellpadding='3' cellspacing='0' border='1' width='100%'>";
 				echo "<tr>";
 				echo "<td>Α/Α</td>";
 				echo "<td>Όνομα</td>";
-				echo "<td>Σειρά εμφάνισης</td>";
+				echo "<td>Email</td>";
 				echo "<td>Ενέργεια</td>";
 				echo "</tr>";
 
 				// Και εμφάνισε τις εγγραφές
-				foreach ( $menu_records as $menu )
+				foreach ( $registerRequests as $requests )
 				{
 					$i++;
 					echo "<tr>";
 					echo "<td>".$i."</td>";
-					echo "<td>".stripslashes ( $menu ['name'] )."</td>";
-					echo "<td>".$menu ['position']."</td>";
+					echo "<td>".stripslashes ( $requests ['userName'] )."</td>";
+					echo "<td>".$requests ['userEmail']."</td>";
 					echo "<td>";
-					echo "<a href='edit_menu.php?id=".$menu ['id']."'>Επεξεργασία</a> | ";
-					echo "<a href='delete_menu.php?id=".$menu ['id']."'>Διαγραφή</a>";
+					//molis anoigw thn selida h foreach dinei tis parakatw 2 times...
+					//echo '<a href="'.update_register_request($requests['id'], "1").'">Approve </a>'; 
+					//echo '<a href="'.update_register_request($requests['id'], "2").'">Reject </a>'; 
+					echo "<a href='approveRejet.php?id=".$requests['id']."'>Επεξεργασία</a>";
 					echo "</td>";
 					echo "</tr>";
 				} // end foreach
@@ -56,7 +59,6 @@
 				echo "Δε βρέθηκαν εγγραφές.";
 			} // end else
 		?>
-        	<p><a href='edit_menu.php'>Προσθήκη νέας εγγραφής</a></p>
         </div>
 	</div>
 </body>

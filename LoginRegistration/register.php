@@ -2,7 +2,7 @@
 <?php
 	ob_start();
 	//session_start();
-	global $nameError, $nameError,$emailError, $passError, $email, $name;;
+	global $nameError, $nameError,$emailError, $passError, $roleError, $email, $name, $role;
 	if( isset($_SESSION['user'])!="" ){
 		header("Location: home.php");
 	}
@@ -24,6 +24,16 @@
 		$pass = trim($_POST['pass']);
 		$pass = strip_tags($pass);
 		$pass = htmlspecialchars($pass);
+
+	if(isset($_POST['role'])){
+    //$stok is checked and value = 1
+    $role = $_POST['role'];
+	}
+	else{
+    //$stok is nog checked and value=0
+    $role=0;
+	}
+		// na prostethei ena akoma pedio gia to role
 		
 		// basic name validation
 		if (empty($name)) {
@@ -35,6 +45,9 @@
 		} else if (!preg_match("/^[a-zA-Z ]+$/",$name)) {
 			$error = true;
 			$nameError = "Name must contain alphabets and space.";
+		} else if(empty($role)){
+			$error = true;
+			$roleError = "Please select a role";
 		}
 		
 		//basic email validation
@@ -43,7 +56,7 @@
 			$emailError = "Please enter valid email address.";
 		} else {
 			// check email exist or not
-			$query = "SELECT userEmail FROM users WHERE userEmail='$email'";
+			$query = "SELECT userEmail FROM registerRequests WHERE userEmail='$email'";
 			$result = sqlsrv_query($con,$query);
 			$count = sqlsrv_num_rows($result);
 			if($count!=0){
@@ -66,23 +79,22 @@
 		// if there's no error, continue to signup
 		if( !$error ) {
 
-		  $sql = "INSERT INTO users (userName,userEmail, userPass ) VALUES ('$name','$email','$password')";
+		  $sql = "INSERT INTO registerRequests (userName,userEmail,userPass,userRole) 
+		  VALUES ('$name','$email','$pass','$role')";
 		  $res = sqlsrv_query( $con, $sql);
 
 			if ($res) {
 				$errTyp = "success";
-				$errMSG = "Successfully registered, you may login now";
+				$errMSG = "Successfully registered, pending admin approve";
+				//header("Location: ../index.php");
 				//unset($name);
 				//unset($email);
 				//unset($pass);
 			} else {
 				$errTyp = "danger";
 				$errMSG = "Something went wrong, try again later...";	
-			}	
-				
+			}			
 		}
-		
-		
 	}
 ?>
 <!DOCTYPE html>
@@ -92,6 +104,7 @@
 <title>Coding Cage - Login & Registration System</title>
 <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css"  />
 <link rel="stylesheet" href="style.css" type="text/css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -146,6 +159,14 @@
                 </div>
                 <span class="text-danger"><?php echo $passError; ?></span>
             </div>
+            <div>
+			<label>Select Role</label><br>
+              <input  name="role" type="checkbox" value="1" onclick="toggleRadioCheckbox(this)" /> 
+              <label for="mygroup1">Student</label>
+   			  <input  name="role" type="checkbox" value="2" onclick="toggleRadioCheckbox(this)" /> 
+   			  <label for="mygroup0">Professor</label>
+			  </div>
+			  <span class="text-danger"><?php echo $roleError; ?></span>
             
             <div class="form-group">
             	<hr />
@@ -171,5 +192,18 @@
 </div>
 
 </body>
+<script type="text/javascript">
+ function toggleRadioCheckbox(sender) {
+        // RadioCheckbox: 0..1 enabled in a group 
+        if (!sender.checked) return;
+        var fields = document.getElementsByName(sender.name);
+        for(var idx=0; idx<fields.length; idx++) {
+            var field = fields[idx];
+            if (field.checked && field!=sender)
+                field.checked=false;
+        }
+    }
+</script>
+ 
 </html>
 <?php ob_end_flush(); ?>

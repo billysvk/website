@@ -27,7 +27,7 @@ if( !isset($_SESSION['firstMessage']) ) {
 		foreach ( $menu_items as $menu )
 		{
 			if ($menu ['name'] == "Login/Register"){
-			echo "<li><a href='./LoginRegistration/index.php' target='_self'></span>&nbsp;$uName</a></li>";
+			echo "<li><a href='./LoginRegistration/register.php' target='_self'></span>&nbsp;$uName</a></li>";
 			}else{
 			echo "<li><a href='?id=".$menu ['id']."' target='_self'>".$menu ['name']."</a></li>";
 		    }
