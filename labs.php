@@ -19,7 +19,9 @@ $labs = get_labs();
         <h3>
           <font size="4px"> 
         <b>
-          <a href='labs/science.php'><?php echo $value['name']; ?></a>
+         <input type="button" value="<?php echo $value['name']; ?>"
+         onClick="window.location='labs/labpage.php?id=<?php echo $value['id'] ?>'">
+
         </b> 
        </h3> 
       <p>
