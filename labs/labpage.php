@@ -1,4 +1,6 @@
-
+<?php
+    $var = $_GET['id'];
+?>
 
 <!DOCTYPE html>
 <!-- Template by quackit.com -->

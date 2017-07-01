@@ -88,29 +88,22 @@ function add_lab  ( $data )
 	{
 		global $con;
 
-		$sql = "INSERT INTO labs (name,position,title,comment) VALUES (?,?,?,?)";
-        //TODO: ta pedio content prokalei provlhma... me tropo poy den epitrepei to post sth vash.
-		$params = array($data ['name'],$data ['position'],$data ['title'],$data ['comment']);
-		$stmt = sqlsrv_query( $con, $sql, $params);
-     //TODO elegxo prin kanei create mia nea vash an idi eiparxei.
-		 $labs = array ();
-		 $labs = get_labs();
-		 $found = 0;
+		$labs = array ();
+		$labs = get_labs();
+
+		$found = 0;
 		 foreach ($labs as $value) {
            if($found == 1)
            	break;
          if($value ['name'] == $data ['name']){
-         	$found == 1;
+         	$found = 1;
           }
         }
          if($found == 0){
-       	// Create database
-		   $sql = "CREATE DATABASE ".$data ['name'] ;
-		   if (sqlsrv_query($con, $sql)) {
-		 	echo "Database created successfully";
-		   } else {
-		 	echo "Error creating database: " . mysqli_error($conn);
-		  }
+       	    // Create Lab
+		  $sql = "INSERT INTO labs (name,position,title,comment) VALUES (?,?,?,?)";
+		  $params = array($data ['name'],$data ['position'],$data ['title'],$data ['comment']);
+		  $stmt = sqlsrv_query( $con, $sql, $params);
         }
 	}
 // function get_all_dbs(){
