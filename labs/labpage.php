@@ -1,9 +1,23 @@
 <?php
-    $var = $_GET['id'];
+include('../cms/functions/menu.php');
+$var = $_GET['id'];
+
+$labs = array ();
+$labs = get_labs();
+$lab = null;
+$found = false;
+foreach ($labs as $value) {
+  if($found)
+    break;
+  if($value['id'] == $var){
+     $found = true;
+    $lab = $value;
+  }
+}
+
 ?>
 
 <!DOCTYPE html>
-<!-- Template by quackit.com -->
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -23,16 +37,19 @@
       margin: center;
   }
   </style>
-
-
-
-
 		<script type="text/javascript">
 			/* =============================
 			This script generates sample text for the body content.
 			You can remove this script and any reference to it.
 			 ============================= */
-			var bodyText=["The smaller your reality, the more convinced you are that you know everything.", "If the facts don't fit the theory, change the facts.", "The past has no power over the present moment.", "This, too, will pass.", "</p><p>You will not be punished for your anger, you will be punished by your anger.", "Peace comes from within. Do not seek it without.", "<h3>Heading</h3><p>The most important moment of your life is now. The most important person in your life is the one you are with now, and the most important activity in your life is the one you are involved with now."]
+			var bodyText=["The smaller your reality, the more convinced you are that you know everything.", 
+      "If the facts don't fit the theory, change the facts.", 
+      "The past has no power over the present moment.",
+       "This, too, will pass.", "</p><p>You will not be punished for your anger, you will be punished by your anger.", 
+       "Peace comes from within. Do not seek it without.", 
+       "<h3>Heading</h3><p>The most important moment of your life is now. 
+       The most important person in your life is the one you are with now, and the 
+       most important activity in your life is the one you are involved with now."]
 			function generateText(sentenceCount){
 				for (var i=0; i<sentenceCount; i++)
 				document.write(bodyText[Math.floor(Math.random()*7)]+" ")
@@ -42,15 +59,13 @@
 	</head>
 
 	<body>
-
 		<header id="header">
 			<div class="innertube">
-				<h1 >Εργαστήριο Φυσικής</h1>
+				<h1 ><?php echo $lab['title']; ?></h1>
 			</div>
 		</header>
 
 		<div id="wrapper">
-
 			<main>
 				<div id="content">
 					<div class="innertube">
@@ -112,30 +127,24 @@
     </a>
   </div>
 </div>
-						<!--<p><script>generateText(20)</script></p>--> <!-- gia tyxaio keimeno-->
-					</div>
-				</div>
-			</main>
+</div>
+</div>
+</main>
 
-			<nav id="nav">
-				<div class="innertube">
-					<h3>Γρήγορη Αναζήτηση</h3>
-					<ul>
-						<li><a href="../?id=1"> Αρχική Σελίδα</a></li>
-						<li><a href="chemistry.php">Εργαστήριο Χημείας</a></li>
-						<li><a href="computer_sci.php">Εργαστήριο Πληροφορικής</a></li>
-						<li><a href="electronics.php">Εργαστήριο Ηλεκτρονικών</a></li>
-						<li><a href="communications.php">Εργαστήριο Τηλεπικοινωνιών</a></li>
-                        <li><a href="networks.php">Εργαστήριο Δικτύων</a></li>
-                        <p>----------</p>
-                        <p> Επιλέξτε ώρες Online!</p>
-					</ul>
+<nav id="nav">
+		<div class="innertube">
+		<h3>Γρήγορη Αναζήτηση</h3>
+<?php foreach($labs as $value): ?>
+  <div class="row">
+<?php echo $value['name']; ?> </br>
+   <p type="button" title="sf55555" value="<?php echo $value['name']; ?>"
+         onClick="window.location='labpage.php?id=<?php echo $value['id'] ?>'">
+    </p>
+ <?php endforeach; ?>
 
-	<div>
+<div>
 
 <?php
-//echo "Επιλέξτε ημέρα";
-include('C:\xampp\htdocs\website\calender.php');
 ?>
 		</div>
 
