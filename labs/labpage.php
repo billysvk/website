@@ -14,15 +14,13 @@ foreach ($labs as $value) {
     $lab = $value;
   }
 }
-
 ?>
-
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>2 Column Layout &mdash; Left Menu with Header &amp; Footer</title>
-
+        <link href="calendar.css" type="text/css" rel="stylesheet" />
         <link href="science.css" rel="stylesheet" type="text/css">
           <!--<link href="custom.css" rel="stylesheet" type="text/css">-->
        <meta charset="utf-8">
@@ -38,24 +36,14 @@ foreach ($labs as $value) {
   }
   </style>
 		<script type="text/javascript">
-			/* =============================
-			This script generates sample text for the body content.
-			You can remove this script and any reference to it.
-			 ============================= */
 			var bodyText=["The smaller your reality, the more convinced you are that you know everything.", 
       "If the facts don't fit the theory, change the facts.", 
-      "The past has no power over the present moment.",
-       "This, too, will pass.", "</p><p>You will not be punished for your anger, you will be punished by your anger.", 
-       "Peace comes from within. Do not seek it without.", 
-       "<h3>Heading</h3><p>The most important moment of your life is now. 
-       The most important person in your life is the one you are with now, and the 
-       most important activity in your life is the one you are involved with now."]
+      "The past has no power over the present moment."]
 			function generateText(sentenceCount){
 				for (var i=0; i<sentenceCount; i++)
 				document.write(bodyText[Math.floor(Math.random()*7)]+" ")
 			}
 		</script>
-
 	</head>
 
 	<body>
@@ -132,32 +120,26 @@ foreach ($labs as $value) {
 </main>
 
 <nav id="nav">
-		<div class="innertube">
+	<div class="innertube">
 		<h3>Γρήγορη Αναζήτηση</h3>
+<!--sidebar-->
 <?php foreach($labs as $value): ?>
-  <div class="row">
-<?php echo $value['name']; ?> </br>
-   <p type="button" title="sf55555" value="<?php echo $value['name']; ?>"
-         onClick="window.location='labpage.php?id=<?php echo $value['id'] ?>'">
-    </p>
+  <br/>
+   <input type="button" class="btn btn-primary" value="<?php echo $value['name']; ?>"
+     onClick="window.location='labpage.php?id=<?php echo $value['id'] ?>'"><br/>
  <?php endforeach; ?>
+   <br/>  <br/>
+ <?php include '../calender.php';?>
+  </div>
+  <br/>
+</nav>
 
-<div>
+</div><!--wrapper end-->
 
-<?php
-?>
-		</div>
-
-				</div>
-			</nav>
-
-		</div>
-
-		<footer id="footer">
-			<div class="innertube">
-				<p>&copy; 2016  | Υλοποίηση : Σαββάκης Βασίλειος | Παπανικολάου Ιωάννης</p>
-			</div>
-		</footer>
-
+<footer id="footer">
+	<div class="innertube">
+		<p>&copy; 2017  | Υλοποίηση : Σαββάκης Βασίλειος</p>
+	</div>
+</footer>
 	</body>
 </html>

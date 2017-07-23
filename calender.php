@@ -1,7 +1,7 @@
 <?php
 //header('Content-type: text/html; charset=utf-8'); // Το χρησιμοποιούμε για να φαίνονται σωστά τα ελληνικά
 
-$server = 'DESKTOP-CR2KAPT';
+$server = 'DESKTOP-IQAL01N';
 $connectionInfo = array ("Database"=>"calendar");
 $test = sqlsrv_connect($server, $connectionInfo)or die('die!');
 //echo"Connected to Database<br/><hr>";
