@@ -32,4 +32,18 @@
 		return $row;
 	} // end function get_page
 
+	function get_all_data_for_this_lab($labId, $dateSelected)
+	{
+		global $con;
+		$sql = "SELECT * FROM event_calendar WHERE labId = ".$labId;
+		$result = sqlsrv_query ( $con, $sql);
+
+		$row = array ();
+		if ( sqlsrv_num_rows ( $result ) > 0 )
+		{
+			$row = sqlsrv_fetch_array ( $result );
+		} // end if
+
+		return $row;
+	}
 ?>

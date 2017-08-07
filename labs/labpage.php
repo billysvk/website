@@ -1,7 +1,12 @@
 <?php
+global $dateChecked;
+global $dataForThisLab;
+global $dateSelected;
+$dateSelected = false;
+$dataForThisLab = array ();
 include('../cms/functions/menu.php');
-$var = $_GET['id'];
-
+include('../functions/menu.php');
+$var = $_GET['id']; // LabID
 $labs = array ();
 $labs = get_labs();
 $lab = null;
@@ -15,6 +20,32 @@ foreach ($labs as $value) {
   }
 }
 ?>
+
+<!-- scripts-->
+
+<script>
+function showAllResponses() {
+document.getElementById("SubmitRecord").style.visibility = "visible";
+}
+</script>
+
+<script type="text/javascript">
+$("input[type='submit']").click(function(){
+alert(this.value);
+});
+</script>
+
+<script>
+function myFunction() {
+    var x = document.getElementById('SubmitRecord');
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
+}
+</script>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -22,124 +53,147 @@ foreach ($labs as $value) {
 		<title>2 Column Layout &mdash; Left Menu with Header &amp; Footer</title>
         <link href="calendar.css" type="text/css" rel="stylesheet" />
         <link href="science.css" rel="stylesheet" type="text/css">
-          <!--<link href="custom.css" rel="stylesheet" type="text/css">-->
+        <link href="custom.css" rel="stylesheet" type="text/css">
        <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <style>
-  .carousel-inner > .item > img,
-  .carousel-inner > .item > a > img {
-      width: 100%;
-      margin: center;
-  }
-  </style>
-		<script type="text/javascript">
-			var bodyText=["The smaller your reality, the more convinced you are that you know everything.", 
-      "If the facts don't fit the theory, change the facts.", 
-      "The past has no power over the present moment."]
-			function generateText(sentenceCount){
-				for (var i=0; i<sentenceCount; i++)
-				document.write(bodyText[Math.floor(Math.random()*7)]+" ")
-			}
-		</script>
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <script src="../js/jquery-1.11.3.min.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
+  <!-- debug -->
+  <div class="container">
+	<h1 ><?php echo $lab['title']; ?></h1>
+  </div>
+
 	</head>
 
-	<body>
-		<header id="header">
-			<div class="innertube">
-				<h1 ><?php echo $lab['title']; ?></h1>
-			</div>
-		</header>
-
-		<div id="wrapper">
-			<main>
-				<div id="content">
-					<div class="innertube">
-						<!--<h2> Heading </h2>-->
-     <div class="container">
-  <br>
-  <div id="myCarousel" class="carousel slide" style="width: 1000px; margin: 0 auto"data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-      <li data-target="#myCarousel" data-slide-to="3"></li>
-    </ol>
-
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
-      <div class="item active">
-        <img src="images/lab4.jpg" alt="Lab" width="500" height="336">
-        <div class="carousel-caption">
-        <h3>Chania</h3>
-        <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
-      </div>
-      </div>
-
-      <div class="item">
-        <img src="images/lab1.jpg" alt="Lab" width="500" height="336">
-        <div class="carousel-caption">
-        <h3>Chania</h3>
-        <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
-      </div>
-      </div>
-
-      <div class="item">
-        <img src="images/lab2.jpg" alt="Lab" width="500" height="336">
-        <div class="carousel-caption">
-        <h3>Chania</h3>
-        <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
-      </div>
-      </div>
-
-      <div class="item">
-        <img src="images/lab3.jpg" alt="Lab" width="500" height="336">
-        <div class="carousel-caption">
-        <h3>Chania</h3>
-        <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
-      </div>
-      </div>
-    </div>
-
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-</div>
-</div>
-</div>
-</main>
-
-<nav id="nav">
+<body>
+<div id="wrapper">
+<div class="nav nav-tabs col-md-3" style="float: left;">
 	<div class="innertube">
-		<h3>Γρήγορη Αναζήτηση</h3>
-<!--sidebar-->
-<?php foreach($labs as $value): ?>
+    <h3>Γρήγορη Αναζήτηση</h3>
+ <?php foreach($labs as $value): ?>
   <br/>
    <input type="button" class="btn btn-primary" value="<?php echo $value['name']; ?>"
      onClick="window.location='labpage.php?id=<?php echo $value['id'] ?>'"><br/>
  <?php endforeach; ?>
-   <br/>  <br/>
- <?php include '../calender.php';?>
+
+   <br/><br/>
+  <p> Click the links to display calendar. <br>Then select a date .</p>
+   <br>
+
+<script>
+  function double() {
+  window.open("cal2.php","Ratting","width=350,height=270,left=150,top=200,toolbar=1,status=1,");
+  document.getElementById('SubmitRecord').style.visibility = 'visible';
+  }
+</script>
+<form method="POST" action='' name=f1>
+  <a href="javascript:void(0);" NAME="Calendar" title="Calendar " 
+onClick= double();>Click here to open the calendar window</a> 
+</br></br>
+
+<div id="SubmitRecord">
+<p size=2 face='Verdana'>Date Selected: </p>
+  <input type="submit" class="btn button" name='p_name' size='8'><br> 
+
+</div>
+ <?php 
+ if (isset($_POST["p_name"])){
+        echo $_POST["p_name"];
+  $dateChecked = $_POST["p_name"];
+$dateSelected = true;
+}
+if($dateSelected == false){
+echo "<script>
+    $('#SubmitRecord').css('visibility', 'hidden');
+</script>";
+}
+?>
+</form> 
+
+
   </div>
-  <br/>
-</nav>
+ </div>
 
 </div><!--wrapper end-->
+<!-- <button onclick="myFunction()">Try it</button> -->
+</br>
+<div id="body_container" >
+ <h2>epileksate gia to ergasthrio </h2>
+ <h2><?php echo $lab['title']; ?></h2>
+<h2> thn hmera:  <?php echo $dateChecked ?: ""; ?></h2>
+ <p>ston parakatw pinaka fainetai h diathesimothta ths hmeras</p>
+</div>
+<?php 
+ if (isset($dateChecked)){
+   // kalese mia synarthsh poy tha diavasei gia auth thn hmera kai ayto to ergasthrio ti yparxei
+   // na pernaw to labId kai to date
+        //echo $dateChecked ?: "";
+        //../functions/menu.php edw mesa vrisketai
+$dataForThisLab = get_all_data_for_this_lab($var, $dateChecked);   
+}
+?>
+
+
+<div id="">
+<div class="container col-md-12">
+        <div id="">
+        <?php
+			if ( !empty ( $dataForThisLab ) ) // Αν υπάρχουν εγγραφές
+			{
+				$i = 0;
+				// Φτιάξε έναν html πίνακα
+				echo "<table cellpadding='3' cellspacing='0' border='1' width='100%'>";
+				echo "<tr>";
+				echo "<td>Id</td>";
+				echo "<td>LabId</td>";
+				echo "<td>Event Title</td>";
+        echo "<td>Description</td>";
+				echo "<td>Per1</td>";
+        echo "<td>Per2</td>";
+        echo "<td>Per3</td>";
+        echo "<td>Per4</td>";
+        echo "<td>Per5</td>";
+        echo "<td>Per6</td>";
+				echo "</tr>";
+
+				// Και εμφάνισε τις εγγραφές
+				foreach ( $dataForThisLab as $record )
+				{
+					$i++;
+					echo "<tr>";
+					echo "<td>".$i."</td>";
+					echo "<td>".stripslashes ( $record ['labId'] )."</td>";
+					echo "<td>".$record ['Title']."</td>";
+          echo "<td>".$record ['Description']."</td>";
+          echo "<td>".$record ['Per1']."</td>";
+          echo "<td>".$record ['Per2']."</td>";
+          echo "<td>".$record ['Per3']."</td>";
+          echo "<td>".$record ['Per4']."</td>";
+          echo "<td>".$record ['Per5']."</td>";
+          echo "<td>".$record ['Per6']."</td>";
+					echo "<td>";
+				  //echo "<a href='edit_labs_menu.php?id=".$record ['id']."'>Επεξεργασία</a> | ";
+					//echo "<a href='delete_lab.php?id=".$record ['id']."'>Διαγραφή</a>";
+					echo "</td>";
+					echo "</tr>";
+				} // end foreach
+				echo "</table>";
+			} // end if
+			else
+			{
+				echo "Δε βρέθηκαν εγγραφές.";
+			} // end else
+		?>
+        	<p><button class="btn button" onClick= 'myFunction($var, $dateChecked)'>Προσθήκη νέας εγγραφής</button></p>
+        </div>
+  </div>
+  </div>
+</body>
 
 <footer id="footer">
 	<div class="innertube">
 		<p>&copy; 2017  | Υλοποίηση : Σαββάκης Βασίλειος</p>
 	</div>
 </footer>
-	</body>
 </html>

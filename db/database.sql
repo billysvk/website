@@ -100,3 +100,28 @@ CREATE TABLE  labs (
   title varchar(255) NULL,
   content varchar(256)  NULL
 );
+
+
+CREATE TABLE evenement (
+ id int NOT NULL IDENTITY(1,1)  PRIMARY KEY,
+ title varchar(255) NOT NULL,
+ date_start DateTime NOT NULL,
+ date_end DateTime NOT NULL
+);
+
+
+
+CREATE TABLE event_calendar (
+id int NOT NULL IDENTITY(1,1) PRIMARY KEY,
+labId int,
+event_date date NOT NULL,
+Title varchar DEFAULT NULL,
+description varchar DEFAULT NULL,
+per1 int NOT NULL DEFAULT 0,
+per2 int NOT NULL DEFAULT 0,
+per3 int NOT NULL DEFAULT 0,
+per4 int NOT NULL DEFAULT 0,
+per5 int NOT NULL DEFAULT 0,
+per6 int NOT NULL DEFAULT 0,
+status int NULL,
+);
