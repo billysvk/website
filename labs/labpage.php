@@ -203,17 +203,50 @@ echo "<script>
                     	<td>Περιγραφή:</td>
                         <td><input type="text" maxlength="2048" name="Description" /></td>
                     </tr>
-                   
+                  
                 </table>
                 <p>&nbsp;</p>
-                <!-- <input type="submit" value="Αποθήκευση" />
-                <input type="hidden" name="id" value="<?php echo $event ['id']; ?>" />
-                <input type="hidden" name="action" value="<?php $id == 0 ? print "add": print "update"; ?>" /> -->
+                  <div>
+		        	<label>epilekste anamesa sta diathesima dywra</label><br>
+              <input  name="1" type="checkbox" value="1" onclick="toggleRadioCheckbox(this)" /> 
+              <label for="mygroup1">8-10</label>
+   			      <input  name="2" type="checkbox" value="2" onclick="toggleRadioCheckbox(this)" /> 
+               <label for="mygroup2">10-12</label>
+               <input  name="3" type="checkbox" value="3" onclick="toggleRadioCheckbox(this)" /> 
+              <label for="mygroup3">12-14</label>
+   			      <input  name="4" type="checkbox" value="4" onclick="toggleRadioCheckbox(this)" /> 
+               <label for="mygroup4">14-16</label>
+               <input  name="5" type="checkbox" value="5" onclick="toggleRadioCheckbox(this)" /> 
+              <label for="mygroup5">16-18</label>
+              <input  name="6" type="checkbox" value="6" onclick="toggleRadioCheckbox(this)" /> 
+              <label for="mygroup6">18-20</label>
+			  </div>
+                 <input type="submit" value="Αποθήκευση" />
+                <input type="hidden" name="labId" value="<?php echo $var ?>" />
+                <!--<input type="hidden" name="checkboxes" value="<?php echo $event ['id']; ?>" />-->
+                <!--<input type="hidden" name="action" value="<?php  print "add"; ?>" /> -->
             </form>
         	<!-- <p><a href='menu.php'>Πίσω στο μενού</a></p> -->
         </div>
 	</div>
-  
+  <script type="text/javascript">
+ function toggleRadioCheckbox(sender, value) {
+        // RadioCheckbox: 0..1 enabled in a group 
+        if (!sender.checked) return;
+        var fields = document.getElementsByName(sender.name);
+        if(fields[0] == "1")
+        //
+        else if (fields[0] == "2")
+        //
+        else if (fields[0] == "3")
+        //
+        else if (fields[0] == "4")
+        //
+        else if (fields[0] == "5")
+        //
+        else
+    }
+</script>
 <footer id="footer">
 	<div class="innertube">
 		<p>&copy; 2017  | Υλοποίηση : Σαββάκης Βασίλειος</p>
