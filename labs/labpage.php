@@ -28,7 +28,6 @@ function showAllResponses() {
 document.getElementById("SubmitRecord").style.visibility = "visible";
 }
 </script>
-
 <script type="text/javascript">
 $("input[type='submit']").click(function(){
 alert(this.value);
@@ -36,13 +35,8 @@ alert(this.value);
 </script>
 
 <script>
-function myFunction() {
-    var x = document.getElementById('SubmitRecord');
-    if (x.style.display === 'none') {
-        x.style.display = 'block';
-    } else {
-        x.style.display = 'none';
-    }
+function addNewEvent() {
+document.getElementById("newEventContainer").style.visibility = "visible";
 }
 </script>
 
@@ -87,6 +81,7 @@ function myFunction() {
   document.getElementById('SubmitRecord').style.visibility = 'visible';
   }
 </script>
+
 <form method="POST" action='' name=f1>
   <a href="javascript:void(0);" NAME="Calendar" title="Calendar " 
 onClick= double();>Click here to open the calendar window</a> 
@@ -99,9 +94,9 @@ onClick= double();>Click here to open the calendar window</a>
 </div>
  <?php 
  if (isset($_POST["p_name"])){
-        echo $_POST["p_name"];
+        //echo $_POST["p_name"];
   $dateChecked = $_POST["p_name"];
-$dateSelected = true;
+ $dateSelected = true;
 }
 if($dateSelected == false){
 echo "<script>
@@ -116,28 +111,18 @@ echo "<script>
  </div>
 
 </div><!--wrapper end-->
-<!-- <button onclick="myFunction()">Try it</button> -->
 </br>
-<div id="body_container" >
+<div id="bodyContainer" style="visibility: hidden;">
  <h2>epileksate gia to ergasthrio </h2>
  <h2><?php echo $lab['title']; ?></h2>
 <h2> thn hmera:  <?php echo $dateChecked ?: ""; ?></h2>
- <p>ston parakatw pinaka fainetai h diathesimothta ths hmeras</p>
+
 </div>
-<?php 
- if (isset($dateChecked)){
-   // kalese mia synarthsh poy tha diavasei gia auth thn hmera kai ayto to ergasthrio ti yparxei
-   // na pernaw to labId kai to date
-        //echo $dateChecked ?: "";
-        //../functions/menu.php edw mesa vrisketai
-$dataForThisLab = get_all_data_for_this_lab($var, $dateChecked);   
-}
-?>
 
 
-<div id="">
-<div class="container col-md-12">
-        <div id="">
+
+<div id="TableOfEvents" class="container col-md-12">
+ <p>ston parakatw pinaka fainetai h diathesimothta ths hmeras</p>
         <?php
 			if ( !empty ( $dataForThisLab ) ) // Αν υπάρχουν εγγραφές
 			{
@@ -156,7 +141,6 @@ $dataForThisLab = get_all_data_for_this_lab($var, $dateChecked);
         echo "<td>Per5</td>";
         echo "<td>Per6</td>";
 				echo "</tr>";
-
 				// Και εμφάνισε τις εγγραφές
 				foreach ( $dataForThisLab as $record )
 				{
@@ -185,12 +169,51 @@ $dataForThisLab = get_all_data_for_this_lab($var, $dateChecked);
 				echo "Δε βρέθηκαν εγγραφές.";
 			} // end else
 		?>
-        	<p><button class="btn button" onClick= 'myFunction($var, $dateChecked)'>Προσθήκη νέας εγγραφής</button></p>
+        	<p><button class="btn button" onClick= addNewEvent()>Προσθήκη νέας εγγραφής</button></p>
         </div>
   </div>
   </div>
 </body>
+<?php 
+ if (isset($dateChecked)){
+   // kalese mia synarthsh poy tha diavasei gia auth thn hmera kai ayto to ergasthrio ti yparxei
+   // na pernaw to labId kai to date
+        //echo $dateChecked ?: "";
+        //../functions/menu.php edw mesa vrisketai
+$dataForThisLab = get_all_data_for_this_lab($var, $dateChecked);   
+echo "<script>
+    $('#bodyContainer').css('visibility', 'visible');
+</script>";
+echo "<script>
+    $('#TableOfEvents').css('visibility', 'visible');
+</script>";
+}?>
 
+	<div id="newEventContainer">
+    	<?php
+		  ?>
+        <div id="main">
+        	<form method="post" action="newEventForLab.php">
+            	<table cellpadding="3" cellspacing="0" border="0">
+                	<tr>
+                    	<td>Τίτλος:</td>
+                        <td><input type="text"  name="Title" size="50" /></td>
+                    </tr>
+                    <tr>
+                    	<td>Περιγραφή:</td>
+                        <td><input type="text" maxlength="2048" name="Description" /></td>
+                    </tr>
+                   
+                </table>
+                <p>&nbsp;</p>
+                <!-- <input type="submit" value="Αποθήκευση" />
+                <input type="hidden" name="id" value="<?php echo $event ['id']; ?>" />
+                <input type="hidden" name="action" value="<?php $id == 0 ? print "add": print "update"; ?>" /> -->
+            </form>
+        	<!-- <p><a href='menu.php'>Πίσω στο μενού</a></p> -->
+        </div>
+	</div>
+  
 <footer id="footer">
 	<div class="innertube">
 		<p>&copy; 2017  | Υλοποίηση : Σαββάκης Βασίλειος</p>
