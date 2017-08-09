@@ -62,3 +62,40 @@ h1, h2, h3, h4, h5, h6 {
 #newEventContainer {
 	visibility: hidden;
 }
+
+#checkbox1Tile{
+	visibility: hidden;
+}
+#checkbox1Label{
+	visibility: hidden;
+}
+#checkbox2Tile{
+	visibility: hidden;
+}
+#checkbox2Label{
+	visibility: hidden;
+}
+#checkbox3Tile{
+	visibility: hidden;
+}
+#checkbox3Label{
+	visibility: hidden;
+}
+#checkbox4Tile{
+	visibility: hidden;
+}
+#checkbox4Label{
+	visibility: hidden;
+}
+#checkbox5Tile{
+	visibility: hidden;
+}
+#checkbox5Label{
+	visibility: hidden;
+}
+#checkbox6Tile{
+	visibility: hidden;
+}
+#checkbox6Label{
+	visibility: hidden;
+}

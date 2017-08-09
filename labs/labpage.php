@@ -1,5 +1,9 @@
 <?php
 global $dateChecked;
+global $resultsNULL;
+global $addNewEventClicked;
+$addNewEventClicked = false;
+$resultsNULL = false;
 global $dataForThisLab;
 global $dateSelected;
 $dateSelected = false;
@@ -35,8 +39,22 @@ alert(this.value);
 </script>
 
 <script>
-function addNewEvent() {
+function addNewEvent(resultsAreEmpty) {
 document.getElementById("newEventContainer").style.visibility = "visible";
+if (resultsAreEmpty == true) {
+document.getElementById("checkbox1Tile").style.visibility = "visible";
+document.getElementById("checkbox1Label").style.visibility = "visible";
+document.getElementById("checkbox2Tile").style.visibility = "visible";
+document.getElementById("checkbox2Label").style.visibility = "visible";
+document.getElementById("checkbox3Tile").style.visibility = "visible";
+document.getElementById("checkbox3Label").style.visibility = "visible";
+document.getElementById("checkbox4Tile").style.visibility = "visible";
+document.getElementById("checkbox4Label").style.visibility = "visible";
+document.getElementById("checkbox5Tile").style.visibility = "visible";
+document.getElementById("checkbox5Label").style.visibility = "visible";
+document.getElementById("checkbox6Tile").style.visibility = "visible";
+document.getElementById("checkbox6Label").style.visibility = "visible";
+}
 }
 </script>
 
@@ -90,13 +108,12 @@ onClick= double();>Click here to open the calendar window</a>
 <div id="SubmitRecord">
 <p size=2 face='Verdana'>Date Selected: </p>
   <input type="submit" class="btn button" name='p_name' size='8'><br> 
-
 </div>
  <?php 
  if (isset($_POST["p_name"])){
         //echo $_POST["p_name"];
   $dateChecked = $_POST["p_name"];
- $dateSelected = true;
+  $dateSelected = true;
 }
 if($dateSelected == false){
 echo "<script>
@@ -104,23 +121,48 @@ echo "<script>
 </script>";
 }
 ?>
+<?php 
+ if (isset($dateChecked) && $dateChecked != "Submit"){
+$dataForThisLab = get_all_data_for_this_lab($var, $dateChecked);  
+}
+if(isset($dateChecked) && $dateChecked != "Submit" && !$dataForThisLab){
+  $resultsNULL = true;
+}
+if(isset($dateChecked) && $dateChecked != "Submit" && $dataForThisLab){
+  $resultsNULL = false;
+  $boxesThatShouldBeClosed = array();
+  foreach ($dataForThisLab as $key => $value) {
+    $i = 1;
+    $z = 0;
+    if ($value ['pev'.$i] == 1) {
+        $boxesThatShouldBeClosed['$z'] = 1;
+    }
+    $i ++;
+    $z ++;
+  }
+}
+//prepei na mpei enas akoma elegxos an vrethikan data
+//gia auto to lab na kleidwnoun ta checkboxes poy exoun timh 1
+?>
+<!-- DEBUG -->
+<script>
+resultsAreEmpty = "<?php echo $resultsNULL; ?>";
+shouldBeClosed = "<?php echo $resultsNULL; ?>";
+alert(resultsAreEmpty);
+</script>
+
+
 </form> 
-
-
   </div>
  </div>
-
 </div><!--wrapper end-->
 </br>
+
 <div id="bodyContainer" style="visibility: hidden;">
  <h2>epileksate gia to ergasthrio </h2>
  <h2><?php echo $lab['title']; ?></h2>
 <h2> thn hmera:  <?php echo $dateChecked ?: ""; ?></h2>
-
 </div>
-
-
-
 <div id="TableOfEvents" class="container col-md-12">
  <p>ston parakatw pinaka fainetai h diathesimothta ths hmeras</p>
         <?php
@@ -169,25 +211,13 @@ echo "<script>
 				echo "Δε βρέθηκαν εγγραφές.";
 			} // end else
 		?>
-        	<p><button class="btn button" onClick= addNewEvent()>Προσθήκη νέας εγγραφής</button></p>
+
+        	<p><button class="btn button" onClick= addNewEvent(resultsAreEmpty)>Προσθήκη νέας εγγραφής</button></p>
         </div>
   </div>
   </div>
 </body>
-<?php 
- if (isset($dateChecked)){
-   // kalese mia synarthsh poy tha diavasei gia auth thn hmera kai ayto to ergasthrio ti yparxei
-   // na pernaw to labId kai to date
-        //echo $dateChecked ?: "";
-        //../functions/menu.php edw mesa vrisketai
-$dataForThisLab = get_all_data_for_this_lab($var, $dateChecked);   
-echo "<script>
-    $('#bodyContainer').css('visibility', 'visible');
-</script>";
-echo "<script>
-    $('#TableOfEvents').css('visibility', 'visible');
-</script>";
-}?>
+
 
 	<div id="newEventContainer">
     	<?php
@@ -208,18 +238,23 @@ echo "<script>
                 <p>&nbsp;</p>
                   <div>
 		        	<label>epilekste anamesa sta diathesima dywra</label><br>
-              <input  name="1" type="checkbox" value="1" onclick="toggleRadioCheckbox(this)" /> 
-              <label for="mygroup1">8-10</label>
-   			      <input  name="2" type="checkbox" value="2" onclick="toggleRadioCheckbox(this)" /> 
-               <label for="mygroup2">10-12</label>
-               <input  name="3" type="checkbox" value="3" onclick="toggleRadioCheckbox(this)" /> 
-              <label for="mygroup3">12-14</label>
-   			      <input  name="4" type="checkbox" value="4" onclick="toggleRadioCheckbox(this)" /> 
-               <label for="mygroup4">14-16</label>
-               <input  name="5" type="checkbox" value="5" onclick="toggleRadioCheckbox(this)" /> 
-              <label for="mygroup5">16-18</label>
-              <input  name="6" type="checkbox" value="6" onclick="toggleRadioCheckbox(this)" /> 
-              <label for="mygroup6">18-20</label>
+              <input  id="checkbox1Tile" name="1" type="checkbox" value="1" onclick="toggleRadioCheckbox(this)" /> 
+              <label id="checkbox1Label" for="mygroup1">8-10</label>
+
+   			      <input  id="checkbox2Tile" name="2" type="checkbox" value="2" onclick="toggleRadioCheckbox(this)" /> 
+               <label id="checkbox2Label" for="mygroup2">10-12</label>
+
+               <input  id="checkbox3Tile" name="3" type="checkbox" value="3" onclick="toggleRadioCheckbox(this)" /> 
+               <label id="checkbox3Label" for="mygroup3">12-14</label>
+
+   			      <input  id="checkbox4Tile" name="4" type="checkbox" value="4" onclick="toggleRadioCheckbox(this)" /> 
+               <label id="checkbox4Label" for="mygroup4">14-16</label>
+
+               <input id="checkbox5Tile" name="5" type="checkbox" value="5" onclick="toggleRadioCheckbox(this)" /> 
+              <label id="checkbox5Label" for="mygroup5">16-18</label>
+
+              <input id="checkbox6Tile" name="6" type="checkbox" value="6" onclick="toggleRadioCheckbox(this)" /> 
+              <label id="checkbox6Label" for="mygroup6">18-20</label>
 			  </div>
                  <input type="submit" value="Αποθήκευση" />
                 <input type="hidden" name="labId" value="<?php echo $var ?>" />
@@ -229,24 +264,17 @@ echo "<script>
         	<!-- <p><a href='menu.php'>Πίσω στο μενού</a></p> -->
         </div>
 	</div>
-  <script type="text/javascript">
- function toggleRadioCheckbox(sender, value) {
-        // RadioCheckbox: 0..1 enabled in a group 
-        if (!sender.checked) return;
-        var fields = document.getElementsByName(sender.name);
-        if(fields[0] == "1")
-        //
-        else if (fields[0] == "2")
-        //
-        else if (fields[0] == "3")
-        //
-        else if (fields[0] == "4")
-        //
-        else if (fields[0] == "5")
-        //
-        else
-    }
-</script>
+
+<?php 
+if($dateSelected == true){
+echo "<script>
+    $('#bodyContainer').css('visibility', 'visible');
+</script>";
+echo "<script>
+    $('#TableOfEvents').css('visibility', 'visible');
+</script>";
+}
+?>
 <footer id="footer">
 	<div class="innertube">
 		<p>&copy; 2017  | Υλοποίηση : Σαββάκης Βασίλειος</p>
