@@ -42,30 +42,28 @@
         //$d = new DateTime($dateSelected);
 		//$timestamp = $d->getTimestamp(); // Unix timestamp
 		//$formatted_date = $d->format('Y-d-m'); // 2003-10-16
+		//$d = new DateTime($dateSelected, new DateTimeZone('Europe/Athens'));
+		//var_dump($d->getTimestamp()); // 1457690400
 
-		$d = new DateTime($dateSelected, new DateTimeZone('Europe/Athens'));
-		var_dump($d->getTimestamp()); // 1457690400
-
-		$sql = "SELECT * FROM event_calendar WHERE labId = ".$intLabId;
+		$sql = "SELECT * FROM event_calendar WHERE labId = $intLabId AND event_date = '$dateSelected'";
 		$result = sqlsrv_query ( $con, $sql);
-
 	    $row = sqlsrv_fetch_array ( $result );
 		
-		if ($row) {
+	// 	if ($row) {
 
-			foreach ($row as $value) {
-       $s = new DateTime($value ['event_date'], new DateTimeZone('Europe/Athens'));
-		var_dump($d->getTimestamp()); // 1457690400
-				 if($found == 1)
-         		  	break;
-				if ($value ['event_date'] == $formatted_date) {
-					$found = 1;
-					$newRow = $value;
-				}
-			}
+	// 		foreach ($row as $value) {
+    //    $s = new DateTime($value ['event_date'], new DateTimeZone('Europe/Athens'));
+	// 	var_dump($d->getTimestamp()); // 1457690400
+	// 			 if($found == 1)
+    //      		  	break;
+	// 			if ($value ['event_date'] == $formatted_date) {
+	// 				$found = 1;
+	// 				$newRow = $value;
+	// 			}
+	// 		}
 			
-		}
+	// 	}
 
-		return $newRow;
+		return $row;
 	}
 ?>
