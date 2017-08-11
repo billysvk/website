@@ -1,4 +1,5 @@
 <?php
+session_start();
 global $dateChecked;
 global $resultsNULL;
 global $addNewEventClicked;
@@ -8,6 +9,7 @@ global $dataForThisLab;
 global $dateSelected;
 $dateSelected = false;
 $dataForThisLab = array ();
+$boxesThatShouldBeClosed = array("0","0","0","0","0","0");
 include('../cms/functions/menu.php');
 include('../functions/menu.php');
 $var = $_GET['id']; // LabID
@@ -28,13 +30,13 @@ $found = false;
   }
 ?>
 
-<script type="text/javascript">
+<script >
 function showAllResponses() {
 document.getElementById("SubmitRecord").style.visibility = "visible";
 }
 </script>
 
-<script type="text/javascript">
+<script >
 function addNewEvent (resultsAreEmpty, h_1, h_2, h_3, h_4, h_5, h_6) {
 document.getElementById("newEventContainer").style.visibility = "visible";
 if (resultsAreEmpty == true) {
@@ -80,12 +82,12 @@ if (resultsAreEmpty == false){
 }
 </script>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>2 Column Layout &mdash; Left Menu with Header &amp; Footer</title>
-        <link href="calendar.css" type="text/css" rel="stylesheet" />
+        <link href="calendar.css" type="text/css" rel="stylesheet">
         <link href="science.css" rel="stylesheet" type="text/css">
         <link href="custom.css" rel="stylesheet" type="text/css">
         <meta charset="utf-8">
@@ -108,11 +110,12 @@ if (resultsAreEmpty == false){
           <input type="button" class="btn btn-primary" 
             value="<?php echo $value['name'];?>" 
             onClick="window.location='labpage.php?id=<?php echo $value['id'] ?>'"><br/>
-          <?php endforeach; ?><br/><br/>
+          <?php endforeach; ?><br/>
 
-          <p>Click the links to display calendar. <br>Then select a date .</p><br>
+          <p>Click the links to display calendar. </p><br/>
+          <p>Then select a date .</p><br/>
 
-        <script type="text/javascript">
+        <script >
           function double() {
           window.open("cal2.php","Ratting","width=350,height=270,left=150,top=200,toolbar=1,status=1,");
           document.getElementById('SubmitRecord').style.visibility = 'visible';
@@ -151,6 +154,7 @@ if (resultsAreEmpty == false){
             <?php 
               if (isset($dateChecked) && $dateChecked != "Submit" && !$dataForThisLab){
               $resultsNULL = true;
+              $boxesThatShouldBeClosed = array("0","0","0","0","0","0");
               }
             ?>
 
@@ -168,8 +172,9 @@ if (resultsAreEmpty == false){
               }
             ?>
 
-            <script type="text/javascript">
+            <script>
             var resultsAreEmpty = <?php echo json_encode($resultsNULL,JSON_HEX_TAG);?>;
+            console.log(resultsAreEmpty);
             var h_1 = <?php echo json_encode($boxesThatShouldBeClosed[0],JSON_HEX_TAG);?>;
             var h_2 = <?php echo json_encode($boxesThatShouldBeClosed[1],JSON_HEX_TAG);?>;
             var h_3 = <?php echo json_encode($boxesThatShouldBeClosed[2],JSON_HEX_TAG);?>;
