@@ -1,27 +1,25 @@
 <?Php
-//***************************************
-// This is downloaded from www.plus2net.com //
-// You can distribute this code with the link to www.plus2net.com ///
-// Please don't  remove the link to www.plus2net.com ///
-// This is for your learning only not for commercial use. ///////
-// The author is not responsible for any type of loss or problem or damage on using this script.//
-// You can use it at your own risk. /////
-//*****************************************
-
-
+//// Settings, change this to match your requirment //////
+$start_year=2000; // Starting year for dropdown list box
+$end_year=2020;  // Ending year for dropdown list box
+////// end of settings ///////////
 ?>
 <!doctype html public "-//w3c//dtd html 3.2//en">
 <html>
 <head>
-<title>plus2net Yearly Calendar</title>
+<title>plus2net Calendar</title>
 <link rel="canonical" href="http://www.plus2net.com/php_tutorial/cal2.php"/>
 <script langauge="javascript">
+
 function post_value(mm,dt,yy){
-opener.document.f1.p_name.value = mm + "/" + dt + "/" + yy;
-/// cheange the above line for different date format
+opener.document.f1.p_name.value = dt + "/" + mm + "/" + yy;
 self.close();
 }
 
+function passValue(mm,dt,yy){
+window.opener.document.getElementById('archiveimages').value = address.src;
+
+}
 function reload(form){
 var month_val=document.getElementById('month').value; // collect month value
 var year_val=document.getElementById('year').value;      // collect year value
@@ -30,12 +28,12 @@ self.location='cal2.php?month=' + month_val + '&year=' + year_val ; // reload th
 </script>
 <style type="text/css">
 table.main {
-  width: 300px; 
+  width: 100%; 
 border: 1px solid black;
 	background-color: #9dffff;
 }
 table.main td {
-vertical-align: top;
+
 font-family: verdana,arial, helvetica,  sans-serif;
 font-size: 11px;
 }
@@ -50,47 +48,59 @@ table,td{ border: 1px solid #ffffff }
 </head>
 <body>
 <?Php
+@$month=$_GET['month'];
+@$year=$_GET['year'];
 
-$year=2017; // change this to another year
-$row=0; // to set the number of rows and columns in yearly calendar 
-echo "<table class='main'>"; // Outer table 
-////// Starting of for loop/// 
-///  Creating calendars for each month by looping 12 times ///
-for($m=1;$m<=12;$m++){
-$month =date($m);  // Month 
-$dateObject = DateTime::createFromFormat('!m', $m);
-$monthName = $dateObject->format('F'); // Month name to display at top
+if(!($month <13 and $month >0)){
+$month =date("m");  // Current month as default month
+}
 
-
+if(!($year <=$end_year and $year >=$start_year)){
+$year =date("Y");  // Set current year as default year 
+}
 
 $d= 2; // To Finds today's date
 //$no_of_days = date('t',mktime(0,0,0,$month,1,$year)); //This is to calculate number of days in a month
 $no_of_days = cal_days_in_month(CAL_GREGORIAN, $month, $year);//calculate number of days in a month
 
 $j= date('w',mktime(0,0,0,$month,1,$year)); // This will calculate the week day of the first day of the month
-//echo $j;// Sunday=0 , Saturday =6
-//// if starting day of the week is Monday then add following two lines ///
-$j=$j-1;  
-if($j<0){$j=6;}  // if it is Sunday //
-//// end of if starting day of the week is Monday ////
-
-
+//echo $j;
 $adj=str_repeat("<td bgcolor='#ffff00'>*&nbsp;</td>",$j);  // Blank starting cells of the calendar 
 $blank_at_end=42-$j-$no_of_days; // Days left after the last day of the month
 if($blank_at_end >= 7){$blank_at_end = $blank_at_end - 7 ;} 
 $adj2=str_repeat("<td bgcolor='#ffff00'>*&nbsp;</td>",$blank_at_end); // Blank ending cells of the calendar
 
 /// Starting of top line showing year and month to select ///////////////
-if(($row % 3)== 0){
-echo "</tr><tr>";
+
+echo "<table class='main'><td colspan=6 >
+
+<select name=month value='' onchange=\"reload(this.form)\" id=\"month\">
+<option value=''>Select Month</option>";
+for($p=1;$p<=12;$p++){
+
+$dateObject   = DateTime::createFromFormat('!m', $p);
+$monthName = $dateObject->format('F');
+if($month==$p){
+echo "<option value=$p selected>$monthName</option>";
+}else{
+echo "<option value=$p>$monthName</option>";
 }
+}
+echo "</select>
+<select name=year value='' onchange=\"reload(this.form)\" id=\"year\">Select Year</option>
+";
+for($i=$start_year;$i<=$end_year;$i++){
+if($year==$i){
+echo "<option value='$i' selected>$i</option>";
+}else{
+echo "<option value='$i'>$i</option>";
+}
+}
+echo "</select>";
 
-echo "<td><table class='main' ><td colspan=6 align=center> $monthName $year
+echo " </td><td align='center'><a href=# onClick='self.close();'>X</a></td></tr><tr>";
+echo "<th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr><tr>";
 
-
- </td><td align='center'><a href=# onClick='self.close();'>X</a></td></tr>";
-//echo "<tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr><tr>";
-echo "<tr><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr><tr>";
 ////// End of the top line showing name of the days of the week//////////
 
 //////// Starting of the days//////////
@@ -106,13 +116,10 @@ $j=0;}
 }
 echo $adj2;   // Blank the balance cell of calendar at the end 
 
-echo "</tr></table></td>";
+echo "</tr></table>";
 
-$row=$row+1;
-} // end of for loop for 12 months
-echo "</table>";
+
 ?>
-<a href='http://www.plus2net.com/php_tutorial/php_calendar.php'><b>plus2net.com Calendar</b></a>
 
 </body>
 </html>

@@ -1,0 +1,52 @@
+<?php
+	include ( "../functions/menu.php" );
+
+	if ( isset ( $_POST ['labId'] ) )
+	{
+				$data ['event_date'] = $_POST ['event_date'];
+				$data ['Title'] =  $_POST ['Title']; // Αν πρόκειται για αλφαριθμητικό, χρησιμοποιούμε την mysql_real_escape_string
+				$data ['description'] = $_POST ['Description']; // Αν θέλουμε ακέραια τιμή, χρησιμοποιούμε την (int)
+				$data ['labId'] =  $_POST ['labId'];
+				if($_POST [1] == null){
+					$data ['h_1'] = 0;
+				}else{
+					$data ['h_1'] = (int)$_POST [1];
+				}
+
+				if($_POST [2] == null){
+					$data ['h_2'] = 0;
+				}else{
+					$data ['h_2'] = (int)$_POST [2];
+				}
+
+				if($_POST [3] == null){
+					$data ['h_3'] = 0;
+				}else{
+					$data ['h_3'] =(int)$_POST [3];
+				}
+
+				if($_POST [4] == null){
+					$data ['h_4'] = 0;
+				}else{
+					$data ['h_4'] = (int)$_POST [4];
+				}
+
+				if($_POST [5] == null){
+					$data ['h_5'] = 0;
+				}else{
+					$data ['h_5'] = (int)$_POST [5];
+				}
+
+				if($_POST [6] == null){
+					$data ['h_6'] = 0;
+				}else{
+					$data ['h_6'] = (int)$_POST [6];
+				}
+				
+				$data ['Status'] =  0;
+
+				add_event_for_this_lab($data);
+
+		header ( "location:labpage.php" ); // Ο χρήστης κατευθύνεται πάλι στη λίστα με τις εγγραφές
+	} // end if
+?>
