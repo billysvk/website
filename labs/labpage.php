@@ -35,7 +35,18 @@ function showAllResponses() {
 document.getElementById("SubmitRecord").style.visibility = "visible";
 }
 </script>
-
+<script >
+ function toggleRadioCheckbox(sender) {
+        // RadioCheckbox: 0..1 enabled in a group 
+        if (!sender.checked) return;
+        var fields = document.getElementsByName(sender.name);
+        for(var idx=0; idx<fields.length; idx++) {
+            var field = fields[idx];
+            if (field.checked && field!=sender)
+                field.checked=false;
+        }
+    }
+</script>
 <script >
 function addNewEvent (resultsAreEmpty, h_1, h_2, h_3, h_4, h_5, h_6) {
 document.getElementById("newEventContainer").style.visibility = "visible";
@@ -96,16 +107,46 @@ if (resultsAreEmpty == false){
   <script src="../js/jquery-1.11.3.min.js"></script>
   <script src="../js/bootstrap.min.js"></script>
   <div class="container">
-	<h1 ><?php echo $lab['title']; ?></h1>
+	<!--<h1 ><?php echo $lab['title']; ?></h1>-->
   </div>
 </head>
 
 <body>
+
+    <section id="services" class="services bg-primary">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-lg-10 col-lg-offset-1">
+                    <h2><font color="white";>	<h1 >LAB: <?php echo $lab['title']; ?></h1></h2>
+                    <hr class="small">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="service-item">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-cloud fa-stack-1x text-primary"></i>
+                            </span>
+                                <h4>
+                                    <strong>XXXXX</strong>
+                                </h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                <a href="http://www.unipi.gr/unipi/el/" class="btn btn-light">Website</a>
+                            </div>
+                        </div>                 
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.col-lg-10 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </section>
   <div id="wrapper">
     <div class="nav nav-tabs col-md-3" style="float: left;">
     	<div class="innertube">
 
-          <h3>Γρήγορη Αναζήτηση</h3>
+          <h3><font color="gray";>Γρήγορη Αναζήτηση</h3>
           <?php foreach($labs as $value): ?><br/>
           <input type="button" class="btn btn-primary" 
             value="<?php echo $value['name'];?>" 
@@ -187,29 +228,35 @@ if (resultsAreEmpty == false){
     </div>
   </div></br>
 
+   <section id="services" class="services bg-primary">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-lg-10 col-lg-offset-1">
+
   <div id="bodyContainer" style="visibility: hidden;">
-  <h2>epileksate gia to ergasthrio </h2>
+  <h2>Έχεται επιλέξει για το εργαστήριο:  </h2>
   <h2><?php echo $lab['title']; ?></h2>
-  <h2> thn hmera:  <?php echo $dateChecked ?: ""; ?></h2>
+  <h2> Την ημέρα:  <?php echo $dateChecked ?: ""; ?></h2>
   </div>
 
-  <div id="TableOfEvents" class="container col-md-12">
-    <p>ston parakatw pinaka fainetai h diathesimothta ths hmeras</p>
+    <div id="TableOfEvents" class="table col-md-12">
+    <p>Στον παρακάτω πίνακα, δίνεται η διαθεσημότητα της ημέρας</p>
+  
         <?php if ( !empty ( $dataForThisLab ) ){
-          $i = 0;
+          $i = 1;
 
           echo "<table cellpadding='3' cellspacing='0' border='1' width='100%'>";
           echo "<tr>";
           echo "<td>Id</td>";
-          echo "<td>LabId</td>";
+          echo "<td>lab Id</td>";
           echo "<td>Event Title</td>";
           echo "<td>Description</td>";
-          echo "<td>h_1</td>";
-          echo "<td>h_2</td>";
-          echo "<td>h_3</td>";
-          echo "<td>h_4</td>";
-          echo "<td>h_5</td>";
-          echo "<td>h_6</td>";
+          echo "<td>8-10</td>";
+          echo "<td>10-12</td>";
+          echo "<td>12-14</td>";
+          echo "<td>14-16</td>";
+          echo "<td>16-18</td>";
+          echo "<td>18-20</td>";
           echo "</tr>";
 
             echo "<tr>";
@@ -233,6 +280,7 @@ if (resultsAreEmpty == false){
           echo "Δε βρέθηκαν εγγραφές.";
         } 
         ?>
+        </br>
       <p><button class="btn button" onClick= "addNewEvent(resultsAreEmpty, h_1, h_2, h_3, h_4, h_5, h_6)">Προσθήκη νέας εγγραφής
       </button></p>
   </div>
@@ -240,40 +288,42 @@ if (resultsAreEmpty == false){
       <div id="newEventContainer">
               <div id="main">
                 <form method="post" action="newEventForLab.php">
-                    <table cellpadding="3" cellspacing="0" border="0">
+                    <div cellpadding="3" cellspacing="0" border="0">
                         <tr>
                             <td>Τίτλος:</td>
-                              <td><input type="text"  name="Title" size="50" /></td>
+                              <td><input type="text" style="color:black;"  name="Title" size="50" /></td>
                           </tr>
+                          </br></br>
                           <tr>
                             <td>Περιγραφή:</td>
-                              <td><input type="text" maxlength="2048" name="Description" /></td>
+                              <textarea type="textarea" style="color:black;"  maxlength="2048" name="Description" > </textarea>
                           </tr>
                         
-                      </table>
+                      </div>
                       <p>&nbsp;</p>
                         <div>
-                    <label>epilekste anamesa sta diathesima dywra</label><br>
+                    <label>Επίλεξτε ανάμεσα στα διαθέσιμα δίωρα</label><br>
                     <input  id="checkbox1Tile" name="1" type="checkbox" value="1" onclick="toggleRadioCheckbox(this)" /> 
                     <label id="checkbox1Label" for="mygroup1">8-10</label>
 
-                    <input  id="checkbox2Tile" name="2" type="checkbox" value="2" onclick="toggleRadioCheckbox(this)" /> 
+                    <input  id="checkbox2Tile" name="2" type="checkbox" value="1" onclick="toggleRadioCheckbox(this)" /> 
                     <label id="checkbox2Label" for="mygroup2">10-12</label>
 
-                    <input  id="checkbox3Tile" name="3" type="checkbox" value="3" onclick="toggleRadioCheckbox(this)" /> 
+                    <input  id="checkbox3Tile" name="3" type="checkbox" value="1" onclick="toggleRadioCheckbox(this)" /> 
                     <label id="checkbox3Label" for="mygroup3">12-14</label>
 
-                    <input  id="checkbox4Tile" name="4" type="checkbox" value="4" onclick="toggleRadioCheckbox(this)" /> 
+                    <input  id="checkbox4Tile" name="4" type="checkbox" value="1" onclick="toggleRadioCheckbox(this)" /> 
                     <label id="checkbox4Label" for="mygroup4">14-16</label>
 
-                    <input id="checkbox5Tile" name="5" type="checkbox" value="5" onclick="toggleRadioCheckbox(this)" /> 
+                    <input id="checkbox5Tile" name="5" type="checkbox" value="1" onclick="toggleRadioCheckbox(this)" /> 
                     <label id="checkbox5Label" for="mygroup5">16-18</label>
 
-                    <input id="checkbox6Tile" name="6" type="checkbox" value="6" onclick="toggleRadioCheckbox(this)" /> 
+                    <input id="checkbox6Tile" name="6" type="checkbox" value="1" onclick="toggleRadioCheckbox(this)" /> 
                     <label id="checkbox6Label" for="mygroup6">18-20</label>
               </div>
-                      <input type="submit" value="Αποθήκευση" />
+                      <input type="submit" value="Αποθήκευση" style="color:black;" />
                       <input type="hidden" name="labId" value="<?php echo $var ?>" />
+                      <input type="hidden" name="event_date" value="<?php echo $dateChecked ?>" />
                   </form>
               </div>
       </div>
@@ -287,6 +337,10 @@ if (resultsAreEmpty == false){
         </script>";
         }
       ?>
+       </div>
+      </div>
+     </div>
+  </selection>
 </body>
 
 <footer id="footer">

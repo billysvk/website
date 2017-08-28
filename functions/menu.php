@@ -44,4 +44,15 @@
 
 		return $row;
 	}
+
+	function add_event_for_this_lab($data)
+	{
+		global $con;
+		$row = array ();
+        $intLabId = (int)$data ['labId'];
+
+        $sql = "INSERT INTO event_calendar (labId,event_date,Title,Description,h_1,h_2,h_3,h_4,h_5,h_6,status) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+		$params = array($intLabId, $data ['event_date'],$data ['Title'],$data ['description'], $data ['h_1'],$data ['h_2'],$data ['h_3'],$data ['h_4'],$data ['h_5'],$data ['h_6'],$data ['Status']);
+		$stmt = sqlsrv_query( $con, $sql, $params);
+	}
 ?>
