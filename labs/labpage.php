@@ -1,17 +1,29 @@
-<?php
-session_start();
-global $dateChecked;
-global $resultsNULL;
-global $addNewEventClicked;
-$addNewEventClicked = false;
-$resultsNULL = false;
-global $dataForThisLab;
-global $dateSelected;
+  <?php 
+  session_start();
+  global $dateChecked;
+  global $dateSelected;
 $dateSelected = false;
-$dataForThisLab = array ();
-$boxesThatShouldBeClosed = array("0","0","0","0","0","0");
+              if ( isset($_POST["p_name"]) ) {
+              $dateChecked = $_POST["p_name"];
+              $dateSelected = true;
+              }
+            ?>
+<?php
 include('../cms/functions/menu.php');
 include('../functions/menu.php');
+
+$resultsNULL = "null";
+
+
+//global $resultsNULL;
+global $addNewEventClicked;
+$addNewEventClicked = false;
+//$resultsNULL = "null";
+global $dataForThisLab;
+
+$dataForThisLab = array ();
+$boxesThatShouldBeClosed = array();
+
 $var = $_GET['id']; // LabID
 $labs = array ();
 $labs = get_labs();
@@ -19,15 +31,57 @@ $lab = null;
 ?>
 <?php 
 $found = false;
-  foreach ($labs as $value) {
-    if($found == true){
-      break;
-    }
-    if($value['id'] == $var){
-      $found = true;
-      $lab = $value;
-    }
+foreach ($labs as $value) {
+  if($found == true){
+    break;
   }
+  if($value['id'] == $var){
+    $found = true;
+    $lab = $value;
+  }
+}
+$boxesThatShouldBeClosed = get_all_data_for_this_lab($var, $dateChecked,$temp =  "true");
+if( isset($_SESSION['resultsNULLTrue']) ) {
+              $resultsNULL = $_SESSION['resultsNULLTrue'];
+          }else{
+              $resultsNULL = "null";
+          }
+          if( isset($boxesThatShouldBeClosed[0]) ) {
+              $h_1 = $boxesThatShouldBeClosed[0];
+          }else{
+              $h_1 = 0;
+          }
+if( isset($boxesThatShouldBeClosed[1]) ) {
+      $h_2 = $boxesThatShouldBeClosed[1];
+     // echo $uName;
+}else{
+  $h_2 = 0;
+}
+if( isset($boxesThatShouldBeClosed[2]) ) {
+      $h_3 = $boxesThatShouldBeClosed[2];
+     // echo $uName;
+}else{
+  $h_3 = 0;
+}
+if( isset($boxesThatShouldBeClosed[3]) ) {
+      $h_4 = $boxesThatShouldBeClosed[3];
+     // echo $uName;
+}else{
+  $h_4 = 0;
+}
+if( isset($boxesThatShouldBeClosed[4]) ) {
+      $h_5 = $boxesThatShouldBeClosed[4];
+     // echo $uName;
+}else{
+  $h_5 = 0;
+}
+if( isset($boxesThatShouldBeClosed[5]) ) {
+      $h_6 = $boxesThatShouldBeClosed[5];
+     // echo $uName;
+}else{
+  $h_6 = 0;
+}
+
 ?>
 
 <script >
@@ -36,21 +90,38 @@ document.getElementById("SubmitRecord").style.visibility = "visible";
 }
 </script>
 <script >
- function toggleRadioCheckbox(sender) {
-        // RadioCheckbox: 0..1 enabled in a group 
-        if (!sender.checked) return;
-        var fields = document.getElementsByName(sender.name);
-        for(var idx=0; idx<fields.length; idx++) {
-            var field = fields[idx];
-            if (field.checked && field!=sender)
-                field.checked=false;
-        }
-    }
+function toggleRadioCheckbox(sender) {
+  // RadioCheckbox: 0..1 enabled in a group 
+  if (!sender.checked) return;
+  var fields = document.getElementsByName(sender.name);
+  for(var idx=0; idx<fields.length; idx++) {
+      var field = fields[idx];
+      if (field.checked && field!=sender)
+          field.checked=false;
+  }
+}
 </script>
 <script >
-function addNewEvent (resultsAreEmpty, h_1, h_2, h_3, h_4, h_5, h_6) {
+function addNewEvent() {
+//var resultsAreEmpty = <?php echo ($resultsNULL); ?>;
+  var resultsAreEmpty = <?php echo json_encode($resultsNULL); ?>; //Don't forget the extra semicolon!
+  var h_1 = <?php echo json_encode($h_1); ?>;
+  var h_2 = <?php echo json_encode($h_2); ?>;
+  var h_3 = <?php echo json_encode($h_3); ?>;
+  var h_4 = <?php echo json_encode($h_4); ?>;
+  var h_5 = <?php echo json_encode($h_5); ?>;
+  var h_6 = <?php echo json_encode($h_6); ?>;
+  //var resultsAreEmpty = "<?php echo $resultsNULL ?>";
+     //var resultsAreEmpty = <?php echo $resultsNULL; ?>;
+//  alert(resultsAreEmpty);
+//  alert(h_1);
+//  alert(h_2);
+//  alert(h_3);
+//  alert(h_4);
+//  alert(h_5);
+//  alert(h_6);
 document.getElementById("newEventContainer").style.visibility = "visible";
-if (resultsAreEmpty == true) {
+if (resultsAreEmpty == "true") {
 document.getElementById("checkbox1Tile").style.visibility = "visible";
 document.getElementById("checkbox1Label").style.visibility = "visible";
 document.getElementById("checkbox2Tile").style.visibility = "visible";
@@ -64,30 +135,48 @@ document.getElementById("checkbox5Label").style.visibility = "visible";
 document.getElementById("checkbox6Tile").style.visibility = "visible";
 document.getElementById("checkbox6Label").style.visibility = "visible";
 }
-if (resultsAreEmpty == false){
+if (resultsAreEmpty == "false"){
  if(h_1 == 0 ){
   document.getElementById("checkbox1Tile").style.visibility = "visible";
   document.getElementById("checkbox1Label").style.visibility = "visible";
+ }else{
+  document.getElementById("checkbox1Tile").style.visibility = "hidden";
+  document.getElementById("checkbox1Label").style.visibility = "hidden";
  }
  if(h_2 == 0) {
   document.getElementById("checkbox2Tile").style.visibility = "visible";
   document.getElementById("checkbox2Label").style.visibility = "visible";
+ }else{
+  document.getElementById("checkbox2Tile").style.visibility = "hidden";
+  document.getElementById("checkbox2Label").style.visibility = "hidden";
  }
  if(h_3 == 0) {
   document.getElementById("checkbox3Tile").style.visibility = "visible";
   document.getElementById("checkbox3Label").style.visibility = "visible";
+ }else{
+  document.getElementById("checkbox3Tile").style.visibility = "hidden";
+  document.getElementById("checkbox3Label").style.visibility = "hidden";
  }
  if(h_4 == 0) {
   document.getElementById("checkbox4Tile").style.visibility = "visible";
   document.getElementById("checkbox4Label").style.visibility = "visible";
+ }else{
+  document.getElementById("checkbox4Tile").style.visibility = "hidden";
+  document.getElementById("checkbox4Label").style.visibility = "hidden";
  }
  if(h_5 == 0) {
   document.getElementById("checkbox5Tile").style.visibility = "visible";
   document.getElementById("checkbox5Label").style.visibility = "visible";
+ }else{
+  document.getElementById("checkbox5Tile").style.visibility = "hidden";
+  document.getElementById("checkbox5Label").style.visibility = "hidden";
  }
  if(h_6 == 0) {
   document.getElementById("checkbox6Tile").style.visibility = "visible";
   document.getElementById("checkbox6Label").style.visibility = "visible";
+ }else{
+  document.getElementById("checkbox6Tile").style.visibility = "hidden";
+  document.getElementById("checkbox6Label").style.visibility = "hidden";
  }
 }
 }
@@ -178,52 +267,56 @@ if (resultsAreEmpty == false){
               $dateSelected = true;
               }
             ?>
-
-            <?php 
+           <?php
               if($dateSelected == false) {
               echo "<script> 
                 $('#SubmitRecord').css('visibility', 'hidden'); </script>";
               }
-            ?>
-
-            <?php 
               if (isset($dateChecked) && $dateChecked != "Submit"){
-              $dataForThisLab = get_all_data_for_this_lab($var, $dateChecked);
+              $dataForThisLab = get_all_data_for_this_lab($var, $dateChecked, $temp = "dontCheck");
+              $boxesThatShouldBeClosed = get_all_data_for_this_lab($var, $dateChecked,$temp =  "true");
               }
-            ?>
-
-            <?php 
               if (isset($dateChecked) && $dateChecked != "Submit" && !$dataForThisLab){
-              $resultsNULL = true;
-              $boxesThatShouldBeClosed = array("0","0","0","0","0","0");
+              //$resultsNULL = "true";
+              $boxesThatShouldBeClosed = get_all_data_for_this_lab($var, $dateChecked,$temp =  "false");
               }
-            ?>
-
-            <?php 
-              if (isset($dateChecked) && $dateChecked != "Submit" && $dataForThisLab){ 
-              $resultsNULL = false;
-              $boxesThatShouldBeClosed = array();
-              for($i=1; $i<7;$i++){
-                  if ($dataForThisLab["h_".$i] == 1 ) {
-                    $boxesThatShouldBeClosed[$i-1] = 1;
-                  }else{
-                    $boxesThatShouldBeClosed[$i-1] = 0;
-                  }
+              //if (isset($dateChecked) && $dateChecked != "Submit" && $dataForThisLab){ 
+              //$resultsNULL = "false";
+              //$boxesThatShouldBeClosed = get_all_data_for_this_lab($var, $dateChecked,$temp =  true);
+              //}
+              if( isset($_SESSION['resultsNULLTrue']) ) {
+                 $resultsNULL = $_SESSION['resultsNULLTrue'];
+               }else{
+                 $resultsNULL = "null";
               }
+              if( isset($boxesThatShouldBeClosed[1]) ) {
+                 $h_2 = $boxesThatShouldBeClosed[1];
+               }else{
+                 $h_2 = 0;
               }
-            ?>
-
-            <script>
-            var resultsAreEmpty = <?php echo json_encode($resultsNULL,JSON_HEX_TAG);?>;
-            console.log(resultsAreEmpty);
-            var h_1 = <?php echo json_encode($boxesThatShouldBeClosed[0],JSON_HEX_TAG);?>;
-            var h_2 = <?php echo json_encode($boxesThatShouldBeClosed[1],JSON_HEX_TAG);?>;
-            var h_3 = <?php echo json_encode($boxesThatShouldBeClosed[2],JSON_HEX_TAG);?>;
-            var h_4 = <?php echo json_encode($boxesThatShouldBeClosed[3],JSON_HEX_TAG);?>;
-            var h_5 = <?php echo json_encode($boxesThatShouldBeClosed[4],JSON_HEX_TAG);?>;
-            var h_6 = <?php echo json_encode($boxesThatShouldBeClosed[5],JSON_HEX_TAG);?>;
-            </script>
+              if( isset($boxesThatShouldBeClosed[2]) ) {
+                 $h_3 = $boxesThatShouldBeClosed[2];
+               }else{
+                 $h_3 = 0;
+              }
+              if( isset($boxesThatShouldBeClosed[3]) ) {
+                 $h_4 = $boxesThatShouldBeClosed[3];
+              }else{
+                 $h_4 = 0;
+              }
+              if( isset($boxesThatShouldBeClosed[4]) ) {
+                 $h_5 = $boxesThatShouldBeClosed[4];
+              }else{
+                 $h_5 = 0;
+              }
+              if( isset($boxesThatShouldBeClosed[5]) ) {
+                 $h_6 = $boxesThatShouldBeClosed[5];
+              }else{
+                 $h_6 = 0;
+              }
+             ?>
            </form> 
+            
       </div>
     </div>
   </div></br>
@@ -244,7 +337,8 @@ if (resultsAreEmpty == false){
   
         <?php if ( !empty ( $dataForThisLab ) ){
           $i = 1;
-
+foreach ( $dataForThisLab as $labRecord )
+        {
           echo "<table cellpadding='3' cellspacing='0' border='1' width='100%'>";
           echo "<tr>";
           echo "<td>Id</td>";
@@ -259,29 +353,33 @@ if (resultsAreEmpty == false){
           echo "<td>18-20</td>";
           echo "</tr>";
 
+
             echo "<tr>";
             echo "<td>".$i."</td>";
-            echo "<td>".stripslashes ( $dataForThisLab ['labId'] )."</td>";
-            echo "<td>".$dataForThisLab ['Title']."</td>";
-            echo "<td>".$dataForThisLab ['description']."</td>";
-            echo "<td>".$dataForThisLab ['h_1']."</td>";
-            echo "<td>".$dataForThisLab ['h_2']."</td>";
-            echo "<td>".$dataForThisLab ['h_3']."</td>";
-            echo "<td>".$dataForThisLab ['h_4']."</td>";
-            echo "<td>".$dataForThisLab ['h_5']."</td>";
-            echo "<td>".$dataForThisLab ['h_6']."</td>";
+            echo "<td>".stripslashes ( $labRecord ['labId'] )."</td>";
+            echo "<td>".$labRecord ['Title']."</td>";
+            echo "<td>".$labRecord ['description']."</td>";
+            echo "<td>".$labRecord ['h_1']."</td>";
+            echo "<td>".$labRecord ['h_2']."</td>";
+            echo "<td>".$labRecord ['h_3']."</td>";
+            echo "<td>".$labRecord ['h_4']."</td>";
+            echo "<td>".$labRecord ['h_5']."</td>";
+            echo "<td>".$labRecord ['h_6']."</td>";
             echo "<td>";
             echo "</td>";
             echo "</tr>";
             echo "</table>";
+             $i++;
         } 
+      }
         else
         {
           echo "Δε βρέθηκαν εγγραφές.";
         } 
         ?>
         </br>
-      <p><button class="btn button" onClick= "addNewEvent(resultsAreEmpty, h_1, h_2, h_3, h_4, h_5, h_6)">Προσθήκη νέας εγγραφής
+
+      <p><button class="btn button" onClick= "addNewEvent()">Προσθήκη νέας εγγραφής
       </button></p>
   </div>
 
