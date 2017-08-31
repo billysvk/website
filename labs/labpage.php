@@ -31,26 +31,26 @@ $lab = null;
 ?>
 <?php 
 $found = false;
-  foreach ($labs as $value) {
-    if($found == true){
-      break;
-    }
-    if($value['id'] == $var){
-      $found = true;
-      $lab = $value;
-    }
+foreach ($labs as $value) {
+  if($found == true){
+    break;
   }
-  $boxesThatShouldBeClosed = get_all_data_for_this_lab($var, $dateChecked,$temp =  "true");
-   if( isset($_SESSION['resultsNULLTrue']) ) {
-                 $resultsNULL = $_SESSION['resultsNULLTrue'];
-              }else{
-                 $resultsNULL = "null";
-              }
-              if( isset($boxesThatShouldBeClosed[0]) ) {
-                 $h_1 = $boxesThatShouldBeClosed[0];
-              }else{
-                 $h_1 = 0;
-              }
+  if($value['id'] == $var){
+    $found = true;
+    $lab = $value;
+  }
+}
+$boxesThatShouldBeClosed = get_all_data_for_this_lab($var, $dateChecked,$temp =  "true");
+if( isset($_SESSION['resultsNULLTrue']) ) {
+              $resultsNULL = $_SESSION['resultsNULLTrue'];
+          }else{
+              $resultsNULL = "null";
+          }
+          if( isset($boxesThatShouldBeClosed[0]) ) {
+              $h_1 = $boxesThatShouldBeClosed[0];
+          }else{
+              $h_1 = 0;
+          }
 if( isset($boxesThatShouldBeClosed[1]) ) {
       $h_2 = $boxesThatShouldBeClosed[1];
      // echo $uName;
@@ -81,7 +81,6 @@ if( isset($boxesThatShouldBeClosed[5]) ) {
 }else{
   $h_6 = 0;
 }
-
 ?>
 
 <script >
@@ -90,16 +89,16 @@ document.getElementById("SubmitRecord").style.visibility = "visible";
 }
 </script>
 <script >
- function toggleRadioCheckbox(sender) {
-        // RadioCheckbox: 0..1 enabled in a group 
-        if (!sender.checked) return;
-        var fields = document.getElementsByName(sender.name);
-        for(var idx=0; idx<fields.length; idx++) {
-            var field = fields[idx];
-            if (field.checked && field!=sender)
-                field.checked=false;
-        }
-    }
+function toggleRadioCheckbox(sender) {
+  // RadioCheckbox: 0..1 enabled in a group 
+  if (!sender.checked) return;
+  var fields = document.getElementsByName(sender.name);
+  for(var idx=0; idx<fields.length; idx++) {
+      var field = fields[idx];
+      if (field.checked && field!=sender)
+          field.checked=false;
+  }
+}
 </script>
 <script >
 function addNewEvent() {
@@ -113,13 +112,13 @@ function addNewEvent() {
   var h_6 = <?php echo json_encode($h_6); ?>;
   //var resultsAreEmpty = "<?php echo $resultsNULL ?>";
      //var resultsAreEmpty = <?php echo $resultsNULL; ?>;
-   alert(resultsAreEmpty);
- alert(h_1);
- alert(h_2);
- alert(h_3);
- alert(h_4);
- alert(h_5);
- alert(h_6);
+//  alert(resultsAreEmpty);
+//  alert(h_1);
+//  alert(h_2);
+//  alert(h_3);
+//  alert(h_4);
+//  alert(h_5);
+//  alert(h_6);
 document.getElementById("newEventContainer").style.visibility = "visible";
 if (resultsAreEmpty == "true") {
 document.getElementById("checkbox1Tile").style.visibility = "visible";
@@ -286,40 +285,35 @@ if (resultsAreEmpty == "false"){
               //}
               if( isset($_SESSION['resultsNULLTrue']) ) {
                  $resultsNULL = $_SESSION['resultsNULLTrue'];
-              }else{
+               }else{
                  $resultsNULL = "null";
               }
-if( isset($boxesThatShouldBeClosed[1]) ) {
-      $h_2 = $boxesThatShouldBeClosed[1];
-     // echo $uName;
-}else{
-  $h_2 = 0;
-}
-if( isset($boxesThatShouldBeClosed[2]) ) {
-      $h_3 = $boxesThatShouldBeClosed[2];
-     // echo $uName;
-}else{
-  $h_3 = 0;
-}
-if( isset($boxesThatShouldBeClosed[3]) ) {
-      $h_4 = $boxesThatShouldBeClosed[3];
-     // echo $uName;
-}else{
-  $h_4 = 0;
-}
-if( isset($boxesThatShouldBeClosed[4]) ) {
-      $h_5 = $boxesThatShouldBeClosed[4];
-     // echo $uName;
-}else{
-  $h_5 = 0;
-}
-if( isset($boxesThatShouldBeClosed[5]) ) {
-      $h_6 = $boxesThatShouldBeClosed[5];
-     // echo $uName;
-}else{
-  $h_6 = 0;
-}
-              ?>
+              if( isset($boxesThatShouldBeClosed[1]) ) {
+                 $h_2 = $boxesThatShouldBeClosed[1];
+               }else{
+                 $h_2 = 0;
+              }
+              if( isset($boxesThatShouldBeClosed[2]) ) {
+                 $h_3 = $boxesThatShouldBeClosed[2];
+               }else{
+                 $h_3 = 0;
+              }
+              if( isset($boxesThatShouldBeClosed[3]) ) {
+                 $h_4 = $boxesThatShouldBeClosed[3];
+              }else{
+                 $h_4 = 0;
+              }
+              if( isset($boxesThatShouldBeClosed[4]) ) {
+                 $h_5 = $boxesThatShouldBeClosed[4];
+              }else{
+                 $h_5 = 0;
+              }
+              if( isset($boxesThatShouldBeClosed[5]) ) {
+                 $h_6 = $boxesThatShouldBeClosed[5];
+              }else{
+                 $h_6 = 0;
+              }
+             ?>
            </form> 
             
       </div>
