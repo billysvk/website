@@ -81,6 +81,7 @@ if( isset($boxesThatShouldBeClosed[5]) ) {
 }else{
   $h_6 = 0;
 }
+
 ?>
 
 <script >

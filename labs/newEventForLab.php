@@ -47,7 +47,9 @@
 
 				
 				add_event_for_this_lab($data);
-
-		//header ( "location:labpage.php" ); // Ο χρήστης κατευθύνεται πάλι στη λίστα με τις εγγραφές
+echo '<script language="javascript">';
+echo 'alert("Event successfully submitted!")';
+echo '</script>';
+		header ( "location:labpage.php?id=".$data ['labId']."" ); // Ο χρήστης κατευθύνεται πάλι στη λίστα με τις εγγραφές
 	} // end if
 ?>
