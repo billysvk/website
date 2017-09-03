@@ -170,4 +170,18 @@ $con = sqlsrv_connect($serverName, $connectionInfo);
 
 		return null;
 	}
+
+	function get_my_events($UserId) {
+		global $con;
+		$row = array ();
+  		$UserIdInt = (string)$UserId;
+		$sql = "SELECT * FROM event_calendar WHERE UserId = ".$UserIdInt;
+		$result = sqlsrv_query ( $con, $sql);
+		
+	   while( $rowTemp = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC) ) {
+         $row[] = $rowTemp;
+        }  
+		return $row;
+
+	}
 ?>
