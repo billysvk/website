@@ -7,6 +7,8 @@
 				$data ['Title'] =  $_POST ['Title']; // Αν πρόκειται για αλφαριθμητικό, χρησιμοποιούμε την mysql_real_escape_string
 				$data ['description'] = $_POST ['Description']; // Αν θέλουμε ακέραια τιμή, χρησιμοποιούμε την (int)
 				$data ['labId'] =  $_POST ['labId'];
+				$data ['uid'] =  $_POST ['uid'];
+				$data ['urole'] =  $_POST ['urole'];
 				if(!isset($_POST [1])){
 					$data ['h_1'] = 0;
 				}else{
