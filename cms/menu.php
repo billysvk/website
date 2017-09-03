@@ -4,6 +4,9 @@
 	include ( "functions/menu.php" );
 
 	$menu_records = get_items (); // Τραβάμε τις εγγραφές από τον πίνακα menu της βάσης δεδομένων
+	
+				
+	
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -43,8 +46,10 @@
 					echo "<td>".stripslashes ( $menu ['name'] )."</td>";
 					echo "<td>".$menu ['position']."</td>";
 					echo "<td>";
+					if($menu ['id'] !== 1 && $menu ['id'] !== 2 && $menu ['id'] !== 3 && $menu ['id'] !== 4){
 					echo "<a href='edit_menu.php?id=".$menu ['id']."'>Επεξεργασία</a> | ";
 					echo "<a href='delete_menu.php?id=".$menu ['id']."'>Διαγραφή</a>";
+					}
 					echo "</td>";
 					echo "</tr>";
 				} // end foreach

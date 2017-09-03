@@ -55,7 +55,8 @@ ALTER TABLE menu
   Title varchar(255)  NULL,
   Detail int  NULL,
   eventDate DateTime NULL,
-  content text  NULL
+  content text  NULL,
+
 )
 
 
@@ -80,7 +81,8 @@ CREATE TABLE dbo.menu (
 INSERT INTO menu ( name, position, title, content) VALUES
 ('Main Page', 1, '', ''),
 ('Contact', 3, '', ''),
-('Labs', 2, '', '');
+('Labs', 2, '', ''),
+('Login/Register', 4, '','');
 
 ----------------------------
 
@@ -109,8 +111,6 @@ CREATE TABLE evenement (
  date_end DateTime NOT NULL
 );
 
-
-
 CREATE TABLE event_calendar (
 id int NOT NULL IDENTITY(1,1) PRIMARY KEY,
 labId int NOT NULL,
@@ -124,4 +124,6 @@ h_4 int NOT NULL DEFAULT 0,
 h_5 int NOT NULL DEFAULT 0,
 h_6 int NOT NULL DEFAULT 0,
 status int NOT NULL DEFAULT 0,
+UserId varchar(255) DEFAULT NULL,
+UserRole varchar(255) DEFAULT NULL
 );

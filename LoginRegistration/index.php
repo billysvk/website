@@ -42,7 +42,7 @@
 			
 			//$password = hash('sha256', $pass); // password hashing using SHA256
 		$password = $pass;
-			$sql= "SELECT userName, userPass FROM users WHERE userEmail='$email'";
+			$sql= "SELECT * FROM users WHERE userEmail='$email'";
 			$stmt = sqlsrv_query($con,$sql);
 
 			if($stmt == false){
@@ -84,6 +84,11 @@
 				session_start();
 				$message1 = $row ['userName'];
 				$_SESSION['firstMessage'] = $message1;
+				$message2 = $row ['id'];
+				$_SESSION['UserId'] = $message2;
+				$message3 = $row ['userRole'];
+				$_SESSION['userRole'] = $message3;
+				
 				header("Location: ../index.php");
 			} else {
 				$errMSG = "Incorrect Credentials, Try again...";
@@ -159,6 +164,9 @@
             
             <div class="form-group">
             	<a href="register.php">Sign Up Here...</a>
+            </div>
+                    <div class="form-group">
+            	<a href="../index.php">Back to main page...</a>
             </div>
         
         </div>

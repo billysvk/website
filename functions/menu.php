@@ -1,7 +1,6 @@
 <?php
 $serverName = 'DESKTOP-IQAL01N';
 $connectionInfo=array('Database' => 'calendar');
-
 global $con;
 $con = sqlsrv_connect($serverName, $connectionInfo);
 	function get_menu ()
@@ -41,7 +40,7 @@ $con = sqlsrv_connect($serverName, $connectionInfo);
 		global $con;
 		$row = array ();
         $intLabId = (int)$labId;
-
+        $rowTemp = array ();
 		$sql = "SELECT * FROM event_calendar WHERE labId = $intLabId AND event_date = '$dateSelected'";
 		$result = sqlsrv_query ( $con, $sql);
 
@@ -138,13 +137,11 @@ $con = sqlsrv_connect($serverName, $connectionInfo);
 		global $con;
 		$row = array ();
         $intLabId = (int)$data ['labId'];
-
-        $sql = "INSERT INTO event_calendar (labId,event_date,Title,description,h_1,h_2,h_3,h_4,h_5,h_6,status) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-		$params = array($intLabId, $data ['event_date'],$data ['Title'],$data ['description'], $data ['h_1'],$data ['h_2'],$data ['h_3'],$data ['h_4'],$data ['h_5'],$data ['h_6'],$data ['Status']);
+        $uid = (int)$data ['uid'];
+        // exw kai to urole
+        $sql = "INSERT INTO event_calendar (labId,event_date,Title,description,h_1,h_2,h_3,h_4,h_5,h_6,status, UserId, UserRole) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		$params = array($intLabId, $data ['event_date'],$data ['Title'],$data ['description'], $data ['h_1'],$data ['h_2'],$data ['h_3'],$data ['h_4'],$data ['h_5'],$data ['h_6'],$data ['status'], $uid, $data ['urole']);
 		$stmt = sqlsrv_query( $con, $sql, $params);
-		echo '<script language="javascript">';
-echo 'alert("Event successfully submitted!")';
-echo '</script>';
 	}
 
 	function check_if_data_exists($labId, $dateSelected)
@@ -172,5 +169,19 @@ echo '</script>';
         }
 
 		return null;
+	}
+
+	function get_my_events($UserId) {
+		global $con;
+		$row = array ();
+  		$UserIdInt = (string)$UserId;
+		$sql = "SELECT * FROM event_calendar WHERE UserId = ".$UserIdInt;
+		$result = sqlsrv_query ( $con, $sql);
+		
+	   while( $rowTemp = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC) ) {
+         $row[] = $rowTemp;
+        }  
+		return $row;
+
 	}
 ?>

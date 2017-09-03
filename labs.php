@@ -4,7 +4,10 @@
   include('cms/functions/menu.php');
 $labs = array ();
 $labs = get_labs();
-
+if( isset($_SESSION['UserId']) ) {
+      $uid = $_SESSION['UserId'];
+      //echo $uid;
+    }
 ?>
 <div class="wrapper_container">
 <div class="container">
@@ -19,8 +22,7 @@ $labs = get_labs();
         <b>
          <input type="button" class="btn btn-primary" value="<?php echo $value['name']; ?>"
          onClick="window.location='labs/labpage.php?id=<?php echo $value['id'] ?>'">
-
-        </b> 
+       
        </h3> 
       <p>
         <font color="black">Τίτλος: <?php echo $value['title']; ?>

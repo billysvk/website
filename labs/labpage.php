@@ -1,5 +1,13 @@
   <?php 
   session_start();
+  if( isset($_SESSION['UserId']) ) {
+      $uid = $_SESSION['UserId'];
+      //echo $uid;
+    }
+      if( isset($_SESSION['urole']) ) {
+      $urole = $_SESSION['urole'];
+      //echo $uid;
+    }
   global $dateChecked;
   global $dateSelected;
 $dateSelected = false;
@@ -13,8 +21,6 @@ include('../cms/functions/menu.php');
 include('../functions/menu.php');
 
 $resultsNULL = "null";
-
-
 //global $resultsNULL;
 global $addNewEventClicked;
 $addNewEventClicked = false;
@@ -198,6 +204,10 @@ if (resultsAreEmpty == "false"){
   <div class="container">
 	<!--<h1 ><?php echo $lab['title']; ?></h1>-->
   </div>
+    </div>
+      <div class="form-group">
+          <a href="../index.php">Back to main page...</a>
+      </div>
 </head>
 
 <body>
@@ -422,6 +432,8 @@ foreach ( $dataForThisLab as $labRecord )
                       <input type="submit" value="Αποθήκευση" style="color:black;" />
                       <input type="hidden" name="labId" value="<?php echo $var ?>" />
                       <input type="hidden" name="event_date" value="<?php echo $dateChecked ?>" />
+                      <input type="hidden" name="uid" value="<?php echo $uid ?>" />
+                      <input type="hidden" name="urole" value="<?php echo $urole ?>" />
                   </form>
               </div>
       </div>

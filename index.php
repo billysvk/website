@@ -7,6 +7,18 @@
       $uName = $_SESSION['firstMessage'];
      // echo $uName;
     }
+     if( isset($_SESSION['UserId']) ) {
+      $uid = $_SESSION['UserId'];
+      //echo $uid;
+    }else {
+      $uid = 0;
+    }
+      if( isset($_SESSION['userRole']) ) {
+      $urole = $_SESSION['userRole'];
+      //echo $uid;
+    }else {
+      $urole = 0;
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,7 +62,11 @@
 	      <div id="sidebar"><h2 class="black"></h2>
         <?php include ( 'menu.php' ); 
           $message2 = $uName;
+          $message3 = $uid;
+          $message4 = $urole;
           $_SESSION['lastMessage'] = $message2;
+          $_SESSION['UserId'] = $message3;
+          $_SESSION['urole'] = $message4;
         ?></div>
 		    <div id="content"><?php include ( 'page.php' ); ?></div>
       </div>
