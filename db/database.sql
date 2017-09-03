@@ -111,8 +111,6 @@ CREATE TABLE evenement (
  date_end DateTime NOT NULL
 );
 
-
-
 CREATE TABLE event_calendar (
 id int NOT NULL IDENTITY(1,1) PRIMARY KEY,
 labId int NOT NULL,
@@ -127,5 +125,5 @@ h_5 int NOT NULL DEFAULT 0,
 h_6 int NOT NULL DEFAULT 0,
 status int NOT NULL DEFAULT 0,
 UserId varchar(255) DEFAULT NULL,
-UserRole varchar(255) DEFAULT NULL,
+UserRole varchar(255) DEFAULT NULL
 );

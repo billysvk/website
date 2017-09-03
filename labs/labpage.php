@@ -21,8 +21,6 @@ include('../cms/functions/menu.php');
 include('../functions/menu.php');
 
 $resultsNULL = "null";
-
-
 //global $resultsNULL;
 global $addNewEventClicked;
 $addNewEventClicked = false;

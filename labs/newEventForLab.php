@@ -45,7 +45,7 @@
 					$data ['h_6'] = (int)$_POST [6];
 				}
 				
-				$data ['Status'] =  0;
+				$data ['status'] =  0;
 
 				
 				add_event_for_this_lab($data);

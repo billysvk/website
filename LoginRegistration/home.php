@@ -99,35 +99,48 @@
           echo "<td>".$event ['labId']."</td>";
           echo "<td>".$event ['event_date']."</td>";
           //time
-          $timeoftheevent = "";
+          $Temptimeoftheevent = "";
           if($event ['h_1'] == 1){
             $tempTime = "8-10 ";
-            $timeoftheevent = "" . $timeoftheevent . $tempTime . "|";
+            $Temptimeoftheevent = "" . $Temptimeoftheevent . $tempTime . "|";
           }
           if($event ['h_2'] == 1){
             $tempTime = "10-12 ";
-            $timeoftheevent = "" . $timeoftheevent . $tempTime . "|";
+            $Temptimeoftheevent = "" . $Temptimeoftheevent . $tempTime . "|";
           }
           if($event ['h_3'] == 1){
             $tempTime = "12-14 ";
-            $timeoftheevent = "" . $timeoftheevent . $tempTime . "|";
+            $Temptimeoftheevent = "" . $Temptimeoftheevent . $tempTime . "|";
           }
           if($event ['h_4'] == 1){
             $tempTime = "14-16 ";
-            $timeoftheevent = "" . $timeoftheevent . $tempTime . "|";
+            $Temptimeoftheevent = "" . $Temptimeoftheevent . $tempTime . "|";
           }
           if($event ['h_5'] == 1){
             $tempTime = "16-18 ";
-            $timeoftheevent = "" . $timeoftheevent . $tempTime . "|";
+            $Temptimeoftheevent = "" . $Temptimeoftheevent . $tempTime . "|";
           }
           if($event ['h_6'] == 1){
             $tempTime = "18-20 ";
-            $timeoftheevent = "" . $timeoftheevent . $tempTime . "|";
-          }          
-          echo "<td>".$timeoftheevent."</td>";
+            $Temptimeoftheevent = "" . $Temptimeoftheevent . $tempTime . "|";
+          }     
+          if ($Temptimeoftheevent !== null){
+            $EventTime = substr($Temptimeoftheevent, 0, -1);
+          }     
+          echo "<td>".$EventTime."</td>";
           echo "<td>".$event ['Title']."</td>";
           echo "<td>".$event ['description']."</td>";
-          echo "<td>".$event ['description']."</td>"; // status
+          $EventStatus = "";
+          if($event ['status'] == 0) {
+            $EventStatus = "Pending..";
+          }
+          if ($event ['status'] == 1){
+            $EventStatus = "Approved";
+          }
+          if ($event ['status'] == 2){
+            $EventStatus = "Rejected";
+          }
+          echo "<td>".$EventStatus."</td>"; // status
           echo "<td>";
           echo "</td>";
           echo "</tr>";
