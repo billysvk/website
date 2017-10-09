@@ -198,7 +198,7 @@
                         </div>
                     </div>
                     <!-- /.row (nested) -->
-                    <a href="?id=5" class="btn btn-dark">Εργαστήρια</a>
+                    <a href="?id=3" class="btn btn-dark">Εργαστήρια</a>
                 </div>
                 <!-- /.col-lg-10 -->
             </div>

@@ -12,14 +12,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>My site - Σύστημα Διαχείρισης</title>
 <link href="css/main.css" rel="stylesheet" type="text/css"  />
+<link href="../css/customCss.css" rel="stylesheet" type="text/css"  />
 </head>
 
 <body>
+    <?php
+            include ( "sidebar.php" );
+        ?>
 	<div class="container">
-    	<?php
-        	include ( "header.php" );
-			include ( "sidebar.php" );
-		?>
+    	
         <div id="main">
         	<form method="post" action="update_menu.php">
             	<table cellpadding="3" cellspacing="0" border="0">
@@ -41,7 +42,7 @@
                     </tr>
                 </table>
                 <p>&nbsp;</p>
-                <input type="submit" value="Αποθήκευση" />
+                <input type="submit" class="btn-warning" value="Αποθήκευση" />
                 <input type="hidden" name="id" value="<?php echo $menu ['id']; ?>" />
                 <input type="hidden" name="action" value="<?php $id == 0 ? print "add": print "update"; ?>" />
             </form>
