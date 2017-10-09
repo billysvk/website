@@ -16,42 +16,6 @@
         p.sansserif {font-family: Arial, Helvetica, sans-serif;}</style>
 <body>
 
-<!-- Navigation side panel
-    <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
-    <nav id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
-            <li class="sidebar-brand">
-                <a href="#top" onclick=$("#menu-close").click();>Start Bootstrap</a>
-            </li>
-            <li>
-                <a href="#top" onclick=$("#menu-close").click();>Home</a>
-            </li>
-            <li>
-                <a href="#about" onclick=$("#menu-close").click();>About</a>
-            </li>
-            <li>
-                <a href="#services" onclick=$("#menu-close").click();>Services</a>
-            </li>
-            <li>
-                <a href="#portfolio" onclick=$("#menu-close").click();>Portfolio</a>
-            </li>
-            <li>
-                <a href="#contact" onclick=$("#menu-close").click();>Contact</a>
-            </li>
-        </ul>
-    </nav> -->
-
-    <!-- Header
-    <header id="top" class="header">
-        <div class="text-vertical-center">
-            <h1>Start Bootstrap</h1>
-            <h3>Free Bootstrap Themes &amp; Templates</h3>
-            <br>
-            <a href="#about" class="btn btn-dark btn-lg">Find Out More</a>
-        </div>
-    </header> -->
-
     <!-- About -->
     <section id="about" class="about">
 	
@@ -69,7 +33,6 @@
     </section>
 
     <!-- Services -->
-    <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
     <section id="services" class="services bg-primary">
         <div class="container">
             <div class="row text-center">
@@ -154,52 +117,26 @@
                     <h2>Παρουσίαση των εργαστηρίων</h2>
                     <hr class="small">
                     <div class="row">
-                        <div class="col-lg-6">
-                            <div class="portfolio-item">
-                                <a href="labs/chemistry.php">
-                                    <img class="img-portfolio img-responsive" src="images/Chemistry.jpg">
-                                </a>
+                         <?php foreach($labs as $value): ?>
+                             <tr>
+                             <div class="col-sm-6 btn-group">
+                               <span> 
+                                <h3>
+                                  <font size="3px"> 
+                                <b>
+                                 <input type="button" class="btn btn-primary" value="<?php echo $value['name']; ?>"
+                                 onClick="window.location='labs/labpage.php?id=<?php echo $value['id'] ?>'">
+                               </h3> 
+                              <p>
+                                <font color="black">Τίτλος: <?php echo $value['title']; ?>
+                              </p>
+                               <img src="images/Science-lab.jpg" class="img-rounded col-sm-12" width="300" height="216" >
                             </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="portfolio-item">
-                                <a href="labs/computer_sci.php">
-                                    <img class="img-portfolio img-responsive" src="images/Computer.jpg">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="portfolio-item">
-                                <a href="labs/electronics.php">
-                                    <img class="img-portfolio img-responsive" src="images/electronics.jpg">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="portfolio-item">
-                                <a href="labs/networks.php">
-                                    <img class="img-portfolio img-responsive" src="images/networks.jpg">
-                                </a>
-                            </div>
-                        </div>
-						<div class="col-sm-3">
-                            <div class="portfolio-item">
-                                <a href="labs/science.php">
-                                    <img class="img-portfolio img-responsive" src="images/science.jpg">
-                                </a>
-                            </div>
-                        </div>
-						<div class="col-sm-3">
-                            <div class="portfolio-item">
-                                <a href="labs/communications.php">
-                                    <img class="img-portfolio img-responsive" src="images/telecommunications.jpg">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.row (nested) -->
-                    <a href="?id=3" class="btn btn-dark">Εργαστήρια</a>
-                </div>
+
+                            </tr>
+                         <?php endforeach; ?>
+                </div><br>
+                 <a href="?id=3" class="btn btn-dark">Εργαστήρια</a>
                 <!-- /.col-lg-10 -->
             </div>
             <!-- /.row -->
@@ -212,10 +149,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    
-					
-                    <a href="#"  class="btn btn-lg btn-light">Go to top</a>
-                   
+                    <a href="#"><img src="images/top.png" alt="Back to top" style="width:100px;height:100px;"/></a>
                 </div>
             </div>
         </div>

@@ -1,5 +1,8 @@
 <?php
 	include ( 'init.php' );
+  include ( 'cms/functions/menu.php' );
+  $labs = array ();
+  $labs = get_labs();
  // include('page.php');
 //pass variables from login screen
   global $uName;

@@ -1,9 +1,5 @@
 
 <?php
-
-  include('cms/functions/menu.php');
-$labs = array ();
-$labs = get_labs();
 if( isset($_SESSION['UserId']) ) {
       $uid = $_SESSION['UserId'];
       //echo $uid;
@@ -14,7 +10,6 @@ if( isset($_SESSION['UserId']) ) {
   
  <?php foreach($labs as $value): ?>
     <tr>
-       
       <div class="col-sm-4 btn-group">
        <span> 
         <h3>
@@ -22,7 +17,6 @@ if( isset($_SESSION['UserId']) ) {
         <b>
          <input type="button" class="btn btn-primary" value="<?php echo $value['name']; ?>"
          onClick="window.location='labs/labpage.php?id=<?php echo $value['id'] ?>'">
-       
        </h3> 
       <p>
         <font color="black">Τίτλος: <?php echo $value['title']; ?>
