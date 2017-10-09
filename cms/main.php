@@ -8,18 +8,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>My site - Σύστημα Διαχείρισης</title>
 <link href="css/main.css" rel="stylesheet" type="text/css"  />
+<link href="../css/customCss.css" rel="stylesheet" type="text/css"  />
 </head>
 
 <body>
-	<div class="container">
-    	<?php
-        	include ( "header.php" );
-			include ( "sidebar.php" );
-		?>
-        <div id="main">
-        	Παρακαλώ επιλέξτε μία επιλογή από το μενού αριστερά.
-        </div>
-	</div>
+<?php
+include ( "sidebar.php");
+?>
 </body>
 </html>
 <?php

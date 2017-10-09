@@ -1,9 +1,9 @@
 <?php
 	include ( "init.php" );
-	include ( "check_login.php" );
+	//include ( "check_login.php" );
 	include ( "functions/menu.php" );
 //TODO
-	$menu_records = get_labs (); // Τραβάμε τις εγγραφές από τον πίνακα menu της βάσης δεδομένων
+	//$menu_records = get_labs (); // Τραβάμε τις εγγραφές από τον πίνακα menu της βάσης δεδομένων
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -11,14 +11,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>My site - Σύστημα Διαχείρισης</title>
 <link href="css/main.css" rel="stylesheet" type="text/css"  />
+<link href="../css/customCss.css" rel="stylesheet" type="text/css"  />
 </head>
 
 <body>
+	<?php
+		include ("sidebar.php");
+		$menu_records = get_labs (); // Τραβάμε τις εγγραφές από τον πίνακα menu της βάσης δεδομένων
+	?>
 	<div class="container">
-    	<?php
-        	include ( "header.php" );
-			include ( "sidebar.php" );
-		?>
         <div id="main">
         <?php
 			if ( !empty ( $menu_records ) ) // Αν υπάρχουν εγγραφές
