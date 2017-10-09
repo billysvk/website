@@ -135,51 +135,6 @@
 
                             </tr>
                          <?php endforeach; ?>
-                       <!-- <div class="col-lg-6">
-                            <div class="portfolio-item">
-                                <a href="labs/chemistry.php">
-                                    <img class="img-portfolio img-responsive" src="images/Chemistry.jpg">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="portfolio-item">
-                                <a href="labs/computer_sci.php">
-                                    <img class="img-portfolio img-responsive" src="images/Computer.jpg">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="portfolio-item">
-                                <a href="labs/electronics.php">
-                                    <img class="img-portfolio img-responsive" src="images/electronics.jpg">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="portfolio-item">
-                                <a href="labs/networks.php">
-                                    <img class="img-portfolio img-responsive" src="images/networks.jpg">
-                                </a>
-                            </div>
-                        </div>
-						<div class="col-sm-3">
-                            <div class="portfolio-item">
-                                <a href="labs/science.php">
-                                    <img class="img-portfolio img-responsive" src="images/science.jpg">
-                                </a>
-                            </div>
-                        </div>
-						<div class="col-sm-3">
-                            <div class="portfolio-item">
-                                <a href="labs/communications.php">
-                                    <img class="img-portfolio img-responsive" src="images/telecommunications.jpg">
-                                </a>
-                            </div>
-                        </div>
-                    </div>-->
-                    <!-- /.row (nested) -->
-                   
                 </div><br>
                  <a href="?id=3" class="btn btn-dark">Εργαστήρια</a>
                 <!-- /.col-lg-10 -->
@@ -194,10 +149,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    
-					
-                    <a href="#"  class="btn btn-lg btn-light">Go to top</a>
-                   
+                    <a href="#"><img src="images/top.png" alt="Back to top" style="width:100px;height:100px;"/></a>
                 </div>
             </div>
         </div>
