@@ -42,5 +42,5 @@
         echo '<script type="text/javascript">alert("File ' . $name . ' Uploaded! ");</script>';
         // echo "<script type='text/javascript'>alert('File Uploaded!');</script>";
     }
-    //header('Location: ' . $_SERVER['HTTP_REFERER']);
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
 ?>

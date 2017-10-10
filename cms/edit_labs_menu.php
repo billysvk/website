@@ -12,6 +12,7 @@
 <title>My site - Σύστημα Διαχείρισης</title>
 <link href="css/main.css" rel="stylesheet" type="text/css"  />
 <link href="../css/customCss.css" rel="stylesheet" type="text/css"  />
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 
 <body>
@@ -71,7 +72,7 @@
     </form>
      <div class="container" class="col-sm-12"> Uploaded Files:
    <?php
-        $sql = "SELECT id, name FROM labFiles WHERE labId = ".$menu ['id'];
+        $sql = "SELECT id, name, image FROM labFiles WHERE labId = ".$menu ['id'];
         $result = sqlsrv_query ( $con, $sql );
 
         if ( sqlsrv_has_rows ( $result ) > 0 )
@@ -104,7 +105,7 @@
                     <td><?php echo $i++; ?></td>
                     <td><?php echo $row['name']; ?></td>
                     <td><a href="C:/xampp/htdocs/website/uploads/<?php echo $row['name']; ?>" target="_blank">View</a></td>
-                    <td><a href="C:/xampp/htdocs/website/uploads/<?php echo $row['name']; ?>" download>Download</td>
+                    <td><a href="download.php?id=<?php echo $row ['name'];?>">Download</a></td>
                 </tr>
                 <?php } ?>
                 </tbody>
