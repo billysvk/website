@@ -18,8 +18,7 @@
     <?php
             include ( "sidebar.php" );
         ?>
-	<div class="container">
-    	
+	<div class="container" class="col-sm-12">
         <div id="main">
         	<form method="post" action="update_labs_menu.php">
             	<table cellpadding="3" cellspacing="0" border="0">
@@ -62,7 +61,61 @@
             </form>
         	<p><a href='AddLabs.php'>Πίσω στο μενού</a></p>
         </div>
+
 	</div>
+ <div class="container" class="col-sm-12">
+   <form method="post" action="upload.php" enctype='multipart/form-data'>
+        <input type='file' name='file' />
+        <input type='submit' value='Upload File' name='but_upload'>
+        <input type="hidden" name="id" value="<?php echo $menu ['id']; ?>" />
+    </form>
+     <div class="container" class="col-sm-12"> Uploaded Files:
+   <?php
+        $sql = "SELECT id, name FROM labFiles WHERE labId = ".$menu ['id'];
+        $result = sqlsrv_query ( $con, $sql );
+
+        if ( sqlsrv_has_rows ( $result ) > 0 )
+        {
+            $row = sqlsrv_fetch_array ( $result );
+        } // end if
+        else
+        {
+            $row = 0;
+            echo "Database is empty";
+        } // end else
+?>
+
+<div class="row">
+        <div class="col-xs-12">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>File Name</th>
+                        <th>View</th>
+                        <th>Download</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php
+                $i = 1;
+                while($row = sqlsrv_fetch_array($result)) { ?>
+                <tr>
+                    <td><?php echo $i++; ?></td>
+                    <td><?php echo $row['name']; ?></td>
+                    <td><a href="C:/xampp/htdocs/website/uploads/<?php echo $row['name']; ?>" target="_blank">View</a></td>
+                    <td><a href="C:/xampp/htdocs/website/uploads/<?php echo $row['name']; ?>" download>Download</td>
+                </tr>
+                <?php } ?>
+                </tbody>
+            </table>
+        </div>
+</div>
+
+ </div> 
+
+ </div>
+
 </body>
 </html>
 <?php
