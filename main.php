@@ -1,3 +1,19 @@
+
+<? 
+$serverName = 'DESKTOP-IQAL01N';
+$connectionInfo=array('Database' => 'calendar');
+global $con;
+$con = sqlsrv_connect($serverName, $connectionInfo);
+        $sql = "SELECT * FROM images";
+        $result = sqlsrv_query ( $con, $sql );
+
+        $labImages = array ();
+        while ( $row = sqlsrv_fetch_array ( $result ) )
+        {
+            $labImages[] = $row;
+        } // end whille 
+?>
+
 <!DOCTYPE html>
 <html>
  <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -130,12 +146,18 @@
                               <p>
                                 <font color="black">Τίτλος: <?php echo $value['title']; ?>
                               </p>
-                               <img src="images/Science-lab.jpg" class="img-rounded col-sm-12" width="300" height="216" >
-                            </div>
-
+                            <?php 
+                             if(!empty($value['imageName'])){
+                                 echo '<div align="center">';
+                                 echo '<img src="uploads/images/'.$value['imageName'].'" alt="not found!" height="200" width="400">';
+                                 echo '</div><br />';
+                             }
+                            ?>
+                         </div>
                             </tr>
                          <?php endforeach; ?>
-                </div><br>
+                    </div>
+                 <br>
                  <a href="?id=3" class="btn btn-dark">Εργαστήρια</a>
                 <!-- /.col-lg-10 -->
             </div>
@@ -143,7 +165,7 @@
         </div>
         <!-- /.container -->
     </section>
-
+        
     <!-- Call to Action -->
     <aside class="call-to-action bg-primary">
         <div class="container">

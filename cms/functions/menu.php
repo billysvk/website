@@ -9,7 +9,7 @@ function get_labs()
 {
 	global $con;
 
-	$sql = "SELECT id, name, position, title, comment FROM labs ORDER BY position";
+	$sql = "SELECT id, name, position, title, comment, imageName FROM labs ORDER BY position";
 	$result = sqlsrv_query ( $con,$sql);
 
 	$rows = array ();
@@ -121,12 +121,10 @@ function add_lab  ( $data )
 	function update_lab ( $data )
 	{
 		global $con;
-
-		
-	$sql = "UPDATE labs SET name = '".$data['name']."',position = '".$data['position']."',
-	title = '".$data['title']."',comment = '".$data['comment']."'
-	WHERE id = '".$data['id']."'";
-    
+		$sql = "UPDATE labs SET name = '".$data['name']."',position = '".$data['position']."',
+		title = '".$data['title']."',comment = '".$data['comment']."'
+		WHERE id = '".$data['id']."'";
+	    
 		$stmt = sqlsrv_query ( $con, $sql );
 	} // end function update_menu_item
 
@@ -235,4 +233,20 @@ function add_lab  ( $data )
 		$sql = "DELETE FROM menu WHERE id = ".$id;
 		sqlsrv_query ( $con, $sql );
 	} // end function delete_menu_item
-	?>
+	function get_images ()
+	{
+		global $con;
+
+		$sql = "SELECT * FROM images";
+        $result = sqlsrv_query ( $con, $sql );
+
+		$rows = array ();
+		while ( $row = sqlsrv_fetch_array ( $result ) )
+		{
+			$rows [] = $row;
+		} // end whille
+
+		return $rows;
+	}
+	
+?>

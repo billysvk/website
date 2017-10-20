@@ -25,7 +25,9 @@
           $sql = "INSERT INTO images (name,image,labId) VALUES ('".$name."','".$image."','".$labId."' )";
           //$params = array($data ['name'],$data ['position'],$data ['title'],$data ['comment']);
           $stmt = sqlsrv_query( $con, $sql);
-            
+            //update lab table with image
+          $sql = "UPDATE labs SET imageName = '".$name."' WHERE id = '" . $labId ."'";
+           $stmt = sqlsrv_query( $con, $sql);
             // Upload file
             move_uploaded_file($_FILES['file']['tmp_name'],'C:/xampp/htdocs/website/uploads/images/'.$name);
 

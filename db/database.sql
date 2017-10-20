@@ -135,3 +135,6 @@ CREATE TABLE  images (
   image varchar(MAX)  NULL,
   labId varchar(50) NULL
 );
+
+ALTER TABLE labs
+  ADD imageName varchar(200) NULL;
