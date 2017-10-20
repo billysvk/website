@@ -10,7 +10,7 @@ if( isset($_SESSION['UserId']) ) {
   
  <?php foreach($labs as $value): ?>
     <tr>
-      <div class="col-sm-4 btn-group">
+      <div class="col-sm-6 btn-group">
        <span> 
         <h3>
           <font size="3px"> 
@@ -21,9 +21,14 @@ if( isset($_SESSION['UserId']) ) {
       <p>
         <font color="black">Τίτλος: <?php echo $value['title']; ?>
       </p>
-       <img src="images/Science-lab.jpg" class="img-rounded col-sm-12" width="300" height="216" >
-    </div>
-
+        <?php 
+         if(!empty($value['imageName'])){
+             echo '<div align="center">';
+             echo '<img src="uploads/images/'.$value['imageName'].'" alt="not found!" height="200" width="400">';
+             echo '</div><br />';
+         }
+        ?>
+       </div>
     </tr>
  <?php endforeach; ?>
    
