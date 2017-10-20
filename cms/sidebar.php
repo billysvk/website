@@ -8,6 +8,7 @@
   <a href="menu.php">Menu</a>
   <a href="AddLabs.php">Labs</a>
   <a href="registerRequests.php">Register Requests</a>
+  <a href="applications.php">Αpplications for courses</a>
   <a href="../">Home Page</a>
 </div>
 <p>Click on the element below to open the side navigation menu.</p>

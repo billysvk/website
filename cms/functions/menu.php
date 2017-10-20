@@ -249,4 +249,15 @@ function add_lab  ( $data )
 		return $rows;
 	}
 	
+	function get_all_events() {
+		global $con;
+		$row = array ();
+		$sql = "SELECT * FROM event_calendar";
+		$result = sqlsrv_query ( $con, $sql);
+		
+	   while( $rowTemp = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC) ) {
+         $row[] = $rowTemp;
+        }  
+		return $row;
+	}
 ?>
