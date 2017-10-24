@@ -10,12 +10,12 @@
     }
   global $dateChecked;
   global $dateSelected;
-$dateSelected = false;
-              if ( isset($_POST["p_name"]) ) {
-              $dateChecked = $_POST["p_name"];
-              $dateSelected = true;
-              }
-            ?>
+  $dateSelected = false;
+    if ( isset($_POST["p_name"]) ) {
+    $dateChecked = $_POST["p_name"];
+    $dateSelected = true;
+    }
+  ?>
 <?php
 include('../cms/functions/menu.php');
 include('../functions/menu.php');
@@ -46,7 +46,7 @@ foreach ($labs as $value) {
     $lab = $value;
   }
 }
-$boxesThatShouldBeClosed = get_all_data_for_this_lab($var, $dateChecked,$temp =  "true");
+$boxesThatShouldBeClosed = get_all_data_for_this_lab($var, $dateChecked, $temp = "true");
 if( isset($_SESSION['resultsNULLTrue']) ) {
               $resultsNULL = $_SESSION['resultsNULLTrue'];
           }else{
@@ -201,6 +201,7 @@ if (resultsAreEmpty == "false"){
   <link rel="stylesheet" href="../css/bootstrap.min.css">
   <script src="../js/jquery-1.11.3.min.js"></script>
   <script src="../js/bootstrap.min.js"></script>
+
   <div class="container">
 	<!--<h1 ><?php echo $lab['title']; ?></h1>-->
   </div>
@@ -216,7 +217,7 @@ if (resultsAreEmpty == "false"){
         <div class="container">
             <div class="row text-center">
                 <div class="col-lg-10 col-lg-offset-1">
-                    <h2><font color="white";>	<h1 >LAB: <?php echo $lab['title']; ?></h1></h2>
+                    <h2><font color="white";>	<h1 ><?php echo $lab['title']; ?></h1></h2>
                     <hr class="small">
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
@@ -226,9 +227,9 @@ if (resultsAreEmpty == "false"){
                                 <i class="fa fa-cloud fa-stack-1x text-primary"></i>
                             </span>
                                 <h4>
-                                    <strong>XXXXX</strong>
+                                    <strong><?php echo $lab['title']; ?></strong>
                                 </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                <p><?php echo $lab['comment']; ?></p>
                                 <a href="http://www.unipi.gr/unipi/el/" class="btn btn-light">Website</a>
                             </div>
                         </div>                 
@@ -329,8 +330,67 @@ if (resultsAreEmpty == "false"){
             
       </div>
     </div>
+
+
+      <div id="wrapper col-md-9">
+    <div class="nav nav-tabs col-md-9" style="float: right;">
+      <div class="innertube">
+          <h1><font color="gray";>Πρόγραμμα Εργαστηρίων</h1>
+          <div class="row" > </div>
+        </br>
+<!--lab files from admin -->
+<div class="container" style="border: 1px solid #999999;">
+     <div class="container" class="col-sm-12"> Files from Admin:
+   <?php
+        $sql = "SELECT id, name, image FROM labFiles WHERE labId = ".$lab ['id'];
+        $result = sqlsrv_query ( $con, $sql );
+
+        if ( sqlsrv_has_rows ( $result ) > 0 )
+        {
+            $row = sqlsrv_fetch_array ( $result );
+        } // end if
+        else
+        {
+            $row = 0;
+            echo "No files to show!";
+        } // end else
+?>
+<div class="row">
+        <div class="col-xs-12">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>File Name</th>
+                        <th>Download</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php
+                $i = 1;
+                while($row = sqlsrv_fetch_array($result)) { ?>
+                <tr>
+                    <td><?php echo $i++; ?></td>
+                    <td><?php echo $row['name']; ?></td>
+                    <td><a href="download.php?id=<?php echo $row ['name'];?>">Download</a></td>
+                </tr>
+                <?php } ?>
+                </tbody>
+            </table>
+        </div>
+</div>
+ </div> 
+ </div>
+<!--end of files from admin -->
+
+        <!-- gia na mpoyn ta apotelesmata tou mathimatos otan ayto egkrithei--> 
+     </div>
+    </div>
+  </div>
   </div></br>
 
+
+    
    <section id="services" class="services bg-primary">
         <div class="container">
             <div class="row text-center">
@@ -345,10 +405,10 @@ if (resultsAreEmpty == "false"){
     <div id="TableOfEvents" class="table col-md-12">
     <p>Στον παρακάτω πίνακα, δίνεται η διαθεσημότητα της ημέρας</p>
   
-        <?php if ( !empty ( $dataForThisLab ) ){
-          $i = 1;
-foreach ( $dataForThisLab as $labRecord )
+        <?php 
+        if ( !empty ( $dataForThisLab ) )
         {
+          $i = 1;
           echo "<table cellpadding='3' cellspacing='0' border='1' width='100%'>";
           echo "<tr>";
           echo "<td>Id</td>";
@@ -361,9 +421,11 @@ foreach ( $dataForThisLab as $labRecord )
           echo "<td>14-16</td>";
           echo "<td>16-18</td>";
           echo "<td>18-20</td>";
+          echo "<td>Status</td>";
           echo "</tr>";
-
-
+      foreach ( $dataForThisLab as $labRecord )
+        {
+          
             echo "<tr>";
             echo "<td>".$i."</td>";
             echo "<td>".stripslashes ( $labRecord ['labId'] )."</td>";
@@ -375,12 +437,24 @@ foreach ( $dataForThisLab as $labRecord )
             echo "<td>".$labRecord ['h_4']."</td>";
             echo "<td>".$labRecord ['h_5']."</td>";
             echo "<td>".$labRecord ['h_6']."</td>";
+             $EventStatus = "";
+          if($labRecord ['status'] == 0) {
+            $EventStatus = "Pending..";
+          }
+          if ($labRecord ['status'] == 1){
+            $EventStatus = "Approved";
+          }
+          if ($labRecord ['status'] == 2){
+            $EventStatus = "Rejected";
+          }
+          echo "<td>".$EventStatus."</td>"; // status
             echo "<td>";
             echo "</td>";
             echo "</tr>";
-            echo "</table>";
+          
              $i++;
         } 
+          echo "</table>";
       }
         else
         {

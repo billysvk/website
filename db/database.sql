@@ -127,3 +127,14 @@ status int NOT NULL DEFAULT 0,
 UserId varchar(255) DEFAULT NULL,
 UserRole varchar(255) DEFAULT NULL
 );
+
+
+CREATE TABLE  images (
+  id int NOT NULL IDENTITY(1,1) PRIMARY KEY,
+  name varchar(200)  NOT NULL,
+  image varchar(MAX)  NULL,
+  labId varchar(50) NULL
+);
+
+ALTER TABLE labs
+  ADD imageName varchar(200) NULL;

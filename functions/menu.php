@@ -64,11 +64,14 @@ $con = sqlsrv_connect($serverName, $connectionInfo);
 			$boxesThatShouldBeClosed = array();
 			 foreach($row as $templab) {
               //echo "test";
-                 for($i=1; $i<7;$i++){
+			 	if ($templab ['status'] == 0 || $templab ['status'] == 1){
+			 		for($i=1; $i<7;$i++){
                    if ($templab["h_".$i] == 1 ) {
                      $boxesThatShouldBeClosed[$i-1] = 1;
                    }
                  }
+			 	}
+                 
                }
           if($boxesThatShouldBeClosed){
           	if( isset($boxesThatShouldBeClosed[0]) ) {

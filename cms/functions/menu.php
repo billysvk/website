@@ -9,7 +9,7 @@ function get_labs()
 {
 	global $con;
 
-	$sql = "SELECT id, name, position, title, comment FROM labs ORDER BY position";
+	$sql = "SELECT id, name, position, title, comment, imageName FROM labs ORDER BY position";
 	$result = sqlsrv_query ( $con,$sql);
 
 	$rows = array ();
@@ -121,12 +121,10 @@ function add_lab  ( $data )
 	function update_lab ( $data )
 	{
 		global $con;
-
-		
-	$sql = "UPDATE labs SET name = '".$data['name']."',position = '".$data['position']."',
-	title = '".$data['title']."',comment = '".$data['comment']."'
-	WHERE id = '".$data['id']."'";
-    
+		$sql = "UPDATE labs SET name = '".$data['name']."',position = '".$data['position']."',
+		title = '".$data['title']."',comment = '".$data['comment']."'
+		WHERE id = '".$data['id']."'";
+	    
 		$stmt = sqlsrv_query ( $con, $sql );
 	} // end function update_menu_item
 
@@ -235,4 +233,61 @@ function add_lab  ( $data )
 		$sql = "DELETE FROM menu WHERE id = ".$id;
 		sqlsrv_query ( $con, $sql );
 	} // end function delete_menu_item
-	?>
+	function get_images ()
+	{
+		global $con;
+
+		$sql = "SELECT * FROM images";
+        $result = sqlsrv_query ( $con, $sql );
+
+		$rows = array ();
+		while ( $row = sqlsrv_fetch_array ( $result ) )
+		{
+			$rows [] = $row;
+		} // end whille
+
+		return $rows;
+	}
+	
+	function get_all_events() {
+		global $con;
+		$row = array ();
+		$sql = "SELECT * FROM event_calendar";
+		$result = sqlsrv_query ( $con, $sql);
+		
+	   while( $rowTemp = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC) ) {
+         $row[] = $rowTemp;
+        }  
+		return $row;
+	}
+
+	function get_event($id) 
+	{
+		global $con;
+
+		$id = (int) $id; // Το μετατρέπουμε σε ακέραια τιμή για λόγους ασφαλείας
+
+		$sql = "SELECT * FROM event_calendar WHERE id = ".$id;
+		$result = sqlsrv_query ( $con, $sql );
+
+		if ( sqlsrv_has_rows ( $result ) > 0 )
+		{
+			$row = sqlsrv_fetch_array ( $result );
+		} // end if
+		else
+		{
+			$row = 0;
+		} // end else
+		return $row;
+	} // end function get_menu_item
+
+	function approve_application( $data )
+	{
+		global $con;
+
+		$sql = "UPDATE event_calendar set status = '".$data ['status']."'		
+		  WHERE id = ".$data ['id'];
+		sqlsrv_query ( $con, $sql );	
+	}
+		
+?>
