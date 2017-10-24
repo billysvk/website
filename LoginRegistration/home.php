@@ -141,7 +141,7 @@
             $EventStatus = "Rejected";
           }
           echo "<td>".$EventStatus."</td>"; // status
-          echo "<td>";
+     
           echo "</td>";
           echo "</tr>";
         } // end foreach
@@ -155,6 +155,8 @@
     ?>
     </div>
       </div>
+
+      
       </div>
      </div>
   </div>

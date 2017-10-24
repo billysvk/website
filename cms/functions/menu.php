@@ -260,4 +260,34 @@ function add_lab  ( $data )
         }  
 		return $row;
 	}
+
+	function get_event($id) 
+	{
+		global $con;
+
+		$id = (int) $id; // Το μετατρέπουμε σε ακέραια τιμή για λόγους ασφαλείας
+
+		$sql = "SELECT * FROM event_calendar WHERE id = ".$id;
+		$result = sqlsrv_query ( $con, $sql );
+
+		if ( sqlsrv_has_rows ( $result ) > 0 )
+		{
+			$row = sqlsrv_fetch_array ( $result );
+		} // end if
+		else
+		{
+			$row = 0;
+		} // end else
+		return $row;
+	} // end function get_menu_item
+
+	function approve_application( $data )
+	{
+		global $con;
+
+		$sql = "UPDATE event_calendar set status = '".$data ['status']."'		
+		  WHERE id = ".$data ['id'];
+		sqlsrv_query ( $con, $sql );	
+	}
+		
 ?>

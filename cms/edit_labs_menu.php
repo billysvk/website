@@ -126,7 +126,7 @@
         <input type='submit' value='Upload File' name='but_upload'>
         <input type="hidden" name="id" value="<?php echo $menu ['id']; ?>" />
     </form>
-     <div class="container" class="col-sm-12"> Uploaded File:
+     <div class="container" class="col-sm-12"> Uploaded image:
    <?php
         $sql = "SELECT id, name, image FROM images WHERE labId = ".$menu ['id'];
         $image_result = sqlsrv_query ( $con, $sql );
