@@ -88,6 +88,7 @@
         echo "<td>Title</td>";
         echo "<td>Description</td>";
         echo "<td>Status</td>";
+        echo "<td>Επιλογή</td>";
         echo "</tr>";
 
         // Και εμφάνισε τις εγγραφές
@@ -141,7 +142,10 @@
             $EventStatus = "Rejected";
           }
           echo "<td>".$EventStatus."</td>"; // status
-     
+          if( $event ['status'] == 1){
+              echo "<td><a href='application_edit.php?id=".$event ['id']."'>Επεξεργασία</a></td>";
+          }
+        
           echo "</td>";
           echo "</tr>";
         } // end foreach

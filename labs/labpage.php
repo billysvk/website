@@ -330,10 +330,59 @@ if (resultsAreEmpty == "false"){
             
       </div>
     </div>
+
+
       <div id="wrapper col-md-9">
     <div class="nav nav-tabs col-md-9" style="float: right;">
       <div class="innertube">
           <h1><font color="gray";>Πρόγραμμα Εργαστηρίων</h1>
+          <div class="row" > </div>
+        </br>
+<!--lab files from admin -->
+<div class="container" style="border: 1px solid #999999;">
+     <div class="container" class="col-sm-12"> Files from Admin:
+   <?php
+        $sql = "SELECT id, name, image FROM labFiles WHERE labId = ".$lab ['id'];
+        $result = sqlsrv_query ( $con, $sql );
+
+        if ( sqlsrv_has_rows ( $result ) > 0 )
+        {
+            $row = sqlsrv_fetch_array ( $result );
+        } // end if
+        else
+        {
+            $row = 0;
+            echo "No files to show!";
+        } // end else
+?>
+<div class="row">
+        <div class="col-xs-12">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>File Name</th>
+                        <th>Download</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php
+                $i = 1;
+                while($row = sqlsrv_fetch_array($result)) { ?>
+                <tr>
+                    <td><?php echo $i++; ?></td>
+                    <td><?php echo $row['name']; ?></td>
+                    <td><a href="download.php?id=<?php echo $row ['name'];?>">Download</a></td>
+                </tr>
+                <?php } ?>
+                </tbody>
+            </table>
+        </div>
+</div>
+ </div> 
+ </div>
+<!--end of files from admin -->
+
         <!-- gia na mpoyn ta apotelesmata tou mathimatos otan ayto egkrithei--> 
      </div>
     </div>
