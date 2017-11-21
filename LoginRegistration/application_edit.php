@@ -2,7 +2,7 @@
 include ("../cms/functions/menu.php");
 isset ( $_GET ['id'] ) ? $id = $_GET ['id']: $id = 0; // Ελέγχουμε αν επεξεργαζόμαστε εγγραφή με συγκεκριμένο id ή αν προσθέτουμε καινούρια
 $item = get_event ( $id );
-$info = get_lab_infos($id);
+$info = 0;
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -63,6 +63,7 @@ $info = get_lab_infos($id);
                         <textarea type="text"
                                rows="15"
                                cols="70"
+                               maxlength = "1024"
                                value="<?php echo $info ['comment']; ?>" name="comment">
                         </textarea>
                     </td>
