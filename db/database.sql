@@ -6,6 +6,14 @@ CREATE TABLE  labs (
   content varchar(1024)  NULL
 )
 
+CREATE TABLE  lab_info (
+  id int NOT NULL IDENTITY(1,1),
+  labId int  NULL,
+  event_id int  NULL,
+  title varchar(255) NULL,
+  comment varchar(1024)  NULL
+)
+
 INSERT INTO menu (id, name, position, title, content) VALUES
 (1, 'Main Page', 1, '', ''),
 (2, 'Contact', 3, '', ''),

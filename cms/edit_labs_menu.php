@@ -55,16 +55,18 @@
                         </td>
                     </tr>
                 </table>
-                <p>&nbsp;</p>
-                <input type="submit" class="btn-warning" value="Αποθήκευση" />
+                <p>&nbsp;</p> <input type="submit" class="btn-warning" value="Αποθήκευση" />
                 <input type="hidden" name="id" value="<?php echo $menu ['id']; ?>" />
                 <input type="hidden" name="action" value="<?php $id == 0 ? print "add": print "update"; ?>" />
+
             </form>
         	<p><a href='AddLabs.php'>Πίσω στο μενού</a></p>
         </div>
 
 	</div>
+
     <!--upload lab files-->
+
  <div class="container" class="col-sm-12">
    <form method="post" action="upload.php" enctype='multipart/form-data'>
         <input type='file' name='file' />
@@ -117,7 +119,6 @@
  </div> 
 
  </div>
-
 
 <!-- upload lab images -->
  <div class="container" class="col-sm-12">
@@ -174,7 +175,7 @@
  </div> 
 
  </div>
-
+<!-- end of file upload-->
 </body>
 </html>
 <?php
