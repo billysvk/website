@@ -63,6 +63,25 @@ function get_lab ( $id )
 		return $row;
 	} // end function get_menu_item
 
+function get_lab_infos ($id)
+{
+    global $con;
+
+    $id = (int) $id; // Το μετατρέπουμε σε ακέραια τιμή για λόγους ασφαλείας
+
+    $sql = "SELECT * FROM lab_info WHERE id = ".$id;
+    $result = sqlsrv_query ( $con, $sql );
+
+    if ( sqlsrv_has_rows ( $result ) > 0 )
+    {
+        $row = sqlsrv_fetch_array ( $result );
+    } // end if
+    else
+    {
+        $row = 0;
+    } // end else
+    return $row;
+}
 function get_request ( $id )
 	{
 		global $con;
@@ -105,6 +124,22 @@ function add_lab  ( $data )
 		  $params = array($data ['name'],$data ['position'],$data ['title'],$data ['comment']);
 		  $stmt = sqlsrv_query( $con, $sql, $params);
         }
+	}
+	function add_lab_info($data)
+	{
+        global $con;
+
+		$sql = "INSERT INTO lab_info (labId, event_id, title, comment) VALUES (?,?,?,?)";
+		$params = array($data ['labId'],$data ['event_id'],$data ['title'],$data ['comment']);
+		$stmt = sqlsrv_query( $con, $sql, $params);
+	}
+	function update_lab_info($data)
+	{
+        global $con;
+        $sql = "UPDATE lab_info SET title = '".$data['title']."',comment = '".$data['comment']."'
+		WHERE event_id = '".$data['event_id']."' AND labId = '".$data['labId']."'";
+
+        $stmt = sqlsrv_query ( $con, $sql );
 	}
 // function get_all_dbs(){
 // 	global $con;
