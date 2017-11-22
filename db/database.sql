@@ -146,3 +146,11 @@ CREATE TABLE  images (
 
 ALTER TABLE labs
   ADD imageName varchar(200) NULL;
+
+CREATE TABLE [dbo].[courseFiles](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[name] [varchar](200) NOT NULL,
+	[image] [nvarchar](max) NULL,
+	[labId] [varchar](50) NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+

@@ -393,14 +393,12 @@ if (isset($boxesThatShouldBeClosed[5])) {
         </div>
     </div>
     <!-- gia na mpoyn ta apotelesmata tou mathimatos otan ayto egkrithei-->
-    <div class="wrapper col-md-12" style="border: 2px solid #999999;">
-        <div class="innertube">
+    <div class="container col-md-12" style="border: 2px solid #999999;">
+        <div class="innertube col-md-6">
             <h1><font color="gray" ; style="background-color: #d0eaf3;">Ανακοινώσεις Μαθημάτων</h1>
-            <div class="row"></div>
             </br>
             <!-- ανακοινωσεις -->
             <div class="container-fixed" style="border: 2px solid #999999;">
-
                 <?php
                 $sql = "SELECT * FROM lab_info WHERE labId = " . $lab ['id'];
                 $result = sqlsrv_query($con, $sql);
@@ -428,8 +426,55 @@ if (isset($boxesThatShouldBeClosed[5])) {
                 <?php } ?>
             </div>
             <!--end of anakoinwseis-->
+
         </div>
-    </div>
+        <!--files apo ton kathigith-->
+        <div class="innertube col-md-5">
+            <h1><font color="gray" ; style="background-color: #d0eaf3;">Αρχεία Μαθημάτων</h1>
+            </br>
+            <!-- ανακοινωσεις -->
+            <div class="container-fixed col-md-6" style="border: 2px solid #999999;">
+            <?php
+            $sql = "SELECT id, name, image FROM courseFiles WHERE labId = ".$lab['id'];
+            $result = sqlsrv_query($con, $sql);
+
+            if (sqlsrv_has_rows($result) > 0) {
+                $row = sqlsrv_fetch_array($result);
+            } // end if
+            else {
+                $row = 0;
+                echo "No files to show!";
+            } // end else
+            ?>
+            <div class="inertube">
+                <div class="col-xs-12">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>File Name</th>
+                            <th>Download</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        $i = 1;
+                        while ($row = sqlsrv_fetch_array($result)) { ?>
+                            <tr>
+                                <td><?php echo $i++; ?></td>
+                                <td><?php echo $row['name']; ?></td>
+                                <td><a href="download.php?id=<?php echo $row ['name']; ?>">Download</a></td>
+                            </tr>
+                        <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!--end of files apo ton kathigith -->
+        </div>
+
+
 </div>
 </div>
 </div>
