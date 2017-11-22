@@ -13,7 +13,7 @@
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
         // Valid file extensions
-        $extensions_arr = array("jpg","jpeg","png","gif","pdf","html","txt");
+        $extensions_arr = array("jpg","jpeg","png","gif","pdf","html","txt","doc","docx");
 
         // Check extension
         if( in_array($imageFileType,$extensions_arr) ){
