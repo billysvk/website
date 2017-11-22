@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9122b8b3-cf68-4ccb-bd46-8d5b7d6608d8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LoginRegistration/download.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LoginRegistration/upload.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LoginRegistration/application_edit.php" afterPath="$PROJECT_DIR$/LoginRegistration/application_edit.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/database.sql" afterPath="$PROJECT_DIR$/db/database.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/labs/labpage.php" afterPath="$PROJECT_DIR$/labs/labpage.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cms/edit_labs_menu.php" afterPath="$PROJECT_DIR$/cms/edit_labs_menu.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -34,8 +29,8 @@
       <file leaf-file-name="edit_labs_menu.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cms/edit_labs_menu.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="73" column="60" lean-forward="false" selection-start-line="73" selection-start-column="60" selection-end-line="73" selection-end-column="60" />
+            <state relative-caret-position="255">
+              <caret line="75" column="63" lean-forward="false" selection-start-line="75" selection-start-column="63" selection-end-line="75" selection-end-column="63" />
               <folding>
                 <element signature="e#404#754#0#HTML" expanded="true" />
                 <element signature="e#824#2689#0#HTML" expanded="true" />
@@ -53,27 +48,27 @@
                 <element signature="e#2013#2246#0#HTML" expanded="true" />
                 <element signature="e#2042#2216#0#HTML" expanded="true" />
                 <element signature="e#2317#2323#1#HTML" expanded="true" />
-                <element signature="e#3042#4450#0#HTML" expanded="true" />
-                <element signature="e#3477#4441#0#HTML" expanded="true" />
-                <element signature="e#3503#4434#0#HTML" expanded="true" />
-                <element signature="e#3539#4419#0#HTML" expanded="true" />
-                <element signature="e#3603#3844#0#HTML" expanded="true" />
-                <element signature="e#3631#3819#0#HTML" expanded="true" />
-                <element signature="e#3861#4398#0#HTML" expanded="true" />
-                <element signature="e#3994#4346#0#HTML" expanded="true" />
-                <element signature="e#4490#6427#0#HTML" expanded="true" />
-                <element signature="e#4535#4812#0#HTML" expanded="true" />
-                <element signature="e#4818#6417#0#HTML" expanded="true" />
-                <element signature="e#5269#6408#0#HTML" expanded="true" />
-                <element signature="e#5295#6401#0#HTML" expanded="true" />
-                <element signature="e#5331#6386#0#HTML" expanded="true" />
-                <element signature="e#5395#5636#0#HTML" expanded="true" />
-                <element signature="e#5423#5611#0#HTML" expanded="true" />
-                <element signature="e#5653#6365#0#HTML" expanded="true" />
-                <element signature="e#5947#6313#0#HTML" expanded="true" />
-                <marker date="1511274858569" expanded="true" signature="3125:3176" ph="SELECT id, n... labFiles" />
-                <marker date="1511274858569" expanded="true" signature="4901:4950" ph="SELECT id, n... images" />
-                <marker date="1511274858569" expanded="true" signature="5732:5781" ph="SELECT id, n... images" />
+                <element signature="e#2766#3036#0#HTML" expanded="true" />
+                <element signature="e#3478#4442#0#HTML" expanded="true" />
+                <element signature="e#3504#4435#0#HTML" expanded="true" />
+                <element signature="e#3540#4420#0#HTML" expanded="true" />
+                <element signature="e#3604#3845#0#HTML" expanded="true" />
+                <element signature="e#3632#3820#0#HTML" expanded="true" />
+                <element signature="e#3862#4399#0#HTML" expanded="true" />
+                <element signature="e#3995#4347#0#HTML" expanded="true" />
+                <element signature="e#4491#6428#0#HTML" expanded="true" />
+                <element signature="e#4536#4813#0#HTML" expanded="true" />
+                <element signature="e#4819#6418#0#HTML" expanded="true" />
+                <element signature="e#5270#6409#0#HTML" expanded="true" />
+                <element signature="e#5296#6402#0#HTML" expanded="true" />
+                <element signature="e#5332#6387#0#HTML" expanded="true" />
+                <element signature="e#5396#5637#0#HTML" expanded="true" />
+                <element signature="e#5424#5612#0#HTML" expanded="true" />
+                <element signature="e#5654#6366#0#HTML" expanded="true" />
+                <element signature="e#5948#6314#0#HTML" expanded="true" />
+                <marker date="1511389645761" expanded="true" signature="3126:3177" ph="SELECT id, n... labFiles" />
+                <marker date="1511389645761" expanded="true" signature="4902:4951" ph="SELECT id, n... images" />
+                <marker date="1511389645761" expanded="true" signature="5733:5782" ph="SELECT id, n... images" />
               </folding>
             </state>
           </provider>
@@ -298,7 +293,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/connect.php" />
-        <option value="$PROJECT_DIR$/cms/edit_labs_menu.php" />
         <option value="$PROJECT_DIR$/LoginRegistration/update_lab_related.php" />
         <option value="$PROJECT_DIR$/cms/functions/menu.php" />
         <option value="$PROJECT_DIR$/labs/w3.css" />
@@ -307,6 +301,7 @@
         <option value="$PROJECT_DIR$/LoginRegistration/upload.php" />
         <option value="$PROJECT_DIR$/LoginRegistration/application_edit.php" />
         <option value="$PROJECT_DIR$/labs/labpage.php" />
+        <option value="$PROJECT_DIR$/cms/edit_labs_menu.php" />
       </list>
     </option>
   </component>
@@ -499,12 +494,12 @@
       <workItem from="1510935375976" duration="156000" />
       <workItem from="1511253435243" duration="598000" />
       <workItem from="1511257272128" duration="10142000" />
-      <workItem from="1511380641348" duration="8826000" />
+      <workItem from="1511380641348" duration="8967000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20225000" />
+    <option name="totallyTimeSpent" value="20366000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -572,27 +567,27 @@
             <element signature="e#2013#2246#0#HTML" expanded="true" />
             <element signature="e#2042#2216#0#HTML" expanded="true" />
             <element signature="e#2317#2323#1#HTML" expanded="true" />
-            <element signature="e#3042#4450#0#HTML" expanded="true" />
-            <element signature="e#3477#4441#0#HTML" expanded="true" />
-            <element signature="e#3503#4434#0#HTML" expanded="true" />
-            <element signature="e#3539#4419#0#HTML" expanded="true" />
-            <element signature="e#3603#3844#0#HTML" expanded="true" />
-            <element signature="e#3631#3819#0#HTML" expanded="true" />
-            <element signature="e#3861#4398#0#HTML" expanded="true" />
-            <element signature="e#3994#4346#0#HTML" expanded="true" />
-            <element signature="e#4490#6427#0#HTML" expanded="true" />
-            <element signature="e#4535#4812#0#HTML" expanded="true" />
-            <element signature="e#4818#6417#0#HTML" expanded="true" />
-            <element signature="e#5269#6408#0#HTML" expanded="true" />
-            <element signature="e#5295#6401#0#HTML" expanded="true" />
-            <element signature="e#5331#6386#0#HTML" expanded="true" />
-            <element signature="e#5395#5636#0#HTML" expanded="true" />
-            <element signature="e#5423#5611#0#HTML" expanded="true" />
-            <element signature="e#5653#6365#0#HTML" expanded="true" />
-            <element signature="e#5947#6313#0#HTML" expanded="true" />
-            <marker date="1511274858569" expanded="true" signature="3125:3176" ph="SELECT id, n... labFiles" />
-            <marker date="1511274858569" expanded="true" signature="4901:4950" ph="SELECT id, n... images" />
-            <marker date="1511274858569" expanded="true" signature="5732:5781" ph="SELECT id, n... images" />
+            <element signature="e#2766#3036#0#HTML" expanded="true" />
+            <element signature="e#3478#4442#0#HTML" expanded="true" />
+            <element signature="e#3504#4435#0#HTML" expanded="true" />
+            <element signature="e#3540#4420#0#HTML" expanded="true" />
+            <element signature="e#3604#3845#0#HTML" expanded="true" />
+            <element signature="e#3632#3820#0#HTML" expanded="true" />
+            <element signature="e#3862#4399#0#HTML" expanded="true" />
+            <element signature="e#3995#4347#0#HTML" expanded="true" />
+            <element signature="e#4491#6428#0#HTML" expanded="true" />
+            <element signature="e#4536#4813#0#HTML" expanded="true" />
+            <element signature="e#4819#6418#0#HTML" expanded="true" />
+            <element signature="e#5270#6409#0#HTML" expanded="true" />
+            <element signature="e#5296#6402#0#HTML" expanded="true" />
+            <element signature="e#5332#6387#0#HTML" expanded="true" />
+            <element signature="e#5396#5637#0#HTML" expanded="true" />
+            <element signature="e#5424#5612#0#HTML" expanded="true" />
+            <element signature="e#5654#6366#0#HTML" expanded="true" />
+            <element signature="e#5948#6314#0#HTML" expanded="true" />
+            <marker date="1511389645761" expanded="true" signature="3126:3177" ph="SELECT id, n... labFiles" />
+            <marker date="1511389645761" expanded="true" signature="4902:4951" ph="SELECT id, n... images" />
+            <marker date="1511389645761" expanded="true" signature="5733:5782" ph="SELECT id, n... images" />
           </folding>
         </state>
       </provider>
@@ -996,8 +991,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cms/edit_labs_menu.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="73" column="60" lean-forward="false" selection-start-line="73" selection-start-column="60" selection-end-line="73" selection-end-column="60" />
+        <state relative-caret-position="255">
+          <caret line="75" column="63" lean-forward="false" selection-start-line="75" selection-start-column="63" selection-end-line="75" selection-end-column="63" />
           <folding>
             <element signature="e#404#754#0#HTML" expanded="true" />
             <element signature="e#824#2689#0#HTML" expanded="true" />
@@ -1015,27 +1010,27 @@
             <element signature="e#2013#2246#0#HTML" expanded="true" />
             <element signature="e#2042#2216#0#HTML" expanded="true" />
             <element signature="e#2317#2323#1#HTML" expanded="true" />
-            <element signature="e#3042#4450#0#HTML" expanded="true" />
-            <element signature="e#3477#4441#0#HTML" expanded="true" />
-            <element signature="e#3503#4434#0#HTML" expanded="true" />
-            <element signature="e#3539#4419#0#HTML" expanded="true" />
-            <element signature="e#3603#3844#0#HTML" expanded="true" />
-            <element signature="e#3631#3819#0#HTML" expanded="true" />
-            <element signature="e#3861#4398#0#HTML" expanded="true" />
-            <element signature="e#3994#4346#0#HTML" expanded="true" />
-            <element signature="e#4490#6427#0#HTML" expanded="true" />
-            <element signature="e#4535#4812#0#HTML" expanded="true" />
-            <element signature="e#4818#6417#0#HTML" expanded="true" />
-            <element signature="e#5269#6408#0#HTML" expanded="true" />
-            <element signature="e#5295#6401#0#HTML" expanded="true" />
-            <element signature="e#5331#6386#0#HTML" expanded="true" />
-            <element signature="e#5395#5636#0#HTML" expanded="true" />
-            <element signature="e#5423#5611#0#HTML" expanded="true" />
-            <element signature="e#5653#6365#0#HTML" expanded="true" />
-            <element signature="e#5947#6313#0#HTML" expanded="true" />
-            <marker date="1511274858569" expanded="true" signature="3125:3176" ph="SELECT id, n... labFiles" />
-            <marker date="1511274858569" expanded="true" signature="4901:4950" ph="SELECT id, n... images" />
-            <marker date="1511274858569" expanded="true" signature="5732:5781" ph="SELECT id, n... images" />
+            <element signature="e#2766#3036#0#HTML" expanded="true" />
+            <element signature="e#3478#4442#0#HTML" expanded="true" />
+            <element signature="e#3504#4435#0#HTML" expanded="true" />
+            <element signature="e#3540#4420#0#HTML" expanded="true" />
+            <element signature="e#3604#3845#0#HTML" expanded="true" />
+            <element signature="e#3632#3820#0#HTML" expanded="true" />
+            <element signature="e#3862#4399#0#HTML" expanded="true" />
+            <element signature="e#3995#4347#0#HTML" expanded="true" />
+            <element signature="e#4491#6428#0#HTML" expanded="true" />
+            <element signature="e#4536#4813#0#HTML" expanded="true" />
+            <element signature="e#4819#6418#0#HTML" expanded="true" />
+            <element signature="e#5270#6409#0#HTML" expanded="true" />
+            <element signature="e#5296#6402#0#HTML" expanded="true" />
+            <element signature="e#5332#6387#0#HTML" expanded="true" />
+            <element signature="e#5396#5637#0#HTML" expanded="true" />
+            <element signature="e#5424#5612#0#HTML" expanded="true" />
+            <element signature="e#5654#6366#0#HTML" expanded="true" />
+            <element signature="e#5948#6314#0#HTML" expanded="true" />
+            <marker date="1511389645761" expanded="true" signature="3126:3177" ph="SELECT id, n... labFiles" />
+            <marker date="1511389645761" expanded="true" signature="4902:4951" ph="SELECT id, n... images" />
+            <marker date="1511389645761" expanded="true" signature="5733:5782" ph="SELECT id, n... images" />
           </folding>
         </state>
       </provider>
