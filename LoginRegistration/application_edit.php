@@ -81,6 +81,59 @@ $info = 0;
 <!--prohgoumenes enhmerwseis-->
 
 <!--file upload gia shmeiwseis -->
+<div class="container" class="col-sm-12">
+    <form method="post" action="upload.php" enctype='multipart/form-data'>
+        <input type='file' name='file' />
+        <input type='submit' value='Upload File' name='but_upload'>
+        <input type="hidden" name="labId" value="<?php echo $item ['labId']; ?>" />
+        <input type="hidden" name="courseId" value="<?php echo $item ['id']; ?>" />
+    </form>
+    <div class="container" class="col-sm-12"> Uploaded Files:
+        <?php
+        $sql = "SELECT id, name, image FROM courseFiles WHERE courseId = ".$item ['id'];
+        $result = sqlsrv_query ( $con, $sql );
+
+        if ( sqlsrv_has_rows ( $result ) > 0 )
+        {
+            $row = sqlsrv_fetch_array ( $result );
+        } // end if
+        else
+        {
+            $row = 0;
+            echo "Database is empty";
+        } // end else
+        ?>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>File Name</th>
+                        <th>View</th>
+                        <th>Download</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $i = 1;
+                    while($row = sqlsrv_fetch_array($result)) { ?>
+                        <tr>
+                            <td><?php echo $i++; ?></td>
+                            <td><?php echo $row['name']; ?></td>
+                            <td><a href="C:/xampp/htdocs/website/uploads/<?php echo $row['name']; ?>" target="_blank">View</a></td>
+                            <td><a href="download.php?id=<?php echo $row ['name'];?>">Download</a></td>
+                        </tr>
+                    <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</div>
 <!-- enhmerwseis sxetikes me to mathima (tha emfanizontai sth selida toy lab)-->
     <p><a href='home.php'>Πίσω στο μενού</a></p>
 </body>
