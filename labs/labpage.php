@@ -236,7 +236,7 @@ if (isset($boxesThatShouldBeClosed[5])) {
                                 <strong><?php echo $lab['title']; ?></strong>
                             </h4>
                             <p><?php echo $lab['comment']; ?></p>
-                            <a href="http://www.unipi.gr/unipi/el/" class="btn btn-light">Website</a>
+                          
                         </div>
                     </div>
                 </div>
@@ -248,6 +248,7 @@ if (isset($boxesThatShouldBeClosed[5])) {
     </div>
     <!-- /.container -->
 </section>
+</br>
 <div id="wrapper">
     <div class="nav nav-tabs col-md-3" style="float: left; border: 1px solid #999999;">
         <div class="innertube">
