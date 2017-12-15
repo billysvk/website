@@ -415,10 +415,12 @@ if (isset($boxesThatShouldBeClosed[5])) {
                 $i = 1;
                 while ($row = sqlsrv_fetch_array($result)) { ?>
                     <article>
-                        <div class="">
-                            <h3><?php echo $row['title']; ?></h3></div>
+                        <div class="row" style="border:1px solid #999999;">
+                            <h3><?php echo $row['title']; ?></h3>
                             <p><?php echo $row ['comment']; ?></p>
+                        </div>
                     </article>
+                    </br>
                 <?php } ?>
             </div>
             <!--end of anakoinwseis-->
