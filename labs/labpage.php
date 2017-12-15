@@ -203,10 +203,6 @@ if (isset($boxesThatShouldBeClosed[5])) {
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <script src="../js/jquery-1.11.3.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
-
-    <div class="container">
-        <!--<h1 ><?php echo $lab['title']; ?></h1>-->
-    </div>
     </div>
     <div class="form-group">
         <a href="../index.php">Back to main page...</a>
@@ -339,6 +335,8 @@ if (isset($boxesThatShouldBeClosed[5])) {
 
         </div>
     </div>
+
+    <!--programma ergasthriwn -->
     <div id="wrapper col-md-9">
         <div class="nav nav-tabs col-md-9" style="float: right;">
             <div class="innertube">
@@ -392,13 +390,15 @@ if (isset($boxesThatShouldBeClosed[5])) {
             </div>
         </div>
     </div>
+
     <!-- gia na mpoyn ta apotelesmata tou mathimatos otan ayto egkrithei-->
-    <div class="container col-md-12" style="border: 2px solid #999999;">
-        <div class="innertube col-md-6">
-            <h1><font color="gray" ; style="background-color: #d0eaf3;">Ανακοινώσεις Μαθημάτων</h1>
+    <div class="container col-md-12" style="border:1px solid #999999;">
+        <h2><font color="gray">Ανακοινώσεις Μαθημάτων</h2>
+        <div style="overflow-y: scroll; height:500px; background-color:powderblue;">
+            
             </br>
             <!-- ανακοινωσεις -->
-            <div class="container-fixed" style="border: 2px solid #999999;">
+            <div class="container">
                 <?php
                 $sql = "SELECT * FROM lab_info WHERE labId = " . $lab ['id'];
                 $result = sqlsrv_query($con, $sql);
@@ -413,27 +413,25 @@ if (isset($boxesThatShouldBeClosed[5])) {
                 ?>
                 <?php
                 $i = 1;
-                foreach ($dataForThisLab as $labRecord) {
-
-
-                }
                 while ($row = sqlsrv_fetch_array($result)) { ?>
                     <article>
-                        <div class="w3-container w3-red">
+                        <div class="">
                             <h3><?php echo $row['title']; ?></h3></div>
-                        <p><?php echo $row ['comment']; ?></p>
+                            <p><?php echo $row ['comment']; ?></p>
                     </article>
                 <?php } ?>
             </div>
             <!--end of anakoinwseis-->
-
         </div>
+
         <!--files apo ton kathigith-->
-        <div class="innertube col-md-5">
-            <h1><font color="gray" ; style="background-color: #d0eaf3;">Αρχεία Μαθημάτων</h1>
+       
+    </div>
+ <div class="innertube col-md-12">
+            <h3><font color="gray">Αρχεία Μαθημάτων</h3>
             </br>
             <!-- ανακοινωσεις -->
-            <div class="container-fixed col-md-6" style="border: 2px solid #999999;">
+            <div class="container col-md-12" style="border: 2px solid #999999;">
             <?php
             $sql = "SELECT id, name, image FROM courseFiles WHERE labId = ".$lab['id'];
             $result = sqlsrv_query($con, $sql);
@@ -470,15 +468,11 @@ if (isset($boxesThatShouldBeClosed[5])) {
                     </table>
                 </div>
             </div>
+            </div>
         </div>
         <!--end of files apo ton kathigith -->
-        </div>
+</div>
 
-
-</div>
-</div>
-</div>
-</div>
 </br>
 
 <section id="services" class="services bg-primary">
@@ -620,6 +614,7 @@ if (isset($boxesThatShouldBeClosed[5])) {
         </div>
     </div>
 </section>
+
 </body>
 
 <footer id="footer">

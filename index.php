@@ -49,7 +49,16 @@
     <style>p.serif {font-family: "Times New Roman", Times, serif;}
         p.sansserif {font-family: Arial, Helvetica, sans-serif;}</style>	
 </head>
-
+<style>
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+}</style>
 
 <body>
 <div class="wrapper_head">
@@ -70,10 +79,10 @@
 </div>
 
 </body>
-	<div class="wrapper_foot">
+<footer>
 	<div class="footer">
 	<div class="jumbotron-footer text-center" style="background-color: lightgray; vertical-align: bottom;"  > 
   <p>&copy; 2016  | Υλοποίηση : Σαββάκης Βασίλειος</p>
-		</div>
-
+		</div></div>
+</footer>
 </html>

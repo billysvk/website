@@ -29,6 +29,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css"  />
 <link rel="stylesheet" href="style.css" type="text/css" />
+
+    <script src="assets/jquery-1.11.3-jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -59,9 +62,6 @@
         </div>
       </div>
     </nav> 
-
-    <script src="assets/jquery-1.11.3-jquery.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
 
  <section id="aitisis" class="" style="float: center; padding-top:100px;">
   
