@@ -185,6 +185,18 @@ $con = sqlsrv_connect($serverName, $connectionInfo);
          $row[] = $rowTemp;
         }  
 		return $row;
-
 	}
+
+	function subscribeToThisEvent($data)
+	{
+		global $con;
+		$row = array ();
+        $intLabId = (int)$data ['labId'];
+        $userId = (int)$data ['userId'];
+        // exw kai to urole
+        $sql = "INSERT INTO event_subscriptions (labId,userId,email,name,unic) VALUES (?,?,?,?,?)";
+		$params = array($intLabId, $userId, $data ['email'],$data ['name'], $data ['unic']);
+		$stmt = sqlsrv_query( $con, $sql, $params);
+	}
+
 ?>

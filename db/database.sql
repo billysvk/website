@@ -154,3 +154,10 @@ CREATE TABLE [dbo].[courseFiles](
 	[labId] [varchar](50) NULL
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
+CREATE TABLE  event_subscriptions (
+  labId int NOT NULL,
+  userId int NOT NULL,
+  email varchar(50) NULL,
+  name varchar(50) NULL,
+  unic varchar(50) NULL
+)
