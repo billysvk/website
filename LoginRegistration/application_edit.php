@@ -130,9 +130,7 @@ $info = 0;
                 </table>
             </div>
         </div>
-
     </div>
-
 </div>
 <!-- enhmerwseis sxetikes me to mathima (tha emfanizontai sth selida toy lab)-->
     <p><a href='home.php'>Πίσω στο μενού</a></p>
