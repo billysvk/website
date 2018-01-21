@@ -66,8 +66,8 @@
 	</div>
 
     <!--upload lab files-->
-
- <div class="container" class="col-sm-12">
+    <?php if ($menu['id'] != 0){ ?>
+ <div id="uploadFiles" class="container" class="col-sm-12">
    <form method="post" action="upload.php" enctype='multipart/form-data'>
         <input type='file' name='file' />
         <input type='submit' value='Upload File' name='but_upload'>
@@ -77,7 +77,6 @@
    <?php
         $sql = "SELECT id, name, image FROM labFiles WHERE labId = ".$menu ['id'];
         $result = sqlsrv_query ( $con, $sql );
-
         if ( sqlsrv_has_rows ( $result ) > 0 )
         {
             $row = sqlsrv_fetch_array ( $result );
@@ -103,25 +102,28 @@
                 <tbody>
                 <?php
                 $i = 1;
-                while($row = sqlsrv_fetch_array($result)) { ?>
+                 $sql = "SELECT id, name, image FROM labFiles WHERE labId = ".$menu ['id'];
+                 $result = sqlsrv_query ( $con, $sql );
+                 while($row = sqlsrv_fetch_array ( $result )) { ?>
                 <tr>
                     <td><?php echo $i++; ?></td>
                     <td><?php echo $row['name']; ?></td>
-                    <td><a href="C:/xampp/htdocs/website/uploads/<?php echo $row['name']; ?>" target="_blank">View</a></td>
-                    <td><a href="download.php?id=<?php echo $row ['name'];?>">Download</a></td>
+                    <td><a href="C:/xampp/htdocs/website/uploads/images/<?php echo $row['name']; ?>" target="_blank">View</a></td>
+                    <td><a href="download_images.php?id=<?php echo $row ['name'];?>">Download</a></td>
                 </tr>
                 <?php } ?>
                 </tbody>
             </table>
         </div>
 </div>
-
  </div> 
-
  </div>
+  <?php } ?>
+
 
 <!-- upload lab images -->
- <div class="container" class="col-sm-12">
+   <?php if ($menu['id'] != 0){ ?>
+ <div id="uploadFiles1" class="container" class="col-sm-12">
    <form method="post" action="upload_images.php" enctype='multipart/form-data'>
         <input type='file' name='file' />
         <input type='submit' value='Upload File' name='but_upload'>
@@ -171,10 +173,10 @@
             </table>
         </div>
 </div>
-
  </div> 
-
  </div>
+  <?php } ?>
+
 <!-- end of file upload-->
 </body>
 </html>

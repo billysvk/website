@@ -339,14 +339,14 @@ $h_6 = 0;
 
 <!--programma ergasthriwn -->
 <div id="wrapper col-md-9">
-<div class="nav nav-tabs col-md-9" style="float: right;">
-<div class="innertube">
-<h1><font color="gray" ;>Πρόγραμμα Εργαστηρίων</h1>
+  <div class="nav col-md-9" style="float: right;">
+    <div class="innertube">
+    <h1><font color="gray" ;>Πρόγραμμα Εργαστηρίων</h1>
 <div class="row"></div>
 </br>
 <!--lab files from admin -->
 <div class="container" style="border: 1px solid #999999;">
-<div class="container" class="col-sm-12"> Files from Admin:
+Files from Admin:
 <?php
 $sql = "SELECT id, name, image FROM labFiles WHERE labId = " . $lab ['id'];
 $result = sqlsrv_query($con, $sql);
@@ -360,7 +360,7 @@ else {
 } // end else
 ?>
 <div class="row">
-    <div class="col-xs-12">
+    <div class="col-md-12">
         <table class="table table-striped table-hover">
             <thead>
             <tr>
@@ -372,6 +372,8 @@ else {
             <tbody>
             <?php
             $i = 1;
+            $sql = "SELECT id, name, image FROM labFiles WHERE labId = " . $lab ['id'];
+            $result = sqlsrv_query($con, $sql);
             while ($row = sqlsrv_fetch_array($result)) { ?>
                 <tr>
                     <td><?php echo $i++; ?></td>
@@ -382,7 +384,6 @@ else {
             </tbody>
         </table>
     </div>
-</div>
 </div>
 </div>
 <!--end of files from admin -->
