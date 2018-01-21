@@ -51,7 +51,6 @@
 </head>
 <style>
 .footer {
-  position: absolute;
   right: 0;
   bottom: 0;
   left: 0;
@@ -81,8 +80,7 @@
 </body>
 <footer>
 	<div class="footer">
-	<div class="jumbotron-footer text-center" style="background-color: lightgray; vertical-align: bottom;"  > 
   <p>&copy; 2016  | Υλοποίηση : Σαββάκης Βασίλειος</p>
-		</div></div>
+		</div>
 </footer>
 </html>

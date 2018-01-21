@@ -346,7 +346,7 @@ $h_6 = 0;
 </br>
 <!--lab files from admin -->
 <div class="container" style="border: 1px solid #999999;">
-<div class="container" class="col-sm-12"> Files from Admin:
+<div class="container" class="col-md-12"> Files from Admin:
 <?php
 $sql = "SELECT id, name, image FROM labFiles WHERE labId = " . $lab ['id'];
 $result = sqlsrv_query($con, $sql);
@@ -360,7 +360,7 @@ else {
 } // end else
 ?>
 <div class="row">
-    <div class="col-xs-12">
+    <div class="col-md-12">
         <table class="table table-striped table-hover">
             <thead>
             <tr>
@@ -372,6 +372,8 @@ else {
             <tbody>
             <?php
             $i = 1;
+            $sql = "SELECT id, name, image FROM labFiles WHERE labId = " . $lab ['id'];
+            $result = sqlsrv_query($con, $sql);
             while ($row = sqlsrv_fetch_array($result)) { ?>
                 <tr>
                     <td><?php echo $i++; ?></td>
