@@ -39,7 +39,8 @@ CREATE TABLE  event_subscriptions (
   userId int NOT NULL,
   email varchar(50) NULL,
   name varchar(50) NULL,
-  unic varchar(50) NULL
+  unic varchar(50) NULL,
+  event_id int NULL
 )
 
 CREATE TABLE  images (
