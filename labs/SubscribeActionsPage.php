@@ -8,6 +8,7 @@
 				$data ['email'] =  (string)$_REQUEST ['email'] ;
 				$data ['name'] =  (string)$_REQUEST ['name'] ;
 				$data ['unic'] =  (string)$_REQUEST ['unic'] ;
+				$data ['event_id'] =  (int)$_REQUEST ['event_id'] ;
 				subscribeToThisEvent ( $data );
 
 		header ( "location:labpage.php?id=".$data ['labId']."" );

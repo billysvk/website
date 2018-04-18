@@ -31,6 +31,7 @@ $dataForThisLab = array();
 $boxesThatShouldBeClosed = array();
 
 $var = $_GET['id']; // LabID
+$event_id = $_REQUEST['subcat']; // eventID
 $labs = array();
 $labs = get_labs();
 $lab = null;
@@ -129,6 +130,7 @@ button:hover {
     <div class="clearfix">
       <input type="hidden" name="uid" value="<?php echo $uid; ?>" />
       <input type="hidden" name="labId" value="<?php echo $var; ?>" />
+      <input type="hidden" name="event_id" value="<?php echo $event_id; ?>" />
       <button value="cancel" name='cancel' type="submit" class="cancelbtn">Επιστροφή</button>
       <button value="submit" name='submit' type="submit" class="signupbtn">Εγγραφή</button>
     </div>

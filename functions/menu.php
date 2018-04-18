@@ -187,13 +187,26 @@ $con = sqlsrv_connect($serverName, $connectionInfo);
 		return $row;
 	}
 
+    function get_all_approved_events() {
+		global $con;
+		$row = array ();
+  		$status = "1";
+		$sql = "SELECT * FROM event_calendar WHERE status = ".$status;
+		$result = sqlsrv_query ( $con, $sql);
+		
+	   while( $rowTemp = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC) ) {
+         $row[] = $rowTemp;
+        }  
+		return $row;
+	}
+
     function get_my_class_register_applications($UserId) {
 		global $con;
 		$row = array ();
   		$UserIdInt = (string)$UserId;
 		$sql = "SELECT * FROM event_subscriptions WHERE UserId = ".$UserIdInt;
 		$result = sqlsrv_query ( $con, $sql);
-	   while( $rowTemp = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC) ) {
+	    while( $rowTemp = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC) ) {
          $row[] = $rowTemp;
         }  
 		return $row;
@@ -205,9 +218,10 @@ $con = sqlsrv_connect($serverName, $connectionInfo);
 		$row = array ();
         $intLabId = (int)$data ['labId'];
         $userId = (int)$data ['userId'];
+        $event_id = (int)$data ['event_id'];
         // exw kai to urole
-        $sql = "INSERT INTO event_subscriptions (labId,userId,email,name,unic) VALUES (?,?,?,?,?)";
-		$params = array($intLabId, $userId, $data ['email'],$data ['name'], $data ['unic']);
+        $sql = "INSERT INTO event_subscriptions (labId,userId,email,name,unic,event_id) VALUES (?,?,?,?,?,?)";
+		$params = array($intLabId, $userId, $data ['email'],$data ['name'], $data ['unic'], $data ['event_id']);
 		$stmt = sqlsrv_query( $con, $sql, $params);
 	}
 

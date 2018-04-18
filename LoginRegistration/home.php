@@ -16,15 +16,14 @@ $urole = $_SESSION['urole'];
 //echo $uid;
 }
 
-
-
-
-
 $UserEvents = array ();
 $userEvents = get_my_events ($uid);
 
 $UserClassSubscriptions = array ();
 $UserClassSubscriptions = get_my_class_register_applications($uid);
+
+$approved_events = array ();
+$approved_events = get_all_approved_events();
 //echo $uName;
 // select loggedin users detail
 //$sql=("SELECT * FROM users WHERE userName=".$_SESSION['user']);
