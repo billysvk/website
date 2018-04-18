@@ -551,7 +551,7 @@ echo "Δε βρέθηκαν εγγραφές.";
 }
 ?>
 </br>
-<p><button class="btn button" onClick="addNewEvent()">Προσθήκη νέας εγγραφής</button>
+<p><button id="AddNewEventBtn" class="btn button" onClick="addNewEvent()">Προσθήκη νέας εγγραφής</button>
 </p>
 </div>
 
@@ -616,6 +616,17 @@ $('#TableOfEvents').css('visibility', 'visible');
 </script>";
 }
 ?>
+
+<?php 
+if (isset($_SESSION['UserId'])) {
+if ($urole == "1" || $urole == "0") {
+echo "<script>
+$('#AddNewEventBtn').css('visibility', 'hidden');
+</script>";
+}
+}
+?>
+
 </div>
 </div>
 </div>
