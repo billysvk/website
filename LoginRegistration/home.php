@@ -12,10 +12,19 @@ exit;
 $uName = $_SESSION['lastMessage'];
 if( isset($_SESSION['UserId']) ) {
 $uid = $_SESSION['UserId'];
+$urole = $_SESSION['urole'];
 //echo $uid;
 }
+
+
+
+
+
 $UserEvents = array ();
 $userEvents = get_my_events ($uid);
+
+$UserClassSubscriptions = array ();
+$UserClassSubscriptions = get_my_class_register_applications($uid);
 //echo $uName;
 // select loggedin users detail
 //$sql=("SELECT * FROM users WHERE userName=".$_SESSION['user']);
@@ -59,10 +68,10 @@ $userEvents = get_my_events ($uid);
 </div>
 
 
-<div class="container">
+<div id="EventsForProfessor" class="container">
 <div class="col-lg-12 text-center">
   <h2><font color="gray";>Οι αιτήσεις μου για μαθήματα</h2>
-   <div id="wrapper">
+   <div class="wrapper">
 <?php
 if ( !empty ( $userEvents ) ) // Αν υπάρχουν εγγραφές
 {
@@ -147,6 +156,58 @@ $i = 0;
   </div>
  </div>
 </div>
+
+<!-- table for student -->
+<div id="ArrayForStudent" class="container">
+  <h2 class="col-lg-12 text-center"><font color="gray";>Οι αιτήσεις εγγραφής μου για μαθήματα</h2> 
+<?php if ( !empty ( $UserClassSubscriptions ) ) // Αν υπάρχουν εγγραφές
+  {
+    $i = 0;
+    echo "<table cellpadding='3' cellspacing='0' border='1' width='100%'>";
+    echo "<tr>";
+    echo "<td>Α/Α</td>";
+    echo "<td>Lab Id</td>";
+    echo "<td>Status</td>";
+    echo "</tr>";
+    foreach ( $UserClassSubscriptions as $event )
+    {
+      $i++;
+      echo "<tr>";
+      echo "<td>".$i."</td>";
+      echo "<td>".$event ['labId']."</td>";
+     
+      //echo "</td>";
+      echo "</tr>";
+    } // end foreach
+    
+    echo "</table>";
+  } // end if
+  else
+  {
+    echo "Δε βρέθηκαν αιτήσεις.";
+  } // end else
+?>
+</div>
+
 </body>
 </html>
+
+<?php
+if ($urole == "2") {
+echo "<script>
+$('#ArrayForStudent').css('visibility', 'hidden');
+</script>";
+echo "<script>
+$('#EventsForProfessor').css('visibility', 'visible');
+</script>";
+}else{
+  echo "<script>
+$('#ArrayForStudent').css('visibility', 'visible');
+</script>";
+echo "<script>
+$('#EventsForProfessor').css('visibility', 'hidden');
+</script>";
+}
+?>
+
 <?php ob_end_flush(); ?>

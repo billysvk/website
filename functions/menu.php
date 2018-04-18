@@ -187,6 +187,18 @@ $con = sqlsrv_connect($serverName, $connectionInfo);
 		return $row;
 	}
 
+    function get_my_class_register_applications($UserId) {
+		global $con;
+		$row = array ();
+  		$UserIdInt = (string)$UserId;
+		$sql = "SELECT * FROM event_subscriptions WHERE UserId = ".$UserIdInt;
+		$result = sqlsrv_query ( $con, $sql);
+	   while( $rowTemp = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC) ) {
+         $row[] = $rowTemp;
+        }  
+		return $row;
+	}
+
 	function subscribeToThisEvent($data)
 	{
 		global $con;
