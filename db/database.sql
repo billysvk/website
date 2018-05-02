@@ -72,12 +72,10 @@ CREATE TABLE  labs (
   imageName varchar(200) NULL;
 )
 
-CREATE TABLE dbo.menu (
+CREATE TABLE menu (
    id int NOT NULL IDENTITY(1,1),
   name varchar(50)  NULL,
-  position int  NULL,
-  title varchar(255) NULL,
-  content varchar(255) NULL
+  position int  NULL
 )
 
 INSERT INTO menu ( name, position, title, content) VALUES
