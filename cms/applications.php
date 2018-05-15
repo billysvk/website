@@ -18,6 +18,10 @@
   <?php
     include ("sidebar.php");
     $applications = get_all_events (); // Τραβάμε τις εγγραφές από τον πίνακα menu της βάσης δεδομένων
+    $labs = get_labs();
+
+
+
   ?>
   <div class="container">
         <div id="main">
@@ -45,7 +49,12 @@
           $i++;
           echo "<tr>";
           echo "<td>".$i."</td>";
-          echo "<td>".$event ['labId']."</td>";
+          foreach ( $labs as $tempLab){
+            if($tempLab ['id'] == $event ['labId']){
+              echo "<td>".$tempLab ['name']."</td>";
+            }
+          }
+          
           echo "<td>".$event ['event_date']."</td>";
           //time
           $Temptimeoftheevent = "";
