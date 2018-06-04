@@ -19,9 +19,6 @@
     include ("sidebar.php");
     $applications = get_all_events (); // Τραβάμε τις εγγραφές από τον πίνακα menu της βάσης δεδομένων
     $labs = get_labs();
-
-
-
   ?>
   <div class="container">
         <div id="main">

@@ -2,6 +2,7 @@
 ob_start();
 //session_start();
 include ( "../functions/menu.php" );
+include ( "../cms/functions/menu.php" );
 require_once 'dbconnect.php';
 global $con;
 // if session is not set this will redirect to login page
@@ -21,6 +22,23 @@ $userEvents = get_my_events ($uid);
 
 $UserClassSubscriptions = array ();
 $UserClassSubscriptions = get_my_class_register_applications($uid);
+$tempEventTable = array ();
+$lab = array ();
+$requests = array ();
+ 
+foreach ( $UserClassSubscriptions as $event )
+{
+ $tempEventTable = get_event($event['event_id']);
+ $tempLabTable = get_lab_infos($event['labId']);
+ $tempLab = get_lab($event['labId']);
+
+$temp = array (
+  'LabName' => $tempLab['name'],
+  'eventTitle' => $tempEventTable['Title'],
+  'lessonDate' => $tempEventTable['event_date']
+); 
+  $requests [] = $temp;
+}
 
 $approved_events = array ();
 $approved_events = get_all_approved_events();
@@ -156,29 +174,34 @@ $i = 0;
  </div>
 </div>
 
+<!-- table for teachers -->
+
+
 <!-- table for student -->
 <div id="ArrayForStudent" class="container">
   <h2 class="col-lg-12 text-center"><font color="gray";>Οι αιτήσεις εγγραφής μου για μαθήματα</h2> 
-<?php if ( !empty ( $UserClassSubscriptions ) ) // Αν υπάρχουν εγγραφές
+<?php if ( !empty ( $requests ) ) // Αν υπάρχουν εγγραφές
   {
     $i = 0;
     echo "<table cellpadding='3' cellspacing='0' border='1' width='100%'>";
     echo "<tr>";
     echo "<td>Α/Α</td>";
-    echo "<td>Lab Id</td>";
+    echo "<td>Lab Name</td>";
+    echo "<td>Lesson Title</td>";
+    echo "<td>Lesson Date</td>";
     echo "<td>Status</td>";
     echo "</tr>";
-    foreach ( $UserClassSubscriptions as $event )
+    foreach ( $requests as $event )
     {
       $i++;
       echo "<tr>";
       echo "<td>".$i."</td>";
-      echo "<td>".$event ['labId']."</td>";
-     
-      //echo "</td>";
+      echo "<td>".$event ['LabName']."</td>";
+      echo "<td>".$event ['eventTitle']."</td>";
+      echo "<td>".$event ['lessonDate']."</td>";
+      echo "</td>";
       echo "</tr>";
     } // end foreach
-    
     echo "</table>";
   } // end if
   else

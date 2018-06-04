@@ -14,8 +14,8 @@ $info = 0;
 </head>
 
 <body>
-<div class="container" class="col-sm-12">
-    <div id="main">
+<div class="container" class="col-md-12">
+    <div id="main" class = "wrapper">
         <form>
             <table cellpadding="3" cellspacing="0" border="0">
                 <tr>
