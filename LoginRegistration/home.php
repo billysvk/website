@@ -35,7 +35,8 @@ foreach ( $UserClassSubscriptions as $event )
 $temp = array (
   'LabName' => $tempLab['name'],
   'eventTitle' => $tempEventTable['Title'],
-  'lessonDate' => $tempEventTable['event_date']
+  'lessonDate' => $tempEventTable['event_date'],
+  'status' => $event['status']
 ); 
   $requests [] = $temp;
 }
@@ -199,6 +200,19 @@ $i = 0;
       echo "<td>".$event ['LabName']."</td>";
       echo "<td>".$event ['eventTitle']."</td>";
       echo "<td>".$event ['lessonDate']."</td>";
+       $EventStatus = "";
+      if($event ['status'] == 0) {
+        $EventStatus = "Pending..";
+      }
+      if ($event ['status'] == 1){
+        $EventStatus = "Approved";
+      }
+      if ($event ['status'] == 2){
+        $EventStatus = "Rejected";
+      }
+      echo "<td>".$EventStatus."</td>"; // status
+      //echo "<td>".$event ['status']."</td>";
+      //status
       echo "</td>";
       echo "</tr>";
     } // end foreach

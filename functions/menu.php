@@ -220,7 +220,7 @@ $con = sqlsrv_connect($serverName, $connectionInfo);
         $userId = (int)$data ['userId'];
         $event_id = (int)$data ['event_id'];
         // exw kai to urole
-        $sql = "INSERT INTO event_subscriptions (labId,userId,email,name,unic,event_id) VALUES (?,?,?,?,?,?)";
+        $sql = "INSERT INTO event_subscriptions (labId,userId,email,name,unic,event_id,status) VALUES (?,?,?,?,?,?)";
 		$params = array($intLabId, $userId, $data ['email'],$data ['name'], $data ['unic'], $data ['event_id']);
 		$stmt = sqlsrv_query( $con, $sql, $params);
 	}
