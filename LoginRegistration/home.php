@@ -19,8 +19,6 @@ $_SESSION['UserId'] = $message3;
 //echo $uid;
 }
 
-
-
 $UserEvents = array ();
 $userEvents = get_my_events ($uid);
 
