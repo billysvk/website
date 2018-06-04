@@ -15,8 +15,8 @@ $urole = $_SESSION['urole'];
 //echo $uid;
 }
 
-$UserEvents = array ();
-$userEvents = get_my_events ($uid);
+$eventInfo = array ();
+$eventInfo = get_event_info ($item['id'],$item['labId']);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -150,36 +150,36 @@ $userEvents = get_my_events ($uid);
 <!-- lista aithsewn eggrafhs sto mathima -->
 <div id="ArrayForStudent" class="container">
   <h2 class="col-lg-12 text-center"><font color="gray";>Αιτήσεις εγγραφής στα μαθήματα</h2> 
-<?php if ( !empty ( $requests ) ) // Αν υπάρχουν εγγραφές
+<?php if ( !empty ( $eventInfo ) ) // Αν υπάρχουν εγγραφές
   {
     $i = 0;
     echo "<table cellpadding='3' cellspacing='0' border='1' width='100%'>";
     echo "<tr>";
     echo "<td>Α/Α</td>";
-    echo "<td>Lab Name</td>";
-    echo "<td>Lesson Title</td>";
-    echo "<td>Lesson Date</td>";
+    echo "<td>First Name</td>";
+    echo "<td>User Email</td>";
+    echo "<td>User UNIC No.</td>";
     echo "<td>Status</td>";
     echo "</tr>";
-    foreach ( $requests as $event )
+    foreach ( $eventInfo as $info )
     {
       $i++;
       echo "<tr>";
       echo "<td>".$i."</td>";
-      echo "<td>".$event ['LabName']."</td>";
-      echo "<td>".$event ['eventTitle']."</td>";
-      echo "<td>".$event ['lessonDate']."</td>";
-       $EventStatus = "";
-      if($event ['status'] == 0) {
-        $EventStatus = "Pending..";
+      echo "<td>".$info ['name']."</td>";
+      echo "<td>".$info ['email']."</td>";
+      echo "<td>".$info ['unic']."</td>";
+       $EvStatus = "";
+      if($info ['status'] == 0) {
+        $EvStatus = "Pending..";
       }
-      if ($event ['status'] == 1){
-        $EventStatus = "Approved";
+      if ($info ['status'] == 1){
+        $EvStatus = "Approved";
       }
-      if ($event ['status'] == 2){
-        $EventStatus = "Rejected";
+      if ($info ['status'] == 2){
+        $EvStatus = "Rejected";
       }
-      echo "<td>".$EventStatus."</td>"; // status
+      echo "<td>".$EvStatus."</td>"; // status
       //echo "<td>".$event ['status']."</td>";
       //status
       echo "</td>";
