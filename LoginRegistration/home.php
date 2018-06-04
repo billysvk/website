@@ -14,8 +14,12 @@ $uName = $_SESSION['lastMessage'];
 if( isset($_SESSION['UserId']) ) {
 $uid = $_SESSION['UserId'];
 $urole = $_SESSION['urole'];
+$message3 = $uid;
+$_SESSION['UserId'] = $message3;
 //echo $uid;
 }
+
+
 
 $UserEvents = array ();
 $userEvents = get_my_events ($uid);

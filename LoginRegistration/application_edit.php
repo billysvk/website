@@ -1,8 +1,22 @@
 <?php
+ob_start();
+require_once 'dbconnect.php';
+global $con;
 include ("../cms/functions/menu.php");
+include ( "../functions/menu.php" );
 isset ( $_GET ['id'] ) ? $id = $_GET ['id']: $id = 0; // Ελέγχουμε αν επεξεργαζόμαστε εγγραφή με συγκεκριμένο id ή αν προσθέτουμε καινούρια
 $item = get_event ( $id );
 $info = 0;
+
+$uName = $_SESSION['lastMessage'];
+if( isset($_SESSION['UserId']) ) {
+$uid = $_SESSION['UserId'];
+$urole = $_SESSION['urole'];
+//echo $uid;
+}
+
+$UserEvents = array ();
+$userEvents = get_my_events ($uid);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -134,7 +148,51 @@ $info = 0;
 </div>
 
 <!-- lista aithsewn eggrafhs sto mathima -->
-
+<div id="ArrayForStudent" class="container">
+  <h2 class="col-lg-12 text-center"><font color="gray";>Αιτήσεις εγγραφής στα μαθήματα</h2> 
+<?php if ( !empty ( $requests ) ) // Αν υπάρχουν εγγραφές
+  {
+    $i = 0;
+    echo "<table cellpadding='3' cellspacing='0' border='1' width='100%'>";
+    echo "<tr>";
+    echo "<td>Α/Α</td>";
+    echo "<td>Lab Name</td>";
+    echo "<td>Lesson Title</td>";
+    echo "<td>Lesson Date</td>";
+    echo "<td>Status</td>";
+    echo "</tr>";
+    foreach ( $requests as $event )
+    {
+      $i++;
+      echo "<tr>";
+      echo "<td>".$i."</td>";
+      echo "<td>".$event ['LabName']."</td>";
+      echo "<td>".$event ['eventTitle']."</td>";
+      echo "<td>".$event ['lessonDate']."</td>";
+       $EventStatus = "";
+      if($event ['status'] == 0) {
+        $EventStatus = "Pending..";
+      }
+      if ($event ['status'] == 1){
+        $EventStatus = "Approved";
+      }
+      if ($event ['status'] == 2){
+        $EventStatus = "Rejected";
+      }
+      echo "<td>".$EventStatus."</td>"; // status
+      //echo "<td>".$event ['status']."</td>";
+      //status
+      echo "</td>";
+      echo "</tr>";
+    } // end foreach
+    echo "</table>";
+  } // end if
+  else
+  {
+    echo "Δε βρέθηκαν αιτήσεις.";
+  } // end else
+?>
+</div>
 <!-- enhmerwseis sxetikes me to mathima (tha emfanizontai sth selida toy lab)-->
     <p><a href='home.php'>Πίσω στο μενού</a></p>
 </body>
