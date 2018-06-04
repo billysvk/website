@@ -69,7 +69,7 @@ CREATE TABLE  labs (
   position int  NULL,
   title varchar(255) NULL,
   comment varchar(255)  NULL,
-  imageName varchar(200) NULL;
+  imageName varchar(200) NULL
 )
 
 CREATE TABLE menu (
@@ -78,11 +78,11 @@ CREATE TABLE menu (
   position int  NULL
 )
 
-INSERT INTO menu ( name, position, title, content) VALUES
-('Main Page', 1, '', ''),
-('Contact', 3, '', ''),
-('Labs', 2, '', ''),
-('Login/Register', 4, '','');
+INSERT INTO menu ( name, position) VALUES
+('Main Page', 1),
+('Contact', 3),
+('Labs', 2),
+('Login/Register', 4)
 
 CREATE TABLE registerRequests (
    id int NOT NULL IDENTITY(1,1),
