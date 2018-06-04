@@ -132,6 +132,9 @@ $info = 0;
         </div>
     </div>
 </div>
+
+<!-- lista aithsewn eggrafhs sto mathima -->
+
 <!-- enhmerwseis sxetikes me to mathima (tha emfanizontai sth selida toy lab)-->
     <p><a href='home.php'>Πίσω στο μενού</a></p>
 </body>
