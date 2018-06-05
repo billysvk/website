@@ -24,26 +24,52 @@ $eventInfo = get_event_info ($item['id'],$item['labId']);
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+  <script src="vendor/bootstrap/js/popper.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+  <script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+  <script src="js/main.js"></script>
     <title>My site - Σύστημα Διαχείρισης</title>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->  
+  <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="css/util.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
     <link href="/assets/css/bootstrap.css" rel="stylesheet" type="text/css"  />
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 
 <body>
-<div class="container" class="col-md-12">
-    <div id="main" class = "wrapper">
+<div class="grid-container" class="col-md-12">
+    <div id="main" >
         <form>
-            <table cellpadding="3" cellspacing="0" border="0">
+            <table cellpadding="6" cellspacing="0" border="0">
                 <tr>
                     <td>Title:</td>
-                    <td><input type="text" value="<?php echo $item ['Title']; ?>" name="Title" size="50" readonly/></td>
+                    <td><input type="text" 
+                      value="<?php echo $item ['Title']; ?>" 
+                      name="Title" 
+                      size="50" readonly/></td>
                 </tr>
                 <tr>
                     <td>Event Date:</td>
                     <td>
                         <input type="text"
-                               size="2"
                                maxlength="2"
                                value="<?php echo $item ['event_date']; ?>" name="event_date" readonly />
                     </td>
@@ -52,8 +78,6 @@ $eventInfo = get_event_info ($item['id'],$item['labId']);
                     <td >Περιεχόμενο:</td>
                     <td>
                         <input type="textarea"
-                               rows="15"
-                               cols="70"
                                value="<?php echo $item ['description']; ?>" name="description" readonly />
                     </td>
                 </tr>
@@ -62,23 +86,22 @@ $eventInfo = get_event_info ($item['id'],$item['labId']);
         </form>
         </br>
     </div>
-
 </div>
 
 <!--plhrofories gia tous foithtes-->
-<div class="container" class="col-sm-6">
+<div class="grid-container" class="col-sm-6">
     <div id="main">
         <form method="post" action="update_lab_related.php">
-            <table cellpadding="3" cellspacing="0" border="0">
+            <table cellpadding="2" cellspacing="0" border="0">
                 <tr>
                     <td>Τίτλος:</td>
-                    <td><input type="text" value="<?php echo $info ['title']; ?>" name="title" size="50"/></td>
+                    <td><input class="col-sm-12" type="text" value="<?php echo $info ['title']; ?>" name="title" size="50"/></td>
                 </tr>
                 <tr>
                     <td >Νέα και ενημερώσεις:</td>
                     <td>
-                        <textarea type="text"
-                               rows="15"
+                        <textarea class="col-md-8" type="text"
+                               rows="10"
                                cols="70"
                                maxlength = "1024"
                                value="<?php echo $info ['comment']; ?>" name="comment">
@@ -87,7 +110,7 @@ $eventInfo = get_event_info ($item['id'],$item['labId']);
                 </tr>
             </table>
             <p>&nbsp;</p>
-            <input type="submit" class="btn-warning" value="Αποθήκευση" />
+            <input type="submit" class="btn btn-warning" value="Αποθήκευση" />
             <input type="hidden" name="id" value="<?php echo $item ['id']; ?>" />
             <input type="hidden" name="labId" value="<?php echo $item ['labId']; ?>" />
             <input type="hidden" name="action" value="<?php $id !== 0 ? print "add": print ""; ?>" />
@@ -95,21 +118,67 @@ $eventInfo = get_event_info ($item['id'],$item['labId']);
         </br>
     </div>
 </div>
-<!--prohgoumenes enhmerwseis-->
 
+</br>
+  <div class="limiter">
+    <div class="container-table100">
+      <div class="wrap-table100">
+        <div class="table100">
+  <h2 class="col-lg-12 text-center"><font color="black";>Ανακοινώσεις Μαθημάτων</h2> 
+</br>
+<!-- ανακοινωσεις -->
+<?php
+$sql = "SELECT * FROM lab_info WHERE labId = " . $item ['labId'];
+$result = sqlsrv_query($con, $sql);
+
+if (sqlsrv_has_rows($result) > 0) {
+$row = sqlsrv_fetch_array($result);
+} // end if
+else {
+$row = 0;
+echo "No files to show!";
+} // end else
+?>
+<?php
+$i = 1;
+while ($row = sqlsrv_fetch_array($result)) { ?>
+  <table>
+            <thead>
+              <tr class="table100-head">
+                <th class="column1">Title</th>
+                <th class="column2">Comment</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr>
+                  <td  style="word-break:break-all;" class="column1"><?php echo $row['title']; ?></td>
+                  <td  style="word-break:break-all;" class="column2"><?php echo $row ['comment']; ?></td>
+                </tr>
+            </tbody>
+          </table>
+        </br>
+<?php } ?>
+</div>
+<!--end of anakoinwseis-->
+</div>
+</div></div></div></div>
+</br>
 <!--file upload gia shmeiwseis -->
-<div class="container" class="col-sm-12">
+<div class="limiter">
+    <div class="container-table100">
+      <div class="wrap-table100">
+        <div class="table100">
+          <h2 class="col-lg-12 text-center"><font color="black";>File Upload</h2> 
     <form method="post" action="upload.php" enctype='multipart/form-data'>
         <input type='file' name='file' />
-        <input type='submit' value='Upload File' name='but_upload'>
+        <input type='submit' value='Upload File' name='but_upload' class="btn btn-primary"/>
         <input type="hidden" name="labId" value="<?php echo $item ['labId']; ?>" />
         <input type="hidden" name="courseId" value="<?php echo $item ['id']; ?>" />
     </form>
-    <div class="container" class="col-sm-12"> Uploaded Files:
+   
         <?php
         $sql = "SELECT id, name, image FROM courseFiles WHERE courseId = ".$item ['id'];
         $result = sqlsrv_query ( $con, $sql );
-
         if ( sqlsrv_has_rows ( $result ) > 0 )
         {
             $row = sqlsrv_fetch_array ( $result );
@@ -120,16 +189,14 @@ $eventInfo = get_event_info ($item['id'],$item['labId']);
             echo "Database is empty";
         } // end else
         ?>
-
-        <div class="row">
-            <div class="col-xs-12">
-                <table class="table table-striped table-hover">
+    
+                <table class="table100-head">
                     <thead>
                     <tr>
-                        <th>#</th>
-                        <th>File Name</th>
-                        <th>View</th>
-                        <th>Download</th>
+                        <th class="column1">#</th>
+                        <th class="column2">File Name</th>
+                        <th class="column3">View</th>
+                        <th class="column4">Download</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -145,14 +212,18 @@ $eventInfo = get_event_info ($item['id'],$item['labId']);
                     <?php } ?>
                     </tbody>
                 </table>
-            </div>
-        </div>
+           
     </div>
-</div>
+</div></div></div>
 
 <!-- lista aithsewn eggrafhs sto mathima -->
-<div id="ArrayForStudent" class="container">
-  <h2 class="col-lg-12 text-center"><font color="gray";>Αιτήσεις εγγραφής στα μαθήματα</h2> 
+</br>
+  <div class="limiter">
+    <div class="container-table100">
+      <div class="wrap-table100">
+        <div class="table100">
+  <h2 class="col-lg-12 text-center"><font color="black";>Αιτήσεις εγγραφής στα μαθήματα</h2> 
+</br>
 <?php if ( !empty ( $eventInfo ) ) // Αν υπάρχουν εγγραφές
   {
     $i = 0;
@@ -195,9 +266,11 @@ $eventInfo = get_event_info ($item['id'],$item['labId']);
     echo "Δε βρέθηκαν αιτήσεις.";
   } // end else
 ?>
-</div>
+
+</div></div></div></div>
+ <p><a class="fa fa-home" style="font-size:30px;color:black;" href='home.php'>Πίσω στο μενού</a></p>
 <!-- enhmerwseis sxetikes me to mathima (tha emfanizontai sth selida toy lab)-->
-    <p><a href='home.php'>Πίσω στο μενού</a></p>
+   
 </body>
 </html>
 <?php
