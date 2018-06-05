@@ -19,8 +19,6 @@ $eventInfo = array ();
 $eventInfo = get_event_info ($item['id'],$item['labId']);
 ?>
 
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -234,6 +232,7 @@ while ($row = sqlsrv_fetch_array($result)) { ?>
     echo "<td>User Email</td>";
     echo "<td>User UNIC No.</td>";
     echo "<td>Status</td>";
+     echo "<td>Επεξεργασία</td>";
     echo "</tr>";
     foreach ( $eventInfo as $info )
     {
@@ -243,6 +242,7 @@ while ($row = sqlsrv_fetch_array($result)) { ?>
       echo "<td>".$info ['name']."</td>";
       echo "<td>".$info ['email']."</td>";
       echo "<td>".$info ['unic']."</td>";
+
        $EvStatus = "";
       if($info ['status'] == 0) {
         $EvStatus = "Pending..";
@@ -256,6 +256,8 @@ while ($row = sqlsrv_fetch_array($result)) { ?>
       echo "<td>".$EvStatus."</td>"; // status
       //echo "<td>".$event ['status']."</td>";
       //status
+      echo "<td>";
+      echo "<a href='edit_application_as_teacher.php?eventId=".$item ['id']."&labId=".$item ['labId']."'>Επεξεργασία</a>";
       echo "</td>";
       echo "</tr>";
     } // end foreach

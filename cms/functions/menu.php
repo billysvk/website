@@ -329,6 +329,19 @@ function add_lab  ( $data )
 		return $rows;
 	}
 
+function get_event_info_singleEvent($eventId, $labId) {
+		global $con;
+			$id = (int) $eventId; 
+			$labId = (int) $labId; 
+		$sql = "SELECT * FROM event_subscriptions WHERE labId = $labId and event_id = $id" ;
+		$result = sqlsrv_query ( $con, $sql );
+		$rows = array ();
+		   while( $rowTemp = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC) ) {
+         $rows[] = $rowTemp;
+        }  
+		return $rows;
+	}
+
 	function approve_application( $data )
 	{
 		global $con;
