@@ -363,5 +363,14 @@ function get_event_info_singleEvent($eventId, $labId) {
 		  WHERE labId = $data ['labId'] and event_id = $data ['labId']" ;
 		sqlsrv_query ( $con, $sql );	
 	}
+
+	function remove_news_entry( $id )
+	{
+		global $con;
+
+		$sql = "DELETE FROM lab_info 		
+		  WHERE id = $id" ;
+		sqlsrv_query ( $con, $sql );	
+	}
 		
 ?>

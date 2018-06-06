@@ -145,12 +145,16 @@ while ($row = sqlsrv_fetch_array($result)) { ?>
               <tr class="table100-head">
                 <th class="column1">Title</th>
                 <th class="column2">Comment</th>
+                <th class="column3">Remove</th>
               </tr>
             </thead>
             <tbody>
                 <tr>
                   <td  style="word-break:break-all;" class="column1"><?php echo $row['title']; ?></td>
                   <td  style="word-break:break-all;" class="column2"><?php echo $row ['comment']; ?></td>
+                   <td style="word-break:break-all;" type="button" class="column3 btn btn-danger"
+                       onClick="window.location='removeNewsEntry.php?id=<?php echo $row['id'] ?>'">Remove
+                      </td>
                 </tr>
             </tbody>
           </table>
