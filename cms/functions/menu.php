@@ -341,13 +341,26 @@ function get_event_info_singleEvent($eventId, $labId) {
         }  
 		return $rows;
 	}
+	function approve_subscription($data) {
+		global $con;
+        $sql = "UPDATE event_subscriptions SET status = '".$data['status']."'
+		WHERE event_id = '".$data['eventId']."' AND labId = '".$data['labId']."'";
+		sqlsrv_query ( $con, $sql );	
+	}
+
+    function reject_subscription($data) {
+		global $con;
+        $sql = "UPDATE event_subscriptions SET status = '".$data['status']."'
+		WHERE event_id = '".$data['eventId']."' AND labId = '".$data['labId']."'";
+		sqlsrv_query ( $con, $sql );	
+	}
 
 	function approve_application( $data )
 	{
 		global $con;
 
-		$sql = "UPDATE event_calendar set status = '".$data ['status']."'		
-		  WHERE id = ".$data ['id'];
+		$sql = "UPDATE event_subscription set status = '".$data ['status']."'		
+		  WHERE labId = $data ['labId'] and event_id = $data ['labId']" ;
 		sqlsrv_query ( $con, $sql );	
 	}
 		
