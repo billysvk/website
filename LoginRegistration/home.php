@@ -58,7 +58,32 @@ $approved_events = get_all_approved_events();
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css"  />
 <link rel="stylesheet" href="style.css" type="text/css" />
-
+ <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+  <script src="vendor/bootstrap/js/popper.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+  <script src="vendor/select2/select2.min.js"></script>
+  <script src="js/main.js"></script>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->  
+  <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="css/util.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link href="/assets/css/bootstrap.css" rel="stylesheet" type="text/css"  />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="assets/jquery-1.11.3-jquery.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
 </head>
@@ -88,9 +113,11 @@ $approved_events = get_all_approved_events();
 </div>
 
 
-<div id="EventsForProfessor" class="container">
-<div class="col-lg-12 text-center">
-  <h2><font color="gray";>Οι αιτήσεις μου για μαθήματα</h2>
+<div id="EventsForProfessor" class="limiter">
+ <div class="container-table100">
+      <div class="wrap-table100">
+        <div class="table100">
+  <h2><font color="black";>Οι αιτήσεις μαθημάτων</h2>
    <div class="wrapper">
 <?php
 if ( !empty ( $userEvents ) ) // Αν υπάρχουν εγγραφές
@@ -176,7 +203,9 @@ $i = 0;
   </div>
  </div>
 </div>
-
+ </div>
+ </div>
+</div>
 <!-- table for teachers -->
 
 
