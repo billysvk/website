@@ -82,7 +82,6 @@ $approved_events = get_all_approved_events();
 <!--===============================================================================================-->
   <link rel="stylesheet" type="text/css" href="css/util.css">
   <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link href="/assets/css/bootstrap.css" rel="stylesheet" type="text/css"  />
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="assets/jquery-1.11.3-jquery.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
@@ -205,13 +204,16 @@ $i = 0;
 </div>
  </div>
  </div>
-</div>
+
 <!-- table for teachers -->
 
 
 <!-- table for student -->
-<div id="ArrayForStudent" class="container">
-  <h2 class="col-lg-12 text-center"><font color="gray";>Οι αιτήσεις εγγραφής μου για μαθήματα</h2> 
+<div id="ArrayForStudent" class="limiter">
+    <div class="container-table100">
+      <div class="wrap-table100">
+        <div class="table100">
+  <h2 class="col-lg-12 text-center"><font color="black";>Οι αιτήσεις εγγραφής μου για μαθήματα</h2> 
 <?php if ( !empty ( $requests ) ) // Αν υπάρχουν εγγραφές
   {
     $i = 0;
@@ -255,6 +257,9 @@ $i = 0;
   } // end else
 ?>
 </div>
+</div>
+</div>
+</div>
 
 </body>
 </html>
@@ -262,7 +267,7 @@ $i = 0;
 <?php
 if ($urole == "2") {
 echo "<script>
-$('#ArrayForStudent').css('visibility', 'hidden');
+$('#ArrayForStudent').css('visibility', 'visible');
 </script>";
 echo "<script>
 $('#EventsForProfessor').css('visibility', 'visible');
@@ -272,7 +277,7 @@ $('#EventsForProfessor').css('visibility', 'visible');
 $('#ArrayForStudent').css('visibility', 'visible');
 </script>";
 echo "<script>
-$('#EventsForProfessor').css('visibility', 'hidden');
+$('#EventsForProfessor').css('visibility', 'visible');
 </script>";
 }
 ?>
