@@ -147,7 +147,7 @@ input[type=submit]:hover {
                 <input value="Reject" type="submit"  class="btn-danger" name='Reject'/>
                 <input value="Approve" type="submit" class="btn-success" name='Approve'/>
             </form>
-        	<p><a href=''>Πίσω στο μενού</a></p>
+        	<p><a href='../LoginRegistration/home.php'>Πίσω στο μενού</a></p>
         </div>
 	</div>
 </body>
