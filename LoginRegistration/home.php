@@ -113,10 +113,10 @@ $approved_events = get_all_approved_events();
 
 
 <div id="EventsForProfessor" class="limiter">
- <div class="container-table100">
+ <div id='studentTable' class="container-table100">
       <div class="wrap-table100">
         <div class="table100">
-  <h2><font color="black";>Οι αιτήσεις μαθημάτων</h2>
+  <h2 class="col-lg-12 text-center"><font color="black" >Οι αιτήσεις μαθημάτων</h2></br>
    <div class="wrapper">
 <?php
 if ( !empty ( $userEvents ) ) // Αν υπάρχουν εγγραφές
@@ -210,7 +210,7 @@ $i = 0;
 
 <!-- table for student -->
 <div id="ArrayForStudent" class="limiter">
-    <div class="container-table100">
+    <div id='ProfTable' class="container-table100">
       <div class="wrap-table100">
         <div class="table100">
   <h2 class="col-lg-12 text-center"><font color="black";>Οι αιτήσεις εγγραφής μου για μαθήματα</h2> 
@@ -267,17 +267,19 @@ $i = 0;
 <?php
 if ($urole == "2") {
 echo "<script>
-$('#ArrayForStudent').css('visibility', 'visible');
+$('#ArrayForStudent').css('visibility', 'hidden');
 </script>";
 echo "<script>
 $('#EventsForProfessor').css('visibility', 'visible');
+$('#ProfTable').css('display', 'none');
 </script>";
 }else{
   echo "<script>
 $('#ArrayForStudent').css('visibility', 'visible');
+$('#studentTable').css('display', 'none');
 </script>";
 echo "<script>
-$('#EventsForProfessor').css('visibility', 'visible');
+$('#EventsForProfessor').css('visibility', 'hidden');
 </script>";
 }
 ?>
