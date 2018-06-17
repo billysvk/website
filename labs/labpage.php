@@ -235,7 +235,7 @@ border: 1px solid #999999;
     <h4>
         <strong><?php echo $lab['title']; ?></strong>
     </h4>
-    <p><?php echo $lab['comment']; ?></p>
+    <p><font color="white" ;><?php echo $lab['comment']; ?></p>
   
 </div>
 </div>
@@ -345,7 +345,7 @@ $h_6 = 0;
 <div class="row"></div>
 </br>
 <!--lab files from admin -->
-<div class="container" style="border: 1px solid #999999;">
+<div class="container" style="border: 1px solid #999999; backgroud-color:gray;">
 Files from Admin:
 <?php
 $sql = "SELECT id, name, image FROM labFiles WHERE labId = " . $lab ['id'];
@@ -485,13 +485,13 @@ while ($row = sqlsrv_fetch_array($result)) { ?>
 <div class="col-lg-10 col-lg-offset-1">
 
 <div id="bodyContainer" style="visibility: hidden;">
-<h2>Έχεται επιλέξει για το εργαστήριο: </h2>
+<h2>Έχετε επιλέξει για το εργαστήριο: </h2>
 <h2><?php echo $lab['title']; ?></h2>
 <h2> Την ημέρα: <?php echo $dateChecked ?: ""; ?></h2>
 </div>
 
 <div id="TableOfEvents" class="table col-md-12">
-<p>Στον παρακάτω πίνακα, δίνεται η διαθεσημότητα της ημέρας</p>
+<p><font color="white" ;>Στον παρακάτω πίνακα, δίνεται η διαθεσημότητα της ημέρας</p>
 
 <?php
 if (!empty ($dataForThisLab)) {

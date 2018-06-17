@@ -80,7 +80,7 @@
 </body>
 <footer>
 	<div class="footer">
-  <p>&copy; 2016  | Υλοποίηση : Σαββάκης Βασίλειος</p>
+  <p>&copy; 2018  | Υλοποίηση : Σαββάκης Βασίλειος</p>
 		</div>
 </footer>
 </html>

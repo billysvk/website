@@ -220,9 +220,22 @@ $con = sqlsrv_connect($serverName, $connectionInfo);
         $userId = (int)$data ['userId'];
         $event_id = (int)$data ['event_id'];
         // exw kai to urole
-        $sql = "INSERT INTO event_subscriptions (labId,userId,email,name,unic,event_id) VALUES (?,?,?,?,?,?)";
+        $sql = "INSERT INTO event_subscriptions (labId,userId,email,name,unic,event_id,status) VALUES (?,?,?,?,?,?)";
 		$params = array($intLabId, $userId, $data ['email'],$data ['name'], $data ['unic'], $data ['event_id']);
 		$stmt = sqlsrv_query( $con, $sql, $params);
+	}
+
+	function updateEventSubscription($data)
+	{
+		global $con;
+		$row = array ();
+        $intLabId = (int)$data ['labId'];
+        $userId = (int)$data ['userId'];
+        $event_id = (int)$data ['event_id'];
+        
+		$sql = "UPDATE event_subscriptions SET status = '".$data['status']."'
+		WHERE labId = '".$data['labId']."' and event_id = '".$data['event_id']."'";
+		$stmt = sqlsrv_query( $con, $sql);
 	}
 
 ?>
