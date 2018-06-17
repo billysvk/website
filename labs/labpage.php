@@ -198,7 +198,7 @@ document.getElementById("checkbox6Label").style.visibility = "hidden";
 <link href="w3.css" type="text/css" rel="stylesheet">
 <link href="science.css" rel="stylesheet" type="text/css">
 <link href="custom.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="main.css">
+<!--<link rel="stylesheet" type="text/css" href="main.css">-->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
@@ -592,15 +592,11 @@ echo "Δε βρέθηκαν εγγραφές.";
 </p>
 </div>
 
-
-
-
 <div id="newEventContainer">
 <div id="main">
 <form method="post" action="newEventForLab.php">
-    <div cellpadding="3" cellspacing="0" border="0">
         <tr>
-            <td style="padding:left;">Τίτλος:</td>
+            <td>Τίτλος:</td>
             <td><input type="text" style="color:black;" name="Title" size="50"/></td>
         </tr>
         </br></br>
@@ -610,7 +606,6 @@ echo "Δε βρέθηκαν εγγραφές.";
                       name="Description"> </textarea>
         </tr>
 
-    </div>
     <p>&nbsp;</p>
     <div>
         <label>Επίλεξτε ανάμεσα στα διαθέσιμα δίωρα</label><br>
@@ -638,7 +633,7 @@ echo "Δε βρέθηκαν εγγραφές.";
                onclick="toggleRadioCheckbox(this)"/>
         <label id="checkbox6Label" for="mygroup6">18-20</label>
     </div>
-    <input type="submit" value="Αποθήκευση" style="color:black;"/>
+    <input class="button" type="submit" value="Αποθήκευση" style="color:black;"/>
     <input type="hidden" name="labId" value="<?php echo $var ?>"/>
     <input type="hidden" name="event_date" value="<?php echo $dateChecked ?>"/>
     <input type="hidden" name="uid" value="<?php echo $uid ?>"/>
