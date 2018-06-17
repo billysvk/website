@@ -115,6 +115,7 @@ $eventInfo = get_event_info ($item['id'],$item['labId']);
         </form>
         </br>
     </div>
+    <p><a class="fa fa-home" style="font-size:20px;color:black;" href='home.php'>Πίσω στο μενού</a></p>
 </div>
 
 </br>
@@ -274,7 +275,7 @@ while ($row = sqlsrv_fetch_array($result)) { ?>
 ?>
 
 </div></div></div></div>
- <p><a class="fa fa-home" style="font-size:30px;color:black;" href='home.php'>Πίσω στο μενού</a></p>
+ 
 <!-- enhmerwseis sxetikes me to mathima (tha emfanizontai sth selida toy lab)-->
    
 </body>

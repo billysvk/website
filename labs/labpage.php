@@ -198,6 +198,7 @@ document.getElementById("checkbox6Label").style.visibility = "hidden";
 <link href="w3.css" type="text/css" rel="stylesheet">
 <link href="science.css" rel="stylesheet" type="text/css">
 <link href="custom.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="main.css">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
@@ -218,6 +219,54 @@ width: 600px;
 float: left;
 border: 1px solid #999999;
 }
+#TableOfEvents td, #TableOfEvents th {
+    border: 1px solid #375382;
+    padding: 8px;
+    background-color: #ddd;
+    width:70px;
+}
+#TableOfEvents tr:nth-child(even){background-color: #375382;}
+#TableOfEvents tr:hover {background-color: #ddd;}
+#TableOfEvents th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #375382;
+    color: white;
+}
+
+#labFilesTable td, #labFilesTable th {
+    border: 1px solid #375382;
+    padding: 8px;
+    background-color: #ddd;
+    width:70px;
+}
+#labFilesTable tr:nth-child(even){background-color: #375382;}
+#labFilesTable tr:hover {background-color: #ddd;}
+#labFilesTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #375382;
+    color: white;
+}
+
+#lessonFilesTable td, #lessonFilesTable th {
+    border: 1px solid #375382;
+    padding: 8px;
+    background-color: #ddd;
+    width:70px;
+}
+#lessonFilesTable tr:nth-child(even){background-color: #375382;}
+#lessonFilesTable tr:hover {background-color: #ddd;}
+#lessonFilesTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #375382;
+    color: white;
+}
+
 </style>
 <section id="services" class="services bg-primary">
 <div class="container">
@@ -250,8 +299,8 @@ border: 1px solid #999999;
 </section>
 </br>
 <div id="wrapper">
-<div class="nav nav-tabs col-md-3" style="float: left; border: 1px solid #999999;">
-<div class="innertube">
+<div class="nav nav-tabs col-md-3" style="float: left;">
+<div class="innertube col-md-12" style=" background-color: lightgrey;">
 <h3><font color="gray" ;>Γρήγορη Αναζήτηση</h3>
 <?php foreach ($labs as $value): ?><br/>
 <input type="button" class="btn btn-primary"
@@ -259,8 +308,8 @@ value="<?php echo $value['name']; ?>"
 onClick="window.location='labpage.php?id=<?php echo $value['id'] ?>'"><br/>
 <?php endforeach; ?><br/>
 
-<p>Click the links to display calendar. </p><br/>
-<p>Then select a date .</p><br/>
+<p>Επιλέξτε τον παρακάτω σύνδεσμο για να ανοίξετε το ημερολόγιο. </p><br/>
+<p>Στη συνέχεια, επιλέξτε ημέρα.</p><br/>
 
 <script>
 function double() {
@@ -271,7 +320,7 @@ document.getElementById('SubmitRecord').style.visibility = 'visible';
 
 <form method="POST" action='' name=f1>
 <a href="javascript:void(0);" NAME="Calendar" title="Calendar"
-onClick=double();>Click here to open the calendar window </a> </br></br>
+onClick=double();>Ημερολόγιο</a> </br></br>
 
 <div id="SubmitRecord">
 <p size=2 face='Verdana'>Date Selected: </p>
@@ -341,12 +390,11 @@ $h_6 = 0;
 <div id="wrapper col-md-9">
   <div class="nav col-md-9" style="float: right;">
     <div class="innertube">
-    <h1><font color="gray" ;>Πρόγραμμα Εργαστηρίων</h1>
-<div class="row"></div>
+    <h3 style="background-color:lightgray;"><font color="gray" ;>Πρόγραμμα Εργαστηρίων</h3>
 </br>
 <!--lab files from admin -->
-<div class="container" style="border: 1px solid #999999; backgroud-color:gray;">
-Files from Admin:
+<div class="" style="">
+Λίστα Αρχείων
 <?php
 $sql = "SELECT id, name, image FROM labFiles WHERE labId = " . $lab ['id'];
 $result = sqlsrv_query($con, $sql);
@@ -359,32 +407,28 @@ else {
     echo "No files to show!";
 } // end else
 ?>
-<div class="row">
-    <div class="col-md-12">
-        <table class="table table-striped table-hover">
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>File Name</th>
-                <th>Download</th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php
-            $i = 1;
-            $sql = "SELECT id, name, image FROM labFiles WHERE labId = " . $lab ['id'];
-            $result = sqlsrv_query($con, $sql);
-            while ($row = sqlsrv_fetch_array($result)) { ?>
-                <tr>
-                    <td><?php echo $i++; ?></td>
-                    <td><?php echo $row['name']; ?></td>
-                    <td><a href="download.php?id=<?php echo $row ['name']; ?>">Download</a></td>
-                </tr>
-            <?php } ?>
-            </tbody>
-        </table>
-    </div>
-</div>
+<table id="labFilesTable" class="table table-striped table-hover">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Όνομα Αρχείου</th>
+        <th>Λήψη</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php
+    $i = 1;
+    $sql = "SELECT id, name, image FROM labFiles WHERE labId = " . $lab ['id'];
+    $result = sqlsrv_query($con, $sql);
+    while ($row = sqlsrv_fetch_array($result)) { ?>
+        <tr>
+            <td><?php echo $i++; ?></td>
+            <td><?php echo $row['name']; ?></td>
+            <td><a href="download.php?id=<?php echo $row ['name']; ?>">Download</a></td>
+        </tr>
+    <?php } ?>
+    </tbody>
+</table>
 </div>
 <!--end of files from admin -->
 
@@ -394,9 +438,9 @@ else {
 </div>
 
 <!-- gia na mpoyn ta apotelesmata tou mathimatos otan ayto egkrithei-->
-<div class="container col-md-12" style="border:1px solid #999999;">
-<h2><font color="gray">Ανακοινώσεις Μαθημάτων</h2>
-<div style="overflow-y: scroll; height:500px; background-color:powderblue;">
+<div class="container col-md-12" style="background-color:gray;">
+<h2><font color="white">Ανακοινώσεις Μαθημάτων</h2>
+<div style="overflow-y: scroll; height:500px; background-color:lightgray;">
 
 </br>
 <!-- ανακοινωσεις -->
@@ -417,7 +461,7 @@ echo "No files to show!";
 $i = 1;
 while ($row = sqlsrv_fetch_array($result)) { ?>
 <article>
-<div class="row" style="border:1px solid #999999;">
+<div class="row" style="border:2px solid #999999; background-color: #BADBAD">
     <h3><?php echo $row['title']; ?></h3>
     <p><?php echo $row ['comment']; ?></p>
 </div>
@@ -427,15 +471,14 @@ while ($row = sqlsrv_fetch_array($result)) { ?>
 </div>
 <!--end of anakoinwseis-->
 </div>
-
+</br>
 <!--files apo ton kathigith-->
-
 </div>
 <div class="innertube col-md-12">
 <h3><font color="gray">Αρχεία Μαθημάτων</h3>
 </br>
 <!-- ανακοινωσεις -->
-<div class="container col-md-12" style="border: 2px solid #999999;">
+<div class="container col-md-12">
 <?php
 $sql = "SELECT id, name, image FROM courseFiles WHERE labId = ".$lab['id'];
 $result = sqlsrv_query($con, $sql);
@@ -449,13 +492,12 @@ echo "No files to show!";
 } // end else
 ?>
 <div class="inertube">
-<div class="col-xs-12">
-<table class="table table-striped table-hover">
+<table id="lessonFilesTable" class="table table-striped table-hover" style="background-color:lightslategray ;">
 <thead>
 <tr>
     <th>#</th>
-    <th>File Name</th>
-    <th>Download</th>
+    <th>Όνομα Αρχείου</th>
+    <th>Λήψη</th>
 </tr>
 </thead>
 <tbody>
@@ -470,7 +512,6 @@ while ($row = sqlsrv_fetch_array($result)) { ?>
 <?php } ?>
 </tbody>
 </table>
-</div>
 </div>
 </div>
 </div>
@@ -498,23 +539,19 @@ if (!empty ($dataForThisLab)) {
 $i = 1;
 echo "<table cellpadding='3' cellspacing='0' border='1' width='100%'>";
 echo "<tr>";
-echo "<td>Id</td>";
-echo "<td>lab Id</td>";
-echo "<td>Event Title</td>";
-echo "<td>Description</td>";
-echo "<td>8-10</td>";
-echo "<td>10-12</td>";
-echo "<td>12-14</td>";
-echo "<td>14-16</td>";
-echo "<td>16-18</td>";
-echo "<td>18-20</td>";
-echo "<td>Status</td>";
-echo "<td>Εγγραφή</td>";
+echo "<th>Τίτλος</th>";
+echo "<th>Περιγραφή</th>";
+echo "<th>8-10</th>";
+echo "<th>10-12</th>";
+echo "<th>12-14</th>";
+echo "<th>14-16</th>";
+echo "<th>16-18</th>";
+echo "<th>18-20</th>";
+echo "<th>Status</th>";
+echo "<th>Εγγραφή</th>";
 echo "</tr>";
 foreach ($dataForThisLab as $labRecord) {
     echo "<tr>";
-    echo "<td>" . $i . "</td>";
-    echo "<td>" . stripslashes($labRecord ['labId']) . "</td>";
     echo "<td>" . $labRecord ['Title'] . "</td>";
     echo "<td>" . $labRecord ['description'] . "</td>";
     echo "<td>" . $labRecord ['h_1'] . "</td>";
@@ -551,16 +588,19 @@ echo "Δε βρέθηκαν εγγραφές.";
 }
 ?>
 </br>
-<p><button id="AddNewEventBtn" class="btn button" onClick="addNewEvent()">Προσθήκη νέας εγγραφής</button>
+<p><button id="AddNewEventBtn" class="btn button" style="color: white;" onClick="addNewEvent()">Προσθήκη νέας εγγραφής</button>
 </p>
 </div>
+
+
+
 
 <div id="newEventContainer">
 <div id="main">
 <form method="post" action="newEventForLab.php">
     <div cellpadding="3" cellspacing="0" border="0">
         <tr>
-            <td>Τίτλος:</td>
+            <td style="padding:left;">Τίτλος:</td>
             <td><input type="text" style="color:black;" name="Title" size="50"/></td>
         </tr>
         </br></br>
