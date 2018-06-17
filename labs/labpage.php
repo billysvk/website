@@ -574,7 +574,7 @@ foreach ($dataForThisLab as $labRecord) {
     }
     echo "<td>" . $EventStatus . "</td>"; // status
      echo "<td>";
-    if($eventRegistrationEnabled == true){
+    if($eventRegistrationEnabled == true && $urole == '1'){
       echo "<a href='subscribe.php?id=".$labRecord['labId']."&subcat=".$labRecord['id']."'>Εγγραφή</a>";
     }
     echo "</td>";

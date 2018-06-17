@@ -359,8 +359,8 @@ function get_event_info_singleEvent($eventId, $labId) {
 	{
 		global $con;
 
-		$sql = "UPDATE event_subscription set status = '".$data ['status']."'		
-		  WHERE labId = $data ['labId'] and event_id = $data ['labId']" ;
+	$sql = "UPDATE event_calendar SET status = '".$data ['status']."'
+		WHERE id = '".$data ['id']."'" ;
 		sqlsrv_query ( $con, $sql );	
 	}
 
