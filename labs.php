@@ -10,7 +10,7 @@ if( isset($_SESSION['UserId']) ) {
   
  <?php foreach($labs as $value): ?>
     <tr>
-      <div class="col-sm-6 btn-group">
+      <div class="col-md-6 btn-group">
        <span> 
         <h3>
           <font size="3px"> 
@@ -18,9 +18,6 @@ if( isset($_SESSION['UserId']) ) {
          <input type="button" class="btn btn-primary" value="<?php echo $value['name']; ?>"
          onClick="window.location='labs/labpage.php?id=<?php echo $value['id'] ?>'">
        </h3> 
-      <p>
-        <font color="black">Τίτλος: <?php echo $value['title']; ?>
-      </p>
         <?php 
          if(!empty($value['imageName'])){
              echo '<div align="center">';
