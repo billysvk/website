@@ -591,8 +591,11 @@ foreach ($dataForThisLab as $labRecord) {
                 $userHasSubscribed = true;
                 if($value['status'] == '0'){
                     $subscriptionStatus = 'Pending..';
+                }elseif ($value['status'] == '1') {
+                     $subscriptionStatus = 'Approved';
+                }else{  
+                     $subscriptionStatus = 'Rejected';
                 }
-                
             }
         }
     }
