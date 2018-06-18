@@ -535,6 +535,12 @@ while ($row = sqlsrv_fetch_array($result)) { ?>
 <p><font color="white" ;>Στον παρακάτω πίνακα, δίνεται η διαθεσημότητα της ημέρας</p>
 
 <?php
+global $hasSubmitForThisLab;
+$mySubscriptions = array();
+$mySubscriptions = get_my_class_register_applications_for_this_lab ($uid, $lab ['id']);
+?>
+
+<?php
 if (!empty ($dataForThisLab)) {
 $i = 1;
 echo "<table cellpadding='3' cellspacing='0' border='1' width='100%'>";
@@ -573,10 +579,32 @@ foreach ($dataForThisLab as $labRecord) {
         $EventStatus = "Rejected";
     }
     echo "<td>" . $EventStatus . "</td>"; // status
-     echo "<td>";
-    if($eventRegistrationEnabled == true && $urole == '1'){
-      echo "<a href='subscribe.php?id=".$labRecord['labId']."&subcat=".$labRecord['id']."'>Εγγραφή</a>";
+    echo "<td>";
+    $userHasSubscribed = false;
+    $subscriptionStatus = "";
+    foreach ($mySubscriptions as $value) {
+        if ($userHasSubscribed == false) {
+            if ($value['labId'] == $labRecord['labId']  && 
+                $value['event_id'] == $labRecord['id'] && 
+                $value['userId'] == $uid){
+
+                $userHasSubscribed = true;
+                if($value['status'] == '0'){
+                    $subscriptionStatus = 'Pending..';
+                }
+                
+            }
+        }
     }
+
+    if($eventRegistrationEnabled == true && $urole == '1' && $userHasSubscribed == false){//kai den exeis kanei aithsh...
+      echo "<a href='subscribe.php?id=".$labRecord['labId']."&subcat=".$labRecord['id']."'>Εγγραφή</a>";
+    }else{
+      if($userHasSubscribed == true){
+        echo $subscriptionStatus;
+      }
+    }
+
     echo "</td>";
     echo "</tr>";
 
