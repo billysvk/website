@@ -20,14 +20,13 @@ header('Content-type: text/html; charset=utf-8'); // Το χρησιμοποιο
 		isset ( $_POST ['email'] ) ? $email = $_POST ['email']: $email = '';
 		isset ( $_POST ['message'] ) ? $message = $_POST ['message']: $message = '';
 
-		$recipient = "puma1140@gmail.com"; // Σε ποιο mail θα σταλούν τα στοιχεία.
-		$subject = "Φόρμα επικοινωνίας"; // Το θέμα του email
+		$recipient = "billysvk@gmail.com"; // Σε ποιο mail θα σταλούν τα στοιχεία.
+		$subject = "Contact"; // Το θέμα του email
 		
-		// Το κυρίως σώμα του mail. Στο τέλος προσθέτουμε τα \r\n για να αλλάζουν γραμμή. Αν παρακάτω στα headers, δηλώναμε τη μορφή του mail html αντί για plain text, θα βάζαμε στο τέλος <br />. Για περισσότερες πληροφορίες σχετικά με τη συνάρτηση mail, μπορεί κανείς να ανατρέξει στο link http://php.net/manual/en/function.mail.php
-		$body = "Όνομα: ".$firstname."\r\n";
-		$body .= "Επώνυμο: ".$lastname."\r\n";
+		$body = "First Name: ".$firstname."\r\n";
+		$body .= "Surname: ".$lastname."\r\n";
 		$body .= "E-mail: ".$email."\r\n";
-		$body .= "Μήνυμα: ".$message;
+		$body .= "Message: ".$message;
 
 		$headers  = 'MIME-Version: 1.0'."\r\n";
 		$headers .= 'From: admin@my_site.gr'."\r\n";
@@ -35,8 +34,8 @@ header('Content-type: text/html; charset=utf-8'); // Το χρησιμοποιο
 
 		mail ( $recipient, $subject, $body, $headers );
 		echo '<script language="javascript">';
-echo 'alert("Η αποστολή της φόρμας πραγματοποιήθηκε με επιτυχία.")';
-echo '</script>';
+		echo 'alert("Η αποστολή της φόρμας πραγματοποιήθηκε με επιτυχία.")';
+		echo '</script>';
 		//echo "<p>Η αποστολή της φόρμας πραγματοποιήθηκε με επιτυχία.</p>";
 	} // end if
 	else{ // Διαφορετικά εμφανίζουμε τη φόρμα
