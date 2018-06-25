@@ -7,7 +7,7 @@ $end_year=2020;  // Ending year for dropdown list box
 <!doctype html public "-//w3c//dtd html 3.2//en">
 <html>
 <head>
-<title>plus2net Calendar</title>
+<title>Calendar</title>
 <link rel="canonical" href="http://www.plus2net.com/php_tutorial/cal2.php"/>
 <script langauge="javascript">
 

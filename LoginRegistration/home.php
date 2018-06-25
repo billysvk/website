@@ -125,21 +125,22 @@ $i = 0;
     echo "<table cellpadding='3' cellspacing='0' border='1' width='100%'>";
     echo "<tr>";
     echo "<td>Α/Α</td>";
-    echo "<td>Lab Id</td>";
+    echo "<td>Name</td>";
     echo "<td>Event Date</td>";
 
     echo "<td>Time of the event</td>";
     echo "<td>Title</td>";
     echo "<td>Description</td>";
     echo "<td>Status</td>";
-    echo "<td>Επιλογή</td>";
+    echo "<td>Action</td>";
     echo "</tr>";
     foreach ( $userEvents as $event )
     {
       $i++;
       echo "<tr>";
       echo "<td>".$i."</td>";
-      echo "<td>".$event ['labId']."</td>";
+      $tempLabInfo = get_lab($event['labId']);
+      echo "<td>".$tempLabInfo ['name']."</td>";   
       echo "<td>".$event ['event_date']."</td>";
       //time
       $Temptimeoftheevent = "";
