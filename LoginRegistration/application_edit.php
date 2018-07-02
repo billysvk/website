@@ -111,6 +111,7 @@ $eventInfo = get_event_info ($item['id'],$item['labId']);
             <input type="submit" class="btn btn-warning" value="Αποθήκευση" />
             <input type="hidden" name="id" value="<?php echo $item ['id']; ?>" />
             <input type="hidden" name="labId" value="<?php echo $item ['labId']; ?>" />
+            <input type="hidden" name="uid" value="<?php echo $uid ?>" />
             <input type="hidden" name="action" value="<?php $id !== 0 ? print "add": print ""; ?>" />
         </form>
         </br>
@@ -127,42 +128,46 @@ $eventInfo = get_event_info ($item['id'],$item['labId']);
 </br>
 <!-- ανακοινωσεις -->
 <?php
-$sql = "SELECT * FROM lab_info WHERE labId = " . $item ['labId'];
-$result = sqlsrv_query($con, $sql);
+$tempLabId = (int) $item ['labId'];
+$sql = "SELECT * FROM lab_info WHERE labId = $tempLabId AND UserId = $uid";
+$result = sqlsrv_query ( $con,$sql);
+$rows = array ();
+while ( $row = sqlsrv_fetch_array ( $result ) )
+{
+  $rows [] = $row;
+}
 
-if (sqlsrv_has_rows($result) > 0) {
-$row = sqlsrv_fetch_array($result);
-} // end if
-else {
-$row = 0;
+if (empty ($rows)) {
 echo "No files to show!";
-} // end else
+}
+else
+{
+foreach ($rows as $key) {
+echo "<table>";
+echo "<thead>";
+echo "<tr class='table100-head'>";
+echo "<th class='column1'>Title</th>";
+echo "<th class='column1'>Comment</th>";
+echo "<th class='column1'>Remove</th>";
+echo "</thead>";
+echo "<tbody>";
+echo "<tr>";
+echo '<td>' . htmlspecialchars($key['title']) . '</td>';
+echo '<td>' . htmlspecialchars($key['comment']) . '</td>';
+echo "<td>";
+echo "<a href='removeNewsEntry.php?id=".$key['id']."'>Remove</a>";
+echo "</td>";      
+echo "</tr>";
+echo "</tbody>";
+echo "</table>";
+echo ' </br>';
+}
+}
 ?>
-<?php
-$i = 1;
-while ($row = sqlsrv_fetch_array($result)) { ?>
-  <table>
-            <thead>
-              <tr class="table100-head">
-                <th class="column1">Title</th>
-                <th class="column2">Comment</th>
-                <th class="column3">Remove</th>
-              </tr>
-            </thead>
-            <tbody>
-                <tr>
-                  <td  style="word-break:break-all;" class="column1"><?php echo $row['title']; ?></td>
-                  <td  style="word-break:break-all;" class="column2"><?php echo $row ['comment']; ?></td>
-                   <td style="word-break:break-all;" type="button" class="column3 btn btn-danger"
-                       onClick="window.location='removeNewsEntry.php?id=<?php echo $row['id'] ?>'">Remove
-                      </td>
-                </tr>
-            </tbody>
-          </table>
-        </br>
-<?php } ?>
+
+
 </div>
-<!--end of anakoinwseis-->
+</div>
 </div>
 </div></div></div></div>
 </br>

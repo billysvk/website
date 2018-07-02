@@ -183,6 +183,10 @@
             <div class="form-group">
             	<a href="index.php">Sign in Here...</a>
             </div>
+
+             <div>
+            	<a href="../index.php">Back to main page...</a>
+            </div>
         
         </div>
    

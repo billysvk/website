@@ -82,6 +82,7 @@ function get_lab_infos ($id)
     } // end else
     return $row;
 }
+
 function get_request ( $id )
 	{
 		global $con;
@@ -129,15 +130,15 @@ function add_lab  ( $data )
 	{
         global $con;
 
-		$sql = "INSERT INTO lab_info (labId, event_id, title, comment) VALUES (?,?,?,?)";
-		$params = array($data ['labId'],$data ['event_id'],$data ['title'],$data ['comment']);
+		$sql = "INSERT INTO lab_info (labId, event_id, title, comment, UserId) VALUES (?,?,?,?,?)";
+		$params = array($data ['labId'],$data ['event_id'],$data ['title'],$data ['comment'],$data ['uid']);
 		$stmt = sqlsrv_query( $con, $sql, $params);
 	}
 	function update_lab_info($data)
 	{
         global $con;
-        $sql = "UPDATE lab_info SET title = '".$data['title']."',comment = '".$data['comment']."'
-		WHERE event_id = '".$data['event_id']."' AND labId = '".$data['labId']."'";
+        $sql = "UPDATE lab_info SET title = '".$data['title']."',comment = '".$data['comment']."',UserId = '".$data['uid']."'
+		WHERE event_id = '".$data['event_id']."' AND labId = '".$data['labId']."' AND UserId = '".$data['uid']."'";
 
         $stmt = sqlsrv_query ( $con, $sql );
 	}
@@ -216,9 +217,9 @@ function add_lab  ( $data )
 	{
 		global $con;
 
-		$sql = "INSERT INTO menu (name,position,title) VALUES (?,?,?)";
+		$sql = "INSERT INTO menu (name,position,title,content) VALUES (?,?,?,?)";
         //TODO: ta pedio content prokalei provlhma... me tropo poy den epitrepei to post sth vash.
-		$params = array($data ['name'],$data ['position'],$data ['title']);
+		$params = array($data ['name'],$data ['position'],$data ['title'],$data ['content']);
 		$stmt = sqlsrv_query( $con, $sql, $params);
 	}
 	// Ενημερώνει μία νέα εγγραφή τα δεδομένα της οποίας είναι στον πίνακα $data

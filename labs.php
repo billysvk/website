@@ -21,7 +21,7 @@ if( isset($_SESSION['UserId']) ) {
         <?php 
          if(!empty($value['imageName'])){
              echo '<div align="center">';
-             echo '<img src="uploads/images/'.$value['imageName'].'" alt="not found!" height="200" width="400">';
+             echo '<img src="uploads/images/'.$value['imageName'].'" alt="Image not found!" height="200" width="400">';
              echo '</div><br />';
          }
         ?>

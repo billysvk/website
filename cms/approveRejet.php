@@ -44,8 +44,8 @@ function writeMsg() {
                 </table>
                 <p>&nbsp;</p>
             <input type="hidden" name="id" value="<?php echo $registerRequests ['id']; ?>" />
-          	<input value="Approve" type="submit" class="btn-danger" name='Approve'/>
-			<input value="Reject" type="submit"  class="btn-success" name='Reject'/>
+          	<input value="Approve" type="submit" class="btn-success" name='Approve'/>
+			<input value="Reject" type="submit"  class="btn-danger" name='Reject'/>
 		    </form>
         	<p><a href='menu.php'>Πίσω στο μενού</a></p>
         </div>
