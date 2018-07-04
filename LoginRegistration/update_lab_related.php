@@ -11,7 +11,7 @@ if ( isset ( $_POST ['action'] ) )
             $data ['labId'] =  (int) $_POST ['labId']; // Αν θέλουμε ακέραια τιμή, χρησιμοποιούμε την (int)
             $data ['title'] =  $_POST ['title'] ;
             $data ['comment'] =  $_POST ['comment'] ;
-
+            $data ['uid'] =  $_POST ['uid'] ;
             add_lab_info ( $data );
             break;
 
@@ -20,7 +20,7 @@ if ( isset ( $_POST ['action'] ) )
             $data ['labId'] =  $_POST ['labId'] ;
             $data ['title'] =  $_POST ['title'];
             $data ['comment'] =  $_POST ['comment'] ;
-
+            $data ['uid'] =  $_POST ['uid'] ;
             update_lab_info ( $data );
             break;
 

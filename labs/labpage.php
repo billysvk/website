@@ -394,7 +394,7 @@ $h_6 = 0;
 </br>
 <!--lab files from admin -->
 <div class="" style="">
-Λίστα Αρχείων
+Λίστα Αρχείων : 
 <?php
 $sql = "SELECT id, name, image FROM labFiles WHERE labId = " . $lab ['id'];
 $result = sqlsrv_query($con, $sql);
@@ -448,26 +448,29 @@ else {
 <?php
 $sql = "SELECT * FROM lab_info WHERE labId = " . $lab ['id'];
 $result = sqlsrv_query($con, $sql);
+$rows = array ();
+while ( $row = sqlsrv_fetch_array ( $result ) )
+{
+  $rows [] = $row;
+}
+if (empty ($rows)) {
+echo "Δεν υπάρχουν νέα και ενημερώσεις!";
+}
+else
+{
+foreach ($rows as $key) {
+echo "<div class='row' style='border:2px solid #999999; background-color: #BADBAD'>";
 
-if (sqlsrv_has_rows($result) > 0) {
-$row = sqlsrv_fetch_array($result);
-} // end if
-else {
-$row = 0;
-echo "No files to show!";
-} // end else
+echo "<article>";
+echo '<h3>' . htmlspecialchars($key['title']) . '</h3>';
+echo '<p>' . htmlspecialchars($key['comment']) . '</p>';    
+echo "<article>";
+
+echo "</div>";
+echo "</br>";
+}}
 ?>
-<?php
-$i = 1;
-while ($row = sqlsrv_fetch_array($result)) { ?>
-<article>
-<div class="row" style="border:2px solid #999999; background-color: #BADBAD">
-    <h3><?php echo $row['title']; ?></h3>
-    <p><?php echo $row ['comment']; ?></p>
-</div>
-</article>
-</br>
-<?php } ?>
+
 </div>
 <!--end of anakoinwseis-->
 </div>

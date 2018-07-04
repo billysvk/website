@@ -4,7 +4,7 @@
  if(isset($_POST['id'])){
     $labId = $_POST['id'];
  }
-    if(isset($_POST['but_upload'])){
+    if(isset($_POST['but_upload']) || isset($_POST['but_upload_cover'])){
         $name = $_FILES['file']['name'];
         $target_dir = "C:/xampp/htdocs/website/uploads/images/";
         $target_file = $target_dir . basename($_FILES["file"]["name"]);
@@ -26,8 +26,10 @@
           //$params = array($data ['name'],$data ['position'],$data ['title'],$data ['comment']);
           $stmt = sqlsrv_query( $con, $sql);
             //update lab table with image
-          $sql = "UPDATE labs SET imageName = '".$name."' WHERE id = '" . $labId ."'";
+          if (isset($_POST['but_upload_cover'])) {
+             $sql = "UPDATE labs SET imageName = '".$name."' WHERE id = '" . $labId ."'";
            $stmt = sqlsrv_query( $con, $sql);
+          }
             // Upload file
             move_uploaded_file($_FILES['file']['tmp_name'],'C:/xampp/htdocs/website/uploads/images/'.$name);
 

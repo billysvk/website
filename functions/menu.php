@@ -225,6 +225,19 @@ $con = sqlsrv_connect($serverName, $connectionInfo);
 		return $row;
 	}
 
+ function get_event_calendar_for_user($labId, $UserId) {
+		global $con;
+		$row = array ();
+  		$UserIdInt = (int)$UserId;
+  		$LabId = (int)$labId;
+		$sql = "SELECT * FROM event_calendar WHERE UserId = $UserIdInt AND labId = $labId";
+		$result = sqlsrv_query ( $con, $sql);
+	    while( $rowTemp = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC) ) {
+         $row[] = $rowTemp;
+        }  
+		return $row;
+	}
+
 	function subscribeToThisEvent($data)
 	{
 		global $con;

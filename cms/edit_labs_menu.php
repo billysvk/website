@@ -108,8 +108,8 @@
                 <tr>
                     <td><?php echo $i++; ?></td>
                     <td><?php echo $row['name']; ?></td>
-                    <td><a href="C:/xampp/htdocs/website/uploads/images/<?php echo $row['name']; ?>" target="_blank">View</a></td>
-                    <td><a href="download_images.php?id=<?php echo $row ['name'];?>">Download</a></td>
+                    <td><a href="C:/xampp/htdocs/website/uploads/<?php echo $row['name']; ?>" target="_blank">View</a></td>
+                    <td><a href="download.php?id=<?php echo $row ['name'];?>">Download</a></td>
                 </tr>
                 <?php } ?>
                 </tbody>
@@ -126,10 +126,11 @@
  <div id="uploadFiles1" class="container" class="col-sm-12">
    <form method="post" action="upload_images.php" enctype='multipart/form-data'>
         <input type='file' name='file' />
-        <input type='submit' value='Upload File' name='but_upload'>
+        <input type='submit' value='Upload Image' name='but_upload'>
+        <input type='submit' value='Upload Cover Image' name='but_upload_cover'>
         <input type="hidden" name="id" value="<?php echo $menu ['id']; ?>" />
     </form>
-     <div class="container" class="col-sm-12"> Uploaded image:
+     <div class="container" class="col-sm-12"> Uploaded images:
    <?php
         $sql = "SELECT id, name, image FROM images WHERE labId = ".$menu ['id'];
         $image_result = sqlsrv_query ( $con, $sql );

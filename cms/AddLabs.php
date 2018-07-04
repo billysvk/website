@@ -2,8 +2,7 @@
 	include ( "init.php" );
 	//include ( "check_login.php" );
 	include ( "functions/menu.php" );
-//TODO
-	//$menu_records = get_labs (); // Τραβάμε τις εγγραφές από τον πίνακα menu της βάσης δεδομένων
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -17,16 +16,15 @@
 <body>
 	<?php
 		include ("sidebar.php");
-		$menu_records = get_labs (); // Τραβάμε τις εγγραφές από τον πίνακα menu της βάσης δεδομένων
+		$menu_records = get_labs (); 
 	?>
 	<div class="container">
         <div id="main">
         <?php
-			if ( !empty ( $menu_records ) ) // Αν υπάρχουν εγγραφές
+			if ( !empty ( $menu_records ) ) 
 			{
 				$i = 0;
 
-				// Φτιάξε έναν html πίνακα
 				echo "<table cellpadding='3' cellspacing='0' border='1' width='100%'>";
 				echo "<tr>";
 				echo "<td>Α/Α</td>";
@@ -35,7 +33,6 @@
 				echo "<td>Ενέργεια</td>";
 				echo "</tr>";
 
-				// Και εμφάνισε τις εγγραφές
 				foreach ( $menu_records as $menu )
 				{
 					$i++;
