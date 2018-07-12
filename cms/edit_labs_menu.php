@@ -95,7 +95,7 @@
                     <tr>
                         <th>#</th>
                         <th>File Name</th>
-                        <th>View</th>
+                        <!--<th>View</th>-->
                         <th>Download</th>
                     </tr>
                 </thead>
@@ -108,7 +108,7 @@
                 <tr>
                     <td><?php echo $i++; ?></td>
                     <td><?php echo $row['name']; ?></td>
-                    <td><a href="C:/xampp/htdocs/website/uploads/<?php echo $row['name']; ?>" target="_blank">View</a></td>
+                    <!--<td><a href="C:/xampp/htdocs/website/uploads/<?php echo $row['name']; ?>" target="_blank">View</a></td>-->
                     <td><a href="download.php?id=<?php echo $row ['name'];?>">Download</a></td>
                 </tr>
                 <?php } ?>
@@ -153,7 +153,7 @@
                     <tr>
                         <th>#</th>
                         <th>File Name</th>
-                        <th>View</th>
+                        <!--<th>View</th>-->
                         <th>Download</th>
                     </tr>
                 </thead>
@@ -166,7 +166,7 @@
                 <tr>
                     <td><?php echo $i++; ?></td>
                     <td><?php echo $row['name']; ?></td>
-                    <td><a href="C:/xampp/htdocs/website/uploads/images/<?php echo $row['name']; ?>" target="_blank">View</a></td>
+                    <!--<td><a href="C:/xampp/htdocs/website/uploads/images/<?php echo $row['name']; ?>" target="_blank">View</a></td>-->
                     <td><a href="download_images.php?id=<?php echo $row ['name'];?>">Download</a></td>
                 </tr>
                 <?php } ?>

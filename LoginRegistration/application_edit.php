@@ -129,7 +129,7 @@ $eventInfo = get_event_info ($item['id'],$item['labId']);
 <!-- ανακοινωσεις -->
 <?php
 $tempLabId = (int) $item ['labId'];
-$sql = "SELECT * FROM lab_info WHERE labId = $tempLabId AND UserId = $uid";
+$sql = "SELECT * FROM lab_info WHERE labId = $tempLabId AND UserId = $uid AND event_id = $id";
 $result = sqlsrv_query ( $con,$sql);
 $rows = array ();
 while ( $row = sqlsrv_fetch_array ( $result ) )
@@ -138,7 +138,7 @@ while ( $row = sqlsrv_fetch_array ( $result ) )
 }
 
 if (empty ($rows)) {
-echo "No files to show!";
+echo "Δεν έχουν προστεθεί ανακοινώσεις!";
 }
 else
 {
