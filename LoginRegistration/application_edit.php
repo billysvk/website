@@ -197,32 +197,32 @@ echo ' </br>';
             echo "Database is empty";
         } // end else
         ?>
-    
-                <table class="table100-head">
-                    <thead>
-                    <tr>
-                        <th class="column1">#</th>
-                        <th class="column2">File Name</th>
-                        <th class="column3">View</th>
-                        <th class="column4">Download</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                    $i = 1;
-                    while($row = sqlsrv_fetch_array($result)) { ?>
-                        <tr>
-                            <td><?php echo $i++; ?></td>
-                            <td><?php echo $row['name']; ?></td>
-                            <td><a href="C:/xampp/htdocs/website/uploads/<?php echo $row['name']; ?>" target="_blank">View</a></td>
-                            <td><a href="download.php?id=<?php echo $row ['name'];?>">Download</a></td>
-                        </tr>
-                    <?php } ?>
-                    </tbody>
-                </table>
-           
+          <table class="table100-head">
+              <thead>
+              <tr>
+                  <th class="column1">#</th>
+                  <th class="column2">File Name</th>
+                  <!--<th class="column3">View</th>-->
+                  <th class="column4">Download</th>
+              </tr>
+              </thead>
+              <tbody>
+              <?php
+              $i = 1;
+              while($row = sqlsrv_fetch_array($result)) { ?>
+                  <tr>
+                      <td><?php echo $i++; ?></td>
+                      <td><?php echo $row['name']; ?></td>
+                      <!--<td><a href="C:/xampp/htdocs/website/uploads/<?php echo $row['name']; ?>" target="_blank">View</a></td>-->
+                      <td><a href="download.php?id=<?php echo $row ['name'];?>">Download</a></td>
+                  </tr>
+              <?php } ?>
+              </tbody>
+          </table>         
     </div>
-</div></div></div>
+  </div>
+ </div>
+</div>
 
 <!-- lista aithsewn eggrafhs sto mathima -->
 </br>
