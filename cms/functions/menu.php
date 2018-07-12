@@ -240,7 +240,9 @@ function add_lab  ( $data )
 		sqlsrv_query ( $con, $sql );
 		$temp = array ();
 		$temp = get_request($data ['id']);
+		if($data['requestStatus'] == 1){
 		add_to_Users_table($temp );
+		}
 	}
 
 	function add_to_Users_table ($data)

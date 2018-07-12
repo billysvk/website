@@ -39,7 +39,7 @@
                     <tr>
                     	<td >Περιεχόμενο:</td>
                         <td>
-                        <input type="textarea"
+                        <input type="text"
                         rows="15"
                         cols="70" 
                         value="<?php echo $item ['description']; ?>" name="description" readonly />
